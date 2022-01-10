@@ -14,4 +14,8 @@ inline void keep_window_open() {
     cin >> ch;
 }
 
+inline void simple_error(string err) {
+    throw runtime_error(err);
+}
+
 #endif //PRINCIPLES_AND_PRACTICE_USING_CPP_STD_LIB_FACILITIES_H
