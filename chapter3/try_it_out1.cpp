@@ -10,6 +10,12 @@ void exercise_2_convert_mi_to_km();
 
 void exercise_3_output_res_of_two_int_val();
 
+void exercise_4_sort_and_output();
+
+int get_max(int i1, int i2, int i3);
+
+int get_min(int i1, int i2, int i3);
+
 int main() {
     // try_it_out_1();
 
@@ -19,12 +25,42 @@ int main() {
 
     // exercise_2_convert_mi_to_km();
 
-    exercise_3_output_res_of_two_int_val();
+    // exercise_3_output_res_of_two_int_val();
+
+    exercise_4_sort_and_output();
 
     keep_window_open();
 
     return 0;
 }
+
+void exercise_4_sort_and_output() {
+    int i1{0}, i2{0}, i3{0};
+    int max{0}, mid{0}, min{0};
+    cout << "Please enter 3 int value:\n";
+    cin >> i1 >> i2 >> i3;
+
+    max = get_max(i1, i2, i3);
+    min = get_min(i1, i2, i3);
+    mid = i1 + i2 + i3 - max - min;
+
+    cout << min << "," << mid << "," << max << endl;
+}
+
+int get_min(int i1, int i2, int i3) {
+    int mid = i1 < i2 ? i1 : i2;
+    int min = mid < i3 ? mid : i3;
+
+    return min;
+}
+
+int get_max(int i1, int i2, int i3) {
+    int mid = i1 > i2 ? i1 : i2;
+    int max = mid > i3 ? mid : i3;
+
+    return max;
+}
+
 
 void exercise_3_output_res_of_two_int_val() {
     int val1{0}, val2{0};
