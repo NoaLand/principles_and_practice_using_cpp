@@ -7,11 +7,9 @@ void try_it_out_2();
 void exercise_1();
 
 int main() {
-    // try it out 1
-//    try_it_out_1();
+    // try_it_out_1();
 
-    // try it out 2
-//    try_it_out_2();
+    // try_it_out_2();
 
     // exercise 1
     exercise_1();
