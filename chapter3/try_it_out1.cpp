@@ -6,14 +6,28 @@ void try_it_out_2();
 
 void exercise_1();
 
+void exercise_2_convert_mi_to_km();
+
 int main() {
     // try_it_out_1();
 
     // try_it_out_2();
 
-    exercise_1();
+    // exercise_1();
+
+    exercise_2_convert_mi_to_km();
+
+    keep_window_open();
 
     return 0;
+}
+
+void exercise_2_convert_mi_to_km() {
+    double mi{0.0}, km;
+    cout << "Please enter the mi you want to convert:\n";
+    cin >> mi;
+    km = mi * 1.609;
+    cout << mi << " mi is: " << km << " km";
 }
 
 void exercise_1() {
