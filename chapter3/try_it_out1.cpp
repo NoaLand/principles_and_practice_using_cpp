@@ -18,11 +18,13 @@ int get_min(int i1, int i2, int i3);
 
 void exercise_5_sort_and_output_string();
 
-string get_max_string(const string& basicString, const string& basicString1, const string& basicString2);
+string get_max_string(const string &basicString, const string &basicString1, const string &basicString2);
 
-string get_min_string(const string& s1, const string& s2, const string& s3);
+string get_min_string(const string &s1, const string &s2, const string &s3);
 
 void exercise_6_say_it_even_or_odd();
+
+void exercise_7_convert_string_to_int();
 
 int main() {
     // try_it_out_1();
@@ -39,11 +41,33 @@ int main() {
 
     // exercise_5_sort_and_output_string();
 
-    exercise_6_say_it_even_or_odd();
+    // exercise_6_say_it_even_or_odd();
+
+    exercise_7_convert_string_to_int();
 
     keep_window_open();
 
     return 0;
+}
+
+void exercise_7_convert_string_to_int() {
+    string string_num;
+    cout << "Please input number in string:\n";
+    cin >> string_num;
+
+    if (string_num == "zero") {
+        cout << "0\n";
+    } else if (string_num == "one") {
+        cout << "1\n";
+    } else if (string_num == "two") {
+        cout << "2\n";
+    } else if (string_num == "three") {
+        cout << "3\n";
+    } else if (string_num == "four") {
+        cout << "4\n";
+    } else {
+        cout << "stupid computer!\n";
+    }
 }
 
 void exercise_6_say_it_even_or_odd() {
@@ -51,7 +75,7 @@ void exercise_6_say_it_even_or_odd() {
     cout << "Please enter a number:\n";
     cin >> input;
 
-    if(input % 2 == 0) {
+    if (input % 2 == 0) {
         cout << "The value " << input << " is an even number.\n";
     } else {
         cout << "The value " << input << " is an odd number.\n";
@@ -67,8 +91,8 @@ void exercise_5_sort_and_output_string() {
     max = get_max_string(s1, s2, s3);
     min = get_min_string(s1, s2, s3);
 
-    for (const string& s: {s1, s2, s3}) {
-        if(s != max && s != min) {
+    for (const string &s: {s1, s2, s3}) {
+        if (s != max && s != min) {
             mid = s;
         }
     }
@@ -76,14 +100,14 @@ void exercise_5_sort_and_output_string() {
     cout << min << "," << mid << "," << max << endl;
 }
 
-string get_min_string(const string& s1, const string& s2, const string& s3) {
+string get_min_string(const string &s1, const string &s2, const string &s3) {
     string mid = s1 < s2 ? s1 : s2;
     string min = mid < s3 ? mid : s3;
 
     return min;
 }
 
-string get_max_string(const string& s1, const string& s2, const string& s3) {
+string get_max_string(const string &s1, const string &s2, const string &s3) {
     string mid = s1 > s2 ? s1 : s2;
     string max = mid > s3 ? mid : s3;
 
@@ -124,12 +148,12 @@ void exercise_3_output_res_of_two_int_val() {
     cout << "Please enter two int value:\n";
     cin >> val1 >> val2;
 
-    cout << "min val: " << (val1 < val2 ? val1: val2) << endl;
-    cout << "max val: " << (val1 > val2 ? val1: val2) << endl;
+    cout << "min val: " << (val1 < val2 ? val1 : val2) << endl;
+    cout << "max val: " << (val1 > val2 ? val1 : val2) << endl;
     cout << "sum is: " << val1 + val2 << endl;
     cout << "diff is: " << val1 - val2 << endl;
     cout << "product is: " << val1 * val2 << endl;
-    cout << "ratio is: " << (double)val1 / val2 << endl;
+    cout << "ratio is: " << (double) val1 / val2 << endl;
 }
 
 void exercise_2_convert_mi_to_km() {
