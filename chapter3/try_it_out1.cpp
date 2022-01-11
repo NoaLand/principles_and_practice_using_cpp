@@ -11,7 +11,6 @@ int main() {
 
     // try_it_out_2();
 
-    // exercise 1
     exercise_1();
 
     return 0;
