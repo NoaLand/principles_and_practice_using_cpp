@@ -22,6 +22,8 @@ string get_max_string(const string& basicString, const string& basicString1, con
 
 string get_min_string(const string& s1, const string& s2, const string& s3);
 
+void exercise_6_say_it_even_or_odd();
+
 int main() {
     // try_it_out_1();
 
@@ -35,11 +37,25 @@ int main() {
 
     // exercise_4_sort_and_output_int();
 
-    exercise_5_sort_and_output_string();
+    // exercise_5_sort_and_output_string();
+
+    exercise_6_say_it_even_or_odd();
 
     keep_window_open();
 
     return 0;
+}
+
+void exercise_6_say_it_even_or_odd() {
+    int input{0};
+    cout << "Please enter a number:\n";
+    cin >> input;
+
+    if(input % 2 == 0) {
+        cout << "The value " << input << " is an even number.\n";
+    } else {
+        cout << "The value " << input << " is an odd number.\n";
+    }
 }
 
 void exercise_5_sort_and_output_string() {
