@@ -42,7 +42,7 @@ int convert_half_dollars_to_cents(int dollars);
 
 int convert_one_dollar_to_cents(int one_dollar);
 
-string unit_grammar(int money, const string unit);
+string unit_grammar(int money, const string& unit);
 
 int main() {
     // try_it_out_1();
@@ -102,54 +102,24 @@ void exercise_9_banking_system() {
     cout << "You have " << quarters << " " << unit_grammar(quarters, "quarter") << endl;
     cout << "You have " << half_dollars << " " << unit_grammar(half_dollars, "half dollar") << endl;
     cout << "You have " << one_dollar << " " << unit_grammar(one_dollar, "dollar") << endl;
-    cout << "The value of all of your coins is $" << total / 100.0 << ".\n";
+    cout << "The value of all of your coins is $" << total / 100.0 << "." << endl;
 }
 
-string unit_grammar(int money, const string unit) {
-    if(unit == "penny") {
-        if(money == 1) {
-            return "penny";
-        } else {
-            return "pennies";
-        }
-    }
-    if(unit == "nickel") {
-        if(money == 1) {
-            return "nickel";
-        } else {
-            return "nickels";
-        }
-    }
-    if(unit == "dime") {
-        if(money == 1) {
-            return "dime";
-        } else {
-            return "dimes";
-        }
-    }
-    if(unit == "quarter") {
-        if(money == 1) {
-            return "quarter";
-        } else {
-            return "quarters";
-        }
-    }
-    if(unit == "half dollar") {
-        if(money == 1) {
-            return "half dollar";
-        } else {
-            return "half dollars";
-        }
-    }
-    if(unit == "dollar") {
-        if(money == 1) {
-            return "dollar";
-        } else {
-            return "dollars";
-        }
-    }
+string unit_grammar(int money, const string& unit) {
+    map<string, string> unit_grammar_map = {
+            {"penny", "pennies"},
+            {"nickel", "nickels"},
+            {"dime", "dimes"},
+            {"quarter", "quarters"},
+            {"half dollar", "half dollars"},
+            {"dollar", "dollars"},
+    };
 
-    return "";
+    if(money == 1) {
+        return unit;
+    } else {
+        return unit_grammar_map[unit];
+    }
 }
 
 int convert_one_dollar_to_cents(int one_dollar) {
