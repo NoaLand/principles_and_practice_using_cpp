@@ -42,6 +42,8 @@ int convert_half_dollars_to_cents(int dollars);
 
 int convert_one_dollar_to_cents(int one_dollar);
 
+string unit_grammar(int money, const string unit);
+
 int main() {
     // try_it_out_1();
 
@@ -94,13 +96,60 @@ void exercise_9_banking_system() {
     total += convert_half_dollars_to_cents(half_dollars);
     total += convert_one_dollar_to_cents(one_dollar);
 
-    cout << "You have " << pennies << " pennies.\n";
-    cout << "You have " << nickels << " nickels.\n";
-    cout << "You have " << dimes << " dimes.\n";
-    cout << "You have " << quarters << " quarters.\n";
-    cout << "You have " << half_dollars << " half dollars.\n";
-    cout << "You have " << one_dollar << " dollars.\n";
+    cout << "You have " << pennies << " " << unit_grammar(pennies, "penny") << endl;
+    cout << "You have " << nickels << " " << unit_grammar(nickels, "nickel") << endl;
+    cout << "You have " << dimes << " " << unit_grammar(dimes, "dime") << endl;
+    cout << "You have " << quarters << " " << unit_grammar(quarters, "quarter") << endl;
+    cout << "You have " << half_dollars << " " << unit_grammar(half_dollars, "half dollar") << endl;
+    cout << "You have " << one_dollar << " " << unit_grammar(one_dollar, "dollar") << endl;
     cout << "The value of all of your coins is $" << total / 100.0 << ".\n";
+}
+
+string unit_grammar(int money, const string unit) {
+    if(unit == "penny") {
+        if(money == 1) {
+            return "penny";
+        } else {
+            return "pennies";
+        }
+    }
+    if(unit == "nickel") {
+        if(money == 1) {
+            return "nickel";
+        } else {
+            return "nickels";
+        }
+    }
+    if(unit == "dime") {
+        if(money == 1) {
+            return "dime";
+        } else {
+            return "dimes";
+        }
+    }
+    if(unit == "quarter") {
+        if(money == 1) {
+            return "quarter";
+        } else {
+            return "quarters";
+        }
+    }
+    if(unit == "half dollar") {
+        if(money == 1) {
+            return "half dollar";
+        } else {
+            return "half dollars";
+        }
+    }
+    if(unit == "dollar") {
+        if(money == 1) {
+            return "dollar";
+        } else {
+            return "dollars";
+        }
+    }
+
+    return "";
 }
 
 int convert_one_dollar_to_cents(int one_dollar) {
