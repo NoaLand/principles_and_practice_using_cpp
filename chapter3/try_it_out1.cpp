@@ -8,6 +8,8 @@ void exercise_1();
 
 void exercise_2_convert_mi_to_km();
 
+void exercise_3_output_res_of_two_int_val();
+
 int main() {
     // try_it_out_1();
 
@@ -15,11 +17,27 @@ int main() {
 
     // exercise_1();
 
-    exercise_2_convert_mi_to_km();
+    // exercise_2_convert_mi_to_km();
+
+    exercise_3_output_res_of_two_int_val();
 
     keep_window_open();
 
     return 0;
+}
+
+void exercise_3_output_res_of_two_int_val() {
+    int val1{0}, val2{0};
+
+    cout << "Please enter two int value:\n";
+    cin >> val1 >> val2;
+
+    cout << "min val: " << (val1 < val2 ? val1: val2) << endl;
+    cout << "max val: " << (val1 > val2 ? val1: val2) << endl;
+    cout << "sum is: " << val1 + val2 << endl;
+    cout << "diff is: " << val1 - val2 << endl;
+    cout << "product is: " << val1 * val2 << endl;
+    cout << "ratio is: " << (double)val1 / val2 << endl;
 }
 
 void exercise_2_convert_mi_to_km() {
