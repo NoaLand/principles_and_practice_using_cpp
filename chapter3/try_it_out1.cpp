@@ -28,6 +28,20 @@ void exercise_7_convert_string_to_int();
 
 void exercise_8_custom_operation();
 
+void exercise_9_banking_system();
+
+int convert_pennies_to_cents(int pennies);
+
+int convert_nickels_to_cents(int nickels);
+
+int convert_dimes_to_cents(int dimes);
+
+int convert_quarters_to_cents(int quarters);
+
+int convert_half_dollars_to_cents(int dollars);
+
+int convert_one_dollar_to_cents(int one_dollar);
+
 int main() {
     // try_it_out_1();
 
@@ -47,11 +61,70 @@ int main() {
 
     // exercise_7_convert_string_to_int();
 
-    exercise_8_custom_operation();
+    // exercise_8_custom_operation();
+
+    exercise_9_banking_system();
 
     keep_window_open();
 
     return 0;
+}
+
+void exercise_9_banking_system() {
+    int pennies, nickels, dimes, quarters, half_dollars, one_dollar;
+    int total{0};
+
+    cout << "How many pennies do you have?\n";
+    cin >> pennies;
+    cout << "How many nickels do you have?\n";
+    cin >> nickels;
+    cout << "How many dimes do you have?\n";
+    cin >> dimes;
+    cout << "How many quarters do you have?\n";
+    cin >> quarters;
+    cout << "How many half dollars do you have?\n";
+    cin >> half_dollars;
+    cout << "How many one dollar do you have?\n";
+    cin >> one_dollar;
+
+    total += convert_pennies_to_cents(pennies);
+    total += convert_nickels_to_cents(nickels);
+    total += convert_dimes_to_cents(dimes);
+    total += convert_quarters_to_cents(quarters);
+    total += convert_half_dollars_to_cents(half_dollars);
+    total += convert_one_dollar_to_cents(one_dollar);
+
+    cout << "You have " << pennies << " pennies.\n";
+    cout << "You have " << nickels << " nickels.\n";
+    cout << "You have " << dimes << " dimes.\n";
+    cout << "You have " << quarters << " quarters.\n";
+    cout << "You have " << half_dollars << " half dollars.\n";
+    cout << "You have " << one_dollar << " dollars.\n";
+    cout << "The value of all of your coins is " << total << " cents\n";
+}
+
+int convert_one_dollar_to_cents(int one_dollar) {
+    return one_dollar * 100;
+}
+
+int convert_half_dollars_to_cents(int half_dollars) {
+    return half_dollars * 50;
+}
+
+int convert_quarters_to_cents(int quarters) {
+    return quarters * 25;
+}
+
+int convert_dimes_to_cents(int dimes) {
+    return dimes * 10;
+}
+
+int convert_nickels_to_cents(int nickels) {
+    return nickels * 5;
+}
+
+int convert_pennies_to_cents(int pennies) {
+    return pennies * 1;
 }
 
 void exercise_8_custom_operation() {
