@@ -10,7 +10,7 @@ void exercise_2_convert_mi_to_km();
 
 void exercise_3_output_res_of_two_int_val();
 
-void exercise_4_sort_and_output();
+void exercise_4_sort_and_output_int();
 
 int get_max(int i1, int i2, int i3);
 
@@ -33,7 +33,7 @@ int main() {
 
     // exercise_3_output_res_of_two_int_val();
 
-    // exercise_4_sort_and_output();
+    // exercise_4_sort_and_output_int();
 
     exercise_5_sort_and_output_string();
 
@@ -74,7 +74,7 @@ string get_max_string(const string& s1, const string& s2, const string& s3) {
     return max;
 }
 
-void exercise_4_sort_and_output() {
+void exercise_4_sort_and_output_int() {
     int i1{0}, i2{0}, i3{0};
     int max{0}, mid{0}, min{0};
     cout << "Please enter 3 int value:\n";
