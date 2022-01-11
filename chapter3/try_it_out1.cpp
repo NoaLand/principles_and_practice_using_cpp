@@ -100,7 +100,7 @@ void exercise_9_banking_system() {
     cout << "You have " << quarters << " quarters.\n";
     cout << "You have " << half_dollars << " half dollars.\n";
     cout << "You have " << one_dollar << " dollars.\n";
-    cout << "The value of all of your coins is " << total << " cents\n";
+    cout << "The value of all of your coins is $" << total / 100.0 << ".\n";
 }
 
 int convert_one_dollar_to_cents(int one_dollar) {
