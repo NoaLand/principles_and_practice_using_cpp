@@ -16,6 +16,12 @@ int get_max(int i1, int i2, int i3);
 
 int get_min(int i1, int i2, int i3);
 
+void exercise_5_sort_and_output_string();
+
+string get_max_string(const string& basicString, const string& basicString1, const string& basicString2);
+
+string get_min_string(const string& s1, const string& s2, const string& s3);
+
 int main() {
     // try_it_out_1();
 
@@ -27,11 +33,45 @@ int main() {
 
     // exercise_3_output_res_of_two_int_val();
 
-    exercise_4_sort_and_output();
+    // exercise_4_sort_and_output();
+
+    exercise_5_sort_and_output_string();
 
     keep_window_open();
 
     return 0;
+}
+
+void exercise_5_sort_and_output_string() {
+    string s1, s2, s3;
+    string max, mid, min;
+    cout << "Please enter 3 string:\n";
+    cin >> s1 >> s2 >> s3;
+
+    max = get_max_string(s1, s2, s3);
+    min = get_min_string(s1, s2, s3);
+
+    for (const string& s: {s1, s2, s3}) {
+        if(s != max && s != min) {
+            mid = s;
+        }
+    }
+
+    cout << min << "," << mid << "," << max << endl;
+}
+
+string get_min_string(const string& s1, const string& s2, const string& s3) {
+    string mid = s1 < s2 ? s1 : s2;
+    string min = mid < s3 ? mid : s3;
+
+    return min;
+}
+
+string get_max_string(const string& s1, const string& s2, const string& s3) {
+    string mid = s1 > s2 ? s1 : s2;
+    string max = mid > s3 ? mid : s3;
+
+    return max;
 }
 
 void exercise_4_sort_and_output() {
