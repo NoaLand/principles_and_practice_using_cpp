@@ -26,6 +26,8 @@ void exercise_6_say_it_even_or_odd();
 
 void exercise_7_convert_string_to_int();
 
+void exercise_8_custom_operation();
+
 int main() {
     // try_it_out_1();
 
@@ -43,11 +45,33 @@ int main() {
 
     // exercise_6_say_it_even_or_odd();
 
-    exercise_7_convert_string_to_int();
+    // exercise_7_convert_string_to_int();
+
+    exercise_8_custom_operation();
 
     keep_window_open();
 
     return 0;
+}
+
+void exercise_8_custom_operation() {
+    string operation;
+    double input_1, input_2;
+    cout << "Please enter operation:\n";
+    cin >> operation >> input_1 >> input_2;
+
+    if(operation == "+") {
+        cout << "res: " << input_1 + input_2 << endl;
+    }
+    if(operation == "-") {
+        cout << "res: " << input_1 - input_2 << endl;
+    }
+    if(operation == "*") {
+        cout << "res: " << input_1 * input_2 << endl;
+    }
+    if(operation == "/") {
+        cout << "res: " << input_1 / input_2 << endl;
+    }
 }
 
 void exercise_7_convert_string_to_int() {
