@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 include_directories(chapter2)
 include_directories(chapter3)
-include_directories(chapter3)
+include_directories(chapter4)
 
 add_executable(principles_and_practice_using_cpp
 #        chapter2/hello_world.cpp
