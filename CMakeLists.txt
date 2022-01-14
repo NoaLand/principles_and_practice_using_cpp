@@ -9,5 +9,5 @@ include_directories(chapter3)
 add_executable(principles_and_practice_using_cpp
 #        chapter2/hello_world.cpp
         lib/std_lib_facilities.h
-        chapter3/try_it_out1.cpp
+        chapter3/chapter3.cpp
 )
