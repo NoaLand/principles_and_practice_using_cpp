@@ -15,7 +15,7 @@ inline void keep_window_open() {
     cin >> ch;
 }
 
-inline void simple_error(string err) {
+inline void simple_error(const string& err) {
     throw runtime_error(err);
 }
 

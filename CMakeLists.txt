@@ -5,9 +5,11 @@ set(CMAKE_CXX_STANDARD 14)
 
 include_directories(chapter2)
 include_directories(chapter3)
+include_directories(chapter3)
 
 add_executable(principles_and_practice_using_cpp
 #        chapter2/hello_world.cpp
         lib/std_lib_facilities.h
-        chapter3/chapter3.cpp
+#        chapter3/chapter3.cpp
+        chapter4/chapter4.cpp
 )

@@ -1,4 +1,7 @@
-//
-// Created by Ruipeng Wang on 2022/1/14.
-//
+#include <../lib/std_lib_facilities.h>
 
+int main() {
+    keep_window_open();
+
+    return 0
+}
