@@ -10,13 +10,35 @@ void try_it_out_square_without_times();
 
 int my_square(int num);
 
+void try_it_out_dislike_words_bleep();
+
 int main() {
     // try_it_out_print_char_and_num_while_version();
     // try_it_out_print_char_and_num_for_version();
-    try_it_out_square_without_times();
+    // try_it_out_square_without_times();
+    try_it_out_dislike_words_bleep();
 
     keep_window_open();
     return 0;
+}
+
+void try_it_out_dislike_words_bleep() {
+    const string disliked{"Broccoli"};
+    cout << "please enter dict:" << endl;
+
+    vector<string> dict;
+    for(string word; cin >> word;) {
+        if(word == "end") break;
+        dict.push_back(word);
+    }
+
+    for(const string& word : dict) {
+        if(word == disliked) {
+            cout << "BLEEP" << endl;
+        } else {
+            cout << word << endl;
+        }
+    }
 }
 
 void try_it_out_square_without_times() {
