@@ -12,14 +12,25 @@ int my_square(int num);
 
 void try_it_out_dislike_words_bleep();
 
+[[noreturn]] void exercise_1_print_two_nums_in_each_iteration();
+
 int main() {
     // try_it_out_print_char_and_num_while_version();
     // try_it_out_print_char_and_num_for_version();
     // try_it_out_square_without_times();
-    try_it_out_dislike_words_bleep();
+    // try_it_out_dislike_words_bleep();
+    exercise_1_print_two_nums_in_each_iteration();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_1_print_two_nums_in_each_iteration() {
+    int num1, num2;
+    while(cin >> num1 >> num2) {
+        cout << num1 << endl;
+        cout << num2 << endl;
+    }
 }
 
 void try_it_out_dislike_words_bleep() {
