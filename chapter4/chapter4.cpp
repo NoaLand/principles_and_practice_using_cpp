@@ -26,12 +26,12 @@ int main() {
 }
 
 void exercise_1_print_two_nums_in_each_iteration() {
-    int num1, num2;
+    double num1, num2;
+    double max, min;
     while(cin >> num1 >> num2) {
         if(num1 == num2) {
             cout << "the numbers are equal" << endl;
         } else {
-            int max, min;
             max = num1 > num2 ? num1 : num2;
             min = num1 < num2 ? num1 : num2;
 
