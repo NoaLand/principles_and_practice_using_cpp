@@ -34,9 +34,10 @@ int main() {
 }
 
 void exercise_6_get_one_double_and_print_res() {
-    int num_account{0};
-    double num, num_after_transfer_to_cm, sum{0.0}, max{DBL_MIN}, min{DBL_MAX};
+    double num, num_after_transfer_to_cm, max{DBL_MIN}, min{DBL_MAX};
     string unit;
+
+    vector<double> data;
 
     while(cin >> num >> unit) {
         check_unit(unit);
@@ -55,15 +56,14 @@ void exercise_6_get_one_double_and_print_res() {
             cout << "the smallest so far" << endl;
         }
 
-        sum += num_after_transfer_to_cm;
-        ++num_account;
+        data.push_back(num_after_transfer_to_cm);
     }
 
     cout << "-----------" << endl;
     cout << "min num is: " << min << "cm" << endl;
     cout << "max num is: " << max << "cm" << endl;
-    cout << "sum is: " << sum << "cm" << endl;
-    cout << "total input num is: " << num_account << endl;
+    cout << "sum is: " << std::accumulate(data.begin(), data.end(), 0.0) << "cm" << endl;
+    cout << "total input num is: " << data.size() << endl;
     cout << "-----------" << endl;
 }
 
