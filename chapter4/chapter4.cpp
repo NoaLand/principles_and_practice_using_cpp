@@ -19,6 +19,8 @@ void exercise_6_get_one_double_and_print_res();
 
 double transfer_num_to_cm(double num, const string& unit);
 
+void check_unit(const string& unit);
+
 int main() {
     // try_it_out_print_char_and_num_while_version();
     // try_it_out_print_char_and_num_for_version();
@@ -36,6 +38,8 @@ void exercise_6_get_one_double_and_print_res() {
     string unit;
 
     while(cin >> num >> unit) {
+        check_unit(unit);
+
         cout << "num is: " << num << unit << endl;
 
         num_after_transfer = transfer_num_to_cm(num, unit);
@@ -49,6 +53,12 @@ void exercise_6_get_one_double_and_print_res() {
             min = num_after_transfer;
             cout << "the smallest so far" << endl;
         }
+    }
+}
+
+void check_unit(const string& unit) {
+    if(unit != "cm" || unit != "m" || unit != "in" || unit != "ft") {
+        simple_error("unit is wrong!");
     }
 }
 
