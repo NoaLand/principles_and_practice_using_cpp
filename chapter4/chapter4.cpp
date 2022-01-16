@@ -1,4 +1,5 @@
 #include <../lib/std_lib_facilities.h>
+#include <cfloat>
 
 void try_it_out_print_char_and_num_while_version();
 
@@ -14,15 +15,36 @@ void try_it_out_dislike_words_bleep();
 
 [[noreturn]] void exercise_1_print_two_nums_in_each_iteration();
 
+void exercise_6_get_one_double_and_print_res();
+
 int main() {
     // try_it_out_print_char_and_num_while_version();
     // try_it_out_print_char_and_num_for_version();
     // try_it_out_square_without_times();
     // try_it_out_dislike_words_bleep();
-    exercise_1_print_two_nums_in_each_iteration();
+    // exercise_1_print_two_nums_in_each_iteration();
+    exercise_6_get_one_double_and_print_res();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_6_get_one_double_and_print_res() {
+    double num, max{DBL_MIN}, min{DBL_MAX};
+
+    while(cin >> num) {
+        cout << "num is: " << num << endl;
+
+        if(num > max) {
+            max = num;
+            cout << "the largest so far" << endl;
+        }
+
+        if(num < min) {
+            min = num;
+            cout << "the smallest so far" << endl;
+        }
+    }
 }
 
 void exercise_1_print_two_nums_in_each_iteration() {
