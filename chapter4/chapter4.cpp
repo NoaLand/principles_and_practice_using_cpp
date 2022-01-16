@@ -60,6 +60,11 @@ void exercise_6_get_one_double_and_print_res() {
     }
 
     cout << "-----------" << endl;
+    sort(data.begin(), data.end());
+    for(double d : data) {
+        cout << d << "cm" << endl;
+    }
+    cout << "-----------" << endl;
     cout << "min num is: " << min << "cm" << endl;
     cout << "max num is: " << max << "cm" << endl;
     cout << "sum is: " << std::accumulate(data.begin(), data.end(), 0.0) << "cm" << endl;
