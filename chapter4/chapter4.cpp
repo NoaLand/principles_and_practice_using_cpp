@@ -17,6 +17,8 @@ void try_it_out_dislike_words_bleep();
 
 void exercise_6_get_one_double_and_print_res();
 
+double transfer_num_to_cm(double num, const string& unit);
+
 int main() {
     // try_it_out_print_char_and_num_while_version();
     // try_it_out_print_char_and_num_for_version();
@@ -30,20 +32,35 @@ int main() {
 }
 
 void exercise_6_get_one_double_and_print_res() {
-    double num, max{DBL_MIN}, min{DBL_MAX};
+    double num, num_after_transfer, max{DBL_MIN}, min{DBL_MAX};
+    string unit;
 
-    while(cin >> num) {
-        cout << "num is: " << num << endl;
+    while(cin >> num >> unit) {
+        cout << "num is: " << num << unit << endl;
 
-        if(num > max) {
-            max = num;
+        num_after_transfer = transfer_num_to_cm(num, unit);
+
+        if(num_after_transfer > max) {
+            max = num_after_transfer;
             cout << "the largest so far" << endl;
         }
 
-        if(num < min) {
-            min = num;
+        if(num_after_transfer < min) {
+            min = num_after_transfer;
             cout << "the smallest so far" << endl;
         }
+    }
+}
+
+double transfer_num_to_cm(double num, const string& unit) {
+    if(unit == "cm") {
+        return num * 1.0;
+    } else if(unit == "m") {
+        return num * 100.0;
+    } else if(unit == "in") {
+        return num * 2.54;
+    } else if(unit == "ft") {
+        return transfer_num_to_cm(num * 12, "in");
     }
 }
 
