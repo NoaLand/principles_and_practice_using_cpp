@@ -35,8 +35,12 @@ void exercise_1_print_two_nums_in_each_iteration() {
             max = num1 > num2 ? num1 : num2;
             min = num1 < num2 ? num1 : num2;
 
-            cout << "the smaller value is: " << min << endl;
-            cout << "the larger value is: " << max << endl;
+            if(max - min < 1.0 / 100) {
+                cout << "the numbers are almost equal" << endl;
+            } else {
+                cout << "the smaller value is: " << min << endl;
+                cout << "the larger value is: " << max << endl;
+            }
         }
     }
 }
