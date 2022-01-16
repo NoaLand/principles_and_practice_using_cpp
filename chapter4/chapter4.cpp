@@ -34,7 +34,8 @@ int main() {
 }
 
 void exercise_6_get_one_double_and_print_res() {
-    double num, num_after_transfer, max{DBL_MIN}, min{DBL_MAX};
+    int num_account{0};
+    double num, num_after_transfer_to_cm, sum{0.0}, max{DBL_MIN}, min{DBL_MAX};
     string unit;
 
     while(cin >> num >> unit) {
@@ -42,22 +43,32 @@ void exercise_6_get_one_double_and_print_res() {
 
         cout << "num is: " << num << unit << endl;
 
-        num_after_transfer = transfer_num_to_cm(num, unit);
+        num_after_transfer_to_cm = transfer_num_to_cm(num, unit);
 
-        if(num_after_transfer > max) {
-            max = num_after_transfer;
+        if(num_after_transfer_to_cm > max) {
+            max = num_after_transfer_to_cm;
             cout << "the largest so far" << endl;
         }
 
-        if(num_after_transfer < min) {
-            min = num_after_transfer;
+        if(num_after_transfer_to_cm < min) {
+            min = num_after_transfer_to_cm;
             cout << "the smallest so far" << endl;
         }
+
+        sum += num_after_transfer_to_cm;
+        ++num_account;
     }
+
+    cout << "-----------" << endl;
+    cout << "min num is: " << min << "cm" << endl;
+    cout << "max num is: " << max << "cm" << endl;
+    cout << "sum is: " << sum << "cm" << endl;
+    cout << "total input num is: " << num_account << endl;
+    cout << "-----------" << endl;
 }
 
 void check_unit(const string& unit) {
-    if(unit != "cm" || unit != "m" || unit != "in" || unit != "ft") {
+    if(unit != "cm" && unit != "m" && unit != "in" && unit != "ft") {
         simple_error("unit is wrong!");
     }
 }
