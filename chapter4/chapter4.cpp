@@ -13,7 +13,7 @@ int my_square(int num);
 
 void try_it_out_dislike_words_bleep();
 
-[[noreturn]] void exercise_1_print_two_nums_in_each_iteration();
+void exercise_1_print_two_nums_in_each_iteration();
 
 void exercise_6_get_one_double_and_print_res();
 
@@ -88,6 +88,7 @@ double transfer_num_to_cm(double num, const string& unit) {
     } else if(unit == "ft") {
         return transfer_num_to_cm(num * 12, "in");
     }
+    return 0;
 }
 
 void exercise_1_print_two_nums_in_each_iteration() {
