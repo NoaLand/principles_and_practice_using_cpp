@@ -28,8 +28,12 @@ int main() {
 void exercise_1_print_two_nums_in_each_iteration() {
     int num1, num2;
     while(cin >> num1 >> num2) {
-        cout << num1 << endl;
-        cout << num2 << endl;
+        int max, min;
+        max = num1 > num2 ? num1 : num2;
+        min = num1 < num2 ? num1 : num2;
+
+        cout << "the smaller value is: " << min << endl;
+        cout << "the larger value is: " << max << endl;
     }
 }
 
