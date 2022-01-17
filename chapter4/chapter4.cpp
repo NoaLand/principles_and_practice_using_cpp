@@ -27,6 +27,8 @@ void exercise_8_input_distance_between_two_cities();
 
 void exercise_9_guess_number();
 
+void exercise_10_customize_calculator();
+
 int main() {
     // try_it_out_print_char_and_num_while_version();
     // try_it_out_print_char_and_num_for_version();
@@ -36,10 +38,44 @@ int main() {
     // exercise_6_get_one_double_and_print_res();
     // exercise_7_calculate_mid_value();
     // exercise_8_input_distance_between_two_cities();
-    exercise_9_guess_number();
+    // exercise_9_guess_number();
+    exercise_10_customize_calculator();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_10_customize_calculator() {
+    double num1, num2;
+    char my_operator;
+
+    cout << "******* welcome to my calculator *******r" << endl;
+    while(cin >> num1 >> num2 >> my_operator) {
+        switch (my_operator) {
+            case '+': {
+                double sum = num1 + num2;
+                cout << "The sum of " << num1 << " and " << num2 << " is " << sum << endl;
+            } break;
+            case '-': {
+                double diff = num1 - num2;
+                cout << "The diff of " << num1 << " and " << num2 << " is " << diff << endl;
+            } break;
+            case '*': {
+                double product = num1 * num2;
+                cout << "The product of " << num1 << " and " << num2 << " is " << product << endl;
+            } break;
+            case '/': {
+                double quotient = num1 / num2;
+                cout << "The quotient of " << num1 << " and " << num2 << " is " << quotient << endl;
+            } break;
+            case '%': {
+                int modulo = (int)num1 % (int)num2;
+                cout << "The modulo of " << num1 << " and " << num2 << " is " << modulo << endl;
+            } break;
+            default:
+                simple_error("wrong operator");
+        }
+    }
 }
 
 void exercise_9_guess_number() {
