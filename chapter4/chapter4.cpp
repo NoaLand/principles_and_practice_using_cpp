@@ -39,6 +39,8 @@ void exercise_13_chess_puzzle();
 
 void exercise_14_rock_paper_scissors_game();
 
+void exercise_15_find_primes_between_1_to_100();
+
 int main() {
     // try_it_out_print_char_and_num_while_version();
     // try_it_out_print_char_and_num_for_version();
@@ -53,10 +55,35 @@ int main() {
     // exercise_11_string_to_num();
     // exercise_12_get_num_or_string_customized_calculator();
     // exercise_13_chess_puzzle();
-    exercise_14_rock_paper_scissors_game();
+    // exercise_14_rock_paper_scissors_game();
+    exercise_15_find_primes_between_1_to_100();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_15_find_primes_between_1_to_100() {
+    vector<int> primes{2};
+
+    for(int num = 3; num <= 100; ++num) {
+        bool res{true};
+        for(int prime : primes) {
+            if(num % prime != 0) {
+                res = res & true;
+            } else {
+                res = res & false;
+            }
+        }
+
+        if(res) {
+            primes.push_back(num);
+        }
+    }
+
+    cout << "total size: " << primes.size() << endl;
+    for(int prime : primes) {
+        cout << prime << " ";
+    }
 }
 
 int find_and_get_index(vector<string> data_list, const string &element) {
