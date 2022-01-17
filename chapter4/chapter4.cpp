@@ -21,16 +21,40 @@ double transfer_num_to_cm(double num, const string& unit);
 
 void check_unit(const string& unit);
 
+void exercise_7_calculate_mid_value();
+
 int main() {
     // try_it_out_print_char_and_num_while_version();
     // try_it_out_print_char_and_num_for_version();
     // try_it_out_square_without_times();
     // try_it_out_dislike_words_bleep();
     // exercise_1_print_two_nums_in_each_iteration();
-    exercise_6_get_one_double_and_print_res();
+    // exercise_6_get_one_double_and_print_res();
+    exercise_7_calculate_mid_value();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_7_calculate_mid_value() {
+    vector<double> data_list;
+    double lval, rval;
+    for(double data; cin >> data;) {
+        data_list.push_back(data);
+    }
+
+    std::sort(data_list.begin(), data_list.end());
+    data_list.erase(unique(data_list.begin(), data_list.end()), data_list.end());
+
+    if(data_list.size() % 2 == 0) {
+        lval = data_list[data_list.size() / 2 - 1];
+        rval = data_list[data_list.size() / 2];
+    } else {
+        lval = data_list[data_list.size() / 2];
+        rval = lval;
+    }
+
+    cout << "the mid value is: " << (lval + rval) / 2 << endl;
 }
 
 void exercise_6_get_one_double_and_print_res() {
