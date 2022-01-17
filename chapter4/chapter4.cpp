@@ -17,9 +17,9 @@ void exercise_1_print_two_nums_in_each_iteration();
 
 void exercise_6_get_one_double_and_print_res();
 
-double transfer_num_to_cm(double num, const string& unit);
+double transfer_num_to_cm(double num, const string &unit);
 
-void check_unit(const string& unit);
+void check_unit(const string &unit);
 
 void exercise_7_calculate_mid_value();
 
@@ -31,7 +31,9 @@ void exercise_10_customize_calculator();
 
 void exercise_11_string_to_num();
 
-int find_and_get_index(vector<string> data_list, const string& element);
+int find_and_get_index(vector<string> data_list, const string &element);
+
+void exercise_12_get_num_or_string_customized_calculator();
 
 int main() {
     // try_it_out_print_char_and_num_while_version();
@@ -44,17 +46,72 @@ int main() {
     // exercise_8_input_distance_between_two_cities();
     // exercise_9_guess_number();
     // exercise_10_customize_calculator();
-    exercise_11_string_to_num();
+    // exercise_11_string_to_num();
+    exercise_12_get_num_or_string_customized_calculator();
 
     keep_window_open();
     return 0;
 }
 
+int get_num_from_string(const string& input) {
+    int index;
+    vector<string> num_in_string{"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+
+    if (input.size() > 1) {
+        index = find_and_get_index(num_in_string, input);
+    } else {
+        index = stoi(input);
+    }
+
+    return index;
+}
+
+void exercise_12_get_num_or_string_customized_calculator() {
+    string num1_string, num2_string;
+    int num1, num2;
+    char my_operator;
+
+    cout << "******* welcome to my calculator *******r" << endl;
+    while (cin >> num1_string >> num2_string >> my_operator) {
+        num1 = get_num_from_string(num1_string);
+        num2 = get_num_from_string(num2_string);
+        switch (my_operator) {
+            case '+': {
+                double sum = num1 + num2;
+                cout << "The sum of " << num1 << " and " << num2 << " is " << sum << endl;
+            }
+                break;
+            case '-': {
+                double diff = num1 - num2;
+                cout << "The diff of " << num1 << " and " << num2 << " is " << diff << endl;
+            }
+                break;
+            case '*': {
+                double product = num1 * num2;
+                cout << "The product of " << num1 << " and " << num2 << " is " << product << endl;
+            }
+                break;
+            case '/': {
+                double quotient = num1 / num2;
+                cout << "The quotient of " << num1 << " and " << num2 << " is " << quotient << endl;
+            }
+                break;
+            case '%': {
+                int modulo = (int) num1 % (int) num2;
+                cout << "The modulo of " << num1 << " and " << num2 << " is " << modulo << endl;
+            }
+                break;
+            default:
+                simple_error("wrong operator");
+        }
+    }
+}
+
 void exercise_11_string_to_num() {
     vector<string> num_in_string{"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
 
-    for(string input; cin >> input;) {
-        if(input.size() > 1) {
+    for (string input; cin >> input;) {
+        if (input.size() > 1) {
             int index = find_and_get_index(num_in_string, input);
             cout << index << endl;
         } else {
@@ -64,10 +121,10 @@ void exercise_11_string_to_num() {
     }
 }
 
-int find_and_get_index(vector<string> data_list, const string& element) {
-    auto res = find(data_list.begin(), data_list.end(),element);
+int find_and_get_index(vector<string> data_list, const string &element) {
+    auto res = find(data_list.begin(), data_list.end(), element);
 
-    if(res != data_list.end()) {
+    if (res != data_list.end()) {
         int index = res - data_list.begin(); // NOLINT(cppcoreguidelines-narrowing-conversions)
         return index;
     } else {
@@ -80,28 +137,33 @@ void exercise_10_customize_calculator() {
     char my_operator;
 
     cout << "******* welcome to my calculator *******r" << endl;
-    while(cin >> num1 >> num2 >> my_operator) {
+    while (cin >> num1 >> num2 >> my_operator) {
         switch (my_operator) {
             case '+': {
                 double sum = num1 + num2;
                 cout << "The sum of " << num1 << " and " << num2 << " is " << sum << endl;
-            } break;
+            }
+                break;
             case '-': {
                 double diff = num1 - num2;
                 cout << "The diff of " << num1 << " and " << num2 << " is " << diff << endl;
-            } break;
+            }
+                break;
             case '*': {
                 double product = num1 * num2;
                 cout << "The product of " << num1 << " and " << num2 << " is " << product << endl;
-            } break;
+            }
+                break;
             case '/': {
                 double quotient = num1 / num2;
                 cout << "The quotient of " << num1 << " and " << num2 << " is " << quotient << endl;
-            } break;
+            }
+                break;
             case '%': {
-                int modulo = (int)num1 % (int)num2;
+                int modulo = (int) num1 % (int) num2;
                 cout << "The modulo of " << num1 << " and " << num2 << " is " << modulo << endl;
-            } break;
+            }
+                break;
             default:
                 simple_error("wrong operator");
         }
@@ -116,20 +178,20 @@ void exercise_9_guess_number() {
 
     cout << "********** guess number **********" << endl;
     cout << times << ". if your number is less than " << guess_number << "?\n";
-    while(cin >> answer) {
+    while (cin >> answer) {
         ++times;
 
-        if(answer == "y") {
+        if (answer == "y") {
             end = guess_number;
         }
 
-        if(answer == "n") {
+        if (answer == "n") {
             start = guess_number;
         }
 
         guess_number = (start + end) / 2;
 
-        if(end - start == 1 || end - start == 2) {
+        if (end - start == 1 || end - start == 2) {
             cout << "Your number is " << guess_number << endl;
             break;
         }
@@ -141,7 +203,7 @@ void exercise_9_guess_number() {
 void exercise_8_input_distance_between_two_cities() {
     vector<double> ways;
 
-    for(double distance; cin >> distance;) {
+    for (double distance; cin >> distance;) {
         ways.push_back(distance);
     }
 
@@ -149,7 +211,7 @@ void exercise_8_input_distance_between_two_cities() {
 
     double sum = accumulate(ways.begin(), ways.end(), 0.0);
     cout << "the sum of whole ways is: " << sum << endl;
-    cout << "min distance is: " <<  ways.at(0) << endl;
+    cout << "min distance is: " << ways.at(0) << endl;
     cout << "max distance is: " << ways.at(ways.size() - 1) << endl;
     cout << "average distance is: " << sum * 1.0 / ways.size() << endl;
 }
@@ -157,14 +219,14 @@ void exercise_8_input_distance_between_two_cities() {
 void exercise_7_calculate_mid_value() {
     vector<double> data_list;
     double lval, rval;
-    for(double data; cin >> data;) {
+    for (double data; cin >> data;) {
         data_list.push_back(data);
     }
 
     std::sort(data_list.begin(), data_list.end());
     data_list.erase(unique(data_list.begin(), data_list.end()), data_list.end());
 
-    if(data_list.size() % 2 == 0) {
+    if (data_list.size() % 2 == 0) {
         lval = data_list[data_list.size() / 2 - 1];
         rval = data_list[data_list.size() / 2];
     } else {
@@ -181,19 +243,19 @@ void exercise_6_get_one_double_and_print_res() {
 
     vector<double> data;
 
-    while(cin >> num >> unit) {
+    while (cin >> num >> unit) {
         check_unit(unit);
 
         cout << "num is: " << num << unit << endl;
 
         num_after_transfer_to_cm = transfer_num_to_cm(num, unit);
 
-        if(num_after_transfer_to_cm > max) {
+        if (num_after_transfer_to_cm > max) {
             max = num_after_transfer_to_cm;
             cout << "the largest so far" << endl;
         }
 
-        if(num_after_transfer_to_cm < min) {
+        if (num_after_transfer_to_cm < min) {
             min = num_after_transfer_to_cm;
             cout << "the smallest so far" << endl;
         }
@@ -203,7 +265,7 @@ void exercise_6_get_one_double_and_print_res() {
 
     cout << "-----------" << endl;
     sort(data.begin(), data.end());
-    for(double d : data) {
+    for (double d: data) {
         cout << d << "cm" << endl;
     }
     cout << "-----------" << endl;
@@ -214,20 +276,20 @@ void exercise_6_get_one_double_and_print_res() {
     cout << "-----------" << endl;
 }
 
-void check_unit(const string& unit) {
-    if(unit != "cm" && unit != "m" && unit != "in" && unit != "ft") {
+void check_unit(const string &unit) {
+    if (unit != "cm" && unit != "m" && unit != "in" && unit != "ft") {
         simple_error("unit is wrong!");
     }
 }
 
-double transfer_num_to_cm(double num, const string& unit) {
-    if(unit == "cm") {
+double transfer_num_to_cm(double num, const string &unit) {
+    if (unit == "cm") {
         return num * 1.0;
-    } else if(unit == "m") {
+    } else if (unit == "m") {
         return num * 100.0;
-    } else if(unit == "in") {
+    } else if (unit == "in") {
         return num * 2.54;
-    } else if(unit == "ft") {
+    } else if (unit == "ft") {
         return transfer_num_to_cm(num * 12, "in");
     }
     return 0;
@@ -236,14 +298,14 @@ double transfer_num_to_cm(double num, const string& unit) {
 void exercise_1_print_two_nums_in_each_iteration() {
     double num1, num2;
     double max, min;
-    while(cin >> num1 >> num2) {
-        if(num1 == num2) {
+    while (cin >> num1 >> num2) {
+        if (num1 == num2) {
             cout << "the numbers are equal" << endl;
         } else {
             max = num1 > num2 ? num1 : num2;
             min = num1 < num2 ? num1 : num2;
 
-            if(max - min < 1.0 / 100) {
+            if (max - min < 1.0 / 100) {
                 cout << "the numbers are almost equal" << endl;
             } else {
                 cout << "the smaller value is: " << min << endl;
@@ -258,13 +320,13 @@ void try_it_out_dislike_words_bleep() {
     cout << "please enter dict:" << endl;
 
     vector<string> dict;
-    for(string word; cin >> word;) {
-        if(word == "end") break;
+    for (string word; cin >> word;) {
+        if (word == "end") break;
         dict.push_back(word);
     }
 
-    for(const string& word : dict) {
-        if(word == disliked) {
+    for (const string &word: dict) {
+        if (word == disliked) {
             cout << "BLEEP" << endl;
         } else {
             cout << word << endl;
@@ -279,7 +341,7 @@ void try_it_out_square_without_times() {
 
 int my_square(int num) {
     int res{0};
-    for(int index = 0; index < num; ++index) {
+    for (int index = 0; index < num; ++index) {
         res += num;
     }
     return res;
@@ -291,7 +353,7 @@ void try_it_out_print_char_and_num_for_version() {
 }
 
 void print_char_range(char start_char, char end_char) {
-    for(int offset = 0; int{start_char} + offset <= int{end_char}; ++offset) {
+    for (int offset = 0; int{start_char} + offset <= int{end_char}; ++offset) {
         char c = char(start_char + offset);
         cout << c << "\t" << int{c} << endl;
     }
