@@ -37,6 +37,8 @@ void exercise_12_get_num_or_string_customized_calculator();
 
 void exercise_13_chess_puzzle();
 
+void exercise_14_rock_paper_scissors_game();
+
 int main() {
     // try_it_out_print_char_and_num_while_version();
     // try_it_out_print_char_and_num_for_version();
@@ -50,10 +52,47 @@ int main() {
     // exercise_10_customize_calculator();
     // exercise_11_string_to_num();
     // exercise_12_get_num_or_string_customized_calculator();
-    exercise_13_chess_puzzle();
+    // exercise_13_chess_puzzle();
+    exercise_14_rock_paper_scissors_game();
 
     keep_window_open();
     return 0;
+}
+
+int find_and_get_index(vector<string> data_list, const string &element) {
+    auto res = find(data_list.begin(), data_list.end(), element);
+
+    if (res != data_list.end()) {
+        int index = res - data_list.begin(); // NOLINT(cppcoreguidelines-narrowing-conversions)
+        return index;
+    } else {
+        simple_error("not in vector");
+    }
+}
+
+void exercise_14_rock_paper_scissors_game() {
+    vector<string> operate{"r", "p", "s"};
+    vector<string> rule{"s", "r", "p", "s", "r"};
+    for(string my_turn; cin >> my_turn;) {
+        string computer_turn = operate.at(rand() % 3);
+
+        if(my_turn == computer_turn) {
+            cout << "Tieeeeeee!" << endl;
+            cout << "************" << endl;
+            continue;
+        }
+
+        int my_index = find_and_get_index(operate, my_turn) + 1;
+
+        if(rule.at(my_index - 1) == computer_turn) {
+            cout << "You Win!!!" << endl;
+        } else {
+            cout << "You Lose!!!" << endl;
+        }
+        cout << "my: " << my_turn << endl;
+        cout << "computer: " << computer_turn << endl;
+        cout << "************" << endl;
+    }
 }
 
 void exercise_13_chess_puzzle() {
@@ -69,7 +108,7 @@ void exercise_13_chess_puzzle() {
         rices_list.push_back(last * 2);
         sum = accumulate(rices_list.begin(), rices_list.end(), 0);
     }
-    
+
     cout << "target has been satisfied, the sum of rice now is: " << sum << endl;
     cout << "to finish this challenge, we use: " << rices_list.size() << " position" << endl;
 }
@@ -139,17 +178,6 @@ void exercise_11_string_to_num() {
             int index = stoi(input);
             cout << num_in_string.at(index) << endl;
         }
-    }
-}
-
-int find_and_get_index(vector<string> data_list, const string &element) {
-    auto res = find(data_list.begin(), data_list.end(), element);
-
-    if (res != data_list.end()) {
-        int index = res - data_list.begin(); // NOLINT(cppcoreguidelines-narrowing-conversions)
-        return index;
-    } else {
-        simple_error("not in vector");
     }
 }
 
