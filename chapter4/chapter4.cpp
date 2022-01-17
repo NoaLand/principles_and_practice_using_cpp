@@ -41,6 +41,8 @@ void exercise_14_rock_paper_scissors_game();
 
 void exercise_15_find_primes_between_1_to_100();
 
+void exercise_16_find_primes_between_1_to_max();
+
 int main() {
     // try_it_out_print_char_and_num_while_version();
     // try_it_out_print_char_and_num_for_version();
@@ -56,10 +58,38 @@ int main() {
     // exercise_12_get_num_or_string_customized_calculator();
     // exercise_13_chess_puzzle();
     // exercise_14_rock_paper_scissors_game();
-    exercise_15_find_primes_between_1_to_100();
+    // exercise_15_find_primes_between_1_to_100();
+    exercise_16_find_primes_between_1_to_max();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_16_find_primes_between_1_to_max() {
+    vector<int> primes{2};
+    int max;
+    cout << "Please enter max num you want:" << endl;
+    cin >> max;
+
+    for(int num = 3; num <= max; ++num) {
+        bool res{true};
+        for(int prime : primes) {
+            if(num % prime != 0) {
+                res = res & true;
+            } else {
+                res = res & false;
+            }
+        }
+
+        if(res) {
+            primes.push_back(num);
+        }
+    }
+
+    cout << "total size: " << primes.size() << endl;
+    for(int prime : primes) {
+        cout << prime << " ";
+    }
 }
 
 void exercise_15_find_primes_between_1_to_100() {
