@@ -29,6 +29,10 @@ void exercise_9_guess_number();
 
 void exercise_10_customize_calculator();
 
+void exercise_11_string_to_num();
+
+int find_and_get_index(vector<string> data_list, const string& element);
+
 int main() {
     // try_it_out_print_char_and_num_while_version();
     // try_it_out_print_char_and_num_for_version();
@@ -39,10 +43,36 @@ int main() {
     // exercise_7_calculate_mid_value();
     // exercise_8_input_distance_between_two_cities();
     // exercise_9_guess_number();
-    exercise_10_customize_calculator();
+    // exercise_10_customize_calculator();
+    exercise_11_string_to_num();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_11_string_to_num() {
+    vector<string> num_in_string{"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+
+    for(string input; cin >> input;) {
+        if(input.size() > 1) {
+            int index = find_and_get_index(num_in_string, input);
+            cout << index << endl;
+        } else {
+            int index = stoi(input);
+            cout << num_in_string.at(index) << endl;
+        }
+    }
+}
+
+int find_and_get_index(vector<string> data_list, const string& element) {
+    auto res = find(data_list.begin(), data_list.end(),element);
+
+    if(res != data_list.end()) {
+        int index = res - data_list.begin(); // NOLINT(cppcoreguidelines-narrowing-conversions)
+        return index;
+    } else {
+        simple_error("not in vector");
+    }
 }
 
 void exercise_10_customize_calculator() {
