@@ -23,6 +23,8 @@ void check_unit(const string& unit);
 
 void exercise_7_calculate_mid_value();
 
+void exercise_8_input_distance_between_two_cities();
+
 int main() {
     // try_it_out_print_char_and_num_while_version();
     // try_it_out_print_char_and_num_for_version();
@@ -30,10 +32,27 @@ int main() {
     // try_it_out_dislike_words_bleep();
     // exercise_1_print_two_nums_in_each_iteration();
     // exercise_6_get_one_double_and_print_res();
-    exercise_7_calculate_mid_value();
+    // exercise_7_calculate_mid_value();
+    exercise_8_input_distance_between_two_cities();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_8_input_distance_between_two_cities() {
+    vector<double> ways;
+
+    for(double distance; cin >> distance;) {
+        ways.push_back(distance);
+    }
+
+    std::sort(ways.begin(), ways.end());
+
+    double sum = accumulate(ways.begin(), ways.end(), 0.0);
+    cout << "the sum of whole ways is: " << sum << endl;
+    cout << "min distance is: " <<  ways.at(0) << endl;
+    cout << "max distance is: " << ways.at(ways.size() - 1) << endl;
+    cout << "average distance is: " << sum * 1.0 / ways.size() << endl;
 }
 
 void exercise_7_calculate_mid_value() {
