@@ -35,6 +35,8 @@ int find_and_get_index(vector<string> data_list, const string &element);
 
 void exercise_12_get_num_or_string_customized_calculator();
 
+void exercise_13_chess_puzzle();
+
 int main() {
     // try_it_out_print_char_and_num_while_version();
     // try_it_out_print_char_and_num_for_version();
@@ -47,10 +49,29 @@ int main() {
     // exercise_9_guess_number();
     // exercise_10_customize_calculator();
     // exercise_11_string_to_num();
-    exercise_12_get_num_or_string_customized_calculator();
+    // exercise_12_get_num_or_string_customized_calculator();
+    exercise_13_chess_puzzle();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_13_chess_puzzle() {
+    vector<int> rices_list{1};
+    int target;
+    cout << "******** welcome to chess puzzle ********" << endl;
+    cout << "Please enter your target: " << endl;
+    cin >> target;
+
+    int sum = 1;
+    while(sum < target) {
+        int last = rices_list.back();
+        rices_list.push_back(last * 2);
+        sum = accumulate(rices_list.begin(), rices_list.end(), 0);
+    }
+    
+    cout << "target has been satisfied, the sum of rice now is: " << sum << endl;
+    cout << "to finish this challenge, we use: " << rices_list.size() << " position" << endl;
 }
 
 int get_num_from_string(const string& input) {
