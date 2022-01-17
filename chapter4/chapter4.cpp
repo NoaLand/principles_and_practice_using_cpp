@@ -25,6 +25,8 @@ void exercise_7_calculate_mid_value();
 
 void exercise_8_input_distance_between_two_cities();
 
+void exercise_9_guess_number();
+
 int main() {
     // try_it_out_print_char_and_num_while_version();
     // try_it_out_print_char_and_num_for_version();
@@ -33,10 +35,41 @@ int main() {
     // exercise_1_print_two_nums_in_each_iteration();
     // exercise_6_get_one_double_and_print_res();
     // exercise_7_calculate_mid_value();
-    exercise_8_input_distance_between_two_cities();
+    // exercise_8_input_distance_between_two_cities();
+    exercise_9_guess_number();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_9_guess_number() {
+    string answer;
+    int times{1};
+    int guess_number{50};
+    int start{0}, end{100};
+
+    cout << "********** guess number **********" << endl;
+    cout << times << ". if your number is less than " << guess_number << "?\n";
+    while(cin >> answer) {
+        ++times;
+
+        if(answer == "y") {
+            end = guess_number;
+        }
+
+        if(answer == "n") {
+            start = guess_number;
+        }
+
+        guess_number = (start + end) / 2;
+
+        if(end - start == 1 || end - start == 2) {
+            cout << "Your number is " << guess_number << endl;
+            break;
+        }
+
+        cout << times << ". if your number is less than " << guess_number << "?" << endl;
+    }
 }
 
 void exercise_8_input_distance_between_two_cities() {
