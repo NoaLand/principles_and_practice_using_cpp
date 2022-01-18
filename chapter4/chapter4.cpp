@@ -51,6 +51,10 @@ void exercise_19_find_max_mode_and_min_element();
 
 void exercise_20_string_version_find_max_mode_and_min_element();
 
+void exercise_21_solve_one_dimensional_quadratic_equation();
+
+string print_rule(double param);
+
 int main() {
     // try_it_out_print_char_and_num_while_version();
     // try_it_out_print_char_and_num_for_version();
@@ -71,10 +75,36 @@ int main() {
     // exercise_17_sieve_of_eratosthenes_method_find_primes();
     // exercise_18_print_n_primes();
     // exercise_19_find_max_mode_and_min_element();
-    exercise_20_string_version_find_max_mode_and_min_element();
+    // exercise_20_string_version_find_max_mode_and_min_element();
+    exercise_21_solve_one_dimensional_quadratic_equation();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_21_solve_one_dimensional_quadratic_equation() {
+    double a, b, c;
+    double x1, x2;
+    cout << "Please enter your one dimensional quadratic equation, with a, b and c" << endl;
+    cout << "a: ";
+    cin >> a;
+
+    cout << "b: ";
+    cin >> b;
+
+    cout << "c: ";
+    cin >> c;
+
+    x1 = (-b + sqrt(b * b - 4 * a * c)) / (2 * a);
+    x2 = (-b - sqrt(b * b - 4 * a * c)) / (2 * a);
+
+    cout << "Your equation is: " << print_rule(a) << "x^2 + " << print_rule(b) << "x + " << c << endl;
+    cout << "x1: " << x1 << endl;
+    cout << "x2: " << x2 << endl;
+}
+
+string print_rule(double param) {
+    return param == 1 ? "" : to_string(param);
 }
 
 void exercise_20_string_version_find_max_mode_and_min_element() {
