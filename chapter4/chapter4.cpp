@@ -49,6 +49,8 @@ void exercise_18_print_n_primes();
 
 void exercise_19_find_max_mode_and_min_element();
 
+void exercise_20_string_version_find_max_mode_and_min_element();
+
 int main() {
     // try_it_out_print_char_and_num_while_version();
     // try_it_out_print_char_and_num_for_version();
@@ -68,10 +70,51 @@ int main() {
     // exercise_16_find_primes_between_1_to_max();
     // exercise_17_sieve_of_eratosthenes_method_find_primes();
     // exercise_18_print_n_primes();
-    exercise_19_find_max_mode_and_min_element();
+    // exercise_19_find_max_mode_and_min_element();
+    exercise_20_string_version_find_max_mode_and_min_element();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_20_string_version_find_max_mode_and_min_element() {
+    vector<string> input_list;
+    string mode{0}, mode_candidate{0};
+    int times{1}, times_candidate{1};
+
+
+    cout << "Please enter the vector of nature num:" << endl;
+    for(string input; cin >> input;) {
+        if(input == "esc") break;
+        input_list.push_back(input);
+    }
+
+    std::sort(input_list.begin(), input_list.end());
+
+    for(int index = 1; index < input_list.size(); ++index) {
+        // compare with before element, and find out if you are duplicate
+        if(input_list.at(index - 1) == input_list.at(index)) {
+            // if satisfy this situation means duplicate already exists
+            if(mode_candidate == input_list.at(index)) {
+                ++times_candidate;
+            } else {
+                // move mode candidate and times candidate to mode and times
+                if(times_candidate > times) {
+                    mode = mode_candidate;
+                    times = times_candidate;
+                }
+
+                // accept new candidate, since already duplicate, time candidate just start from 2 is all right
+                mode_candidate = input_list.at(index);
+                times_candidate = 2;
+            }
+        }
+    }
+
+    cout << "min is: " << input_list.at(0) << endl;
+    cout << "max is: " << input_list.at(input_list.size() - 1) << endl;
+    cout << "mode is: " << mode << endl;
+    cout << "duplicate times are: " << times << endl;
 }
 
 void exercise_19_find_max_mode_and_min_element() {
