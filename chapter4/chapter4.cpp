@@ -43,6 +43,8 @@ void exercise_15_find_primes_between_1_to_100();
 
 void exercise_16_find_primes_between_1_to_max();
 
+void exercise_17_sieve_of_eratosthenes_method_find_primes();
+
 int main() {
     // try_it_out_print_char_and_num_while_version();
     // try_it_out_print_char_and_num_for_version();
@@ -59,10 +61,47 @@ int main() {
     // exercise_13_chess_puzzle();
     // exercise_14_rock_paper_scissors_game();
     // exercise_15_find_primes_between_1_to_100();
-    exercise_16_find_primes_between_1_to_max();
+    // exercise_16_find_primes_between_1_to_max();
+    exercise_17_sieve_of_eratosthenes_method_find_primes();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_17_sieve_of_eratosthenes_method_find_primes() {
+    int max;
+    vector<int> num_list;
+    cout << "Please enter max num you want:" << endl;
+    cin >> max;
+
+    // init num list to max
+    for(int index = 2; index <= max; ++index) {
+        num_list.push_back(index);
+    }
+
+    // use sieve of eratosthenes to find out primes
+    for(int index = 0; index < num_list.size(); ++index) {
+        int &candidate_prime = num_list.at(index);
+        if(candidate_prime != 0) {
+            for(int waiting_index = index + 1; waiting_index < num_list.size(); ++waiting_index) {
+                int &test_data = num_list.at(waiting_index);
+                if(test_data % candidate_prime == 0) {
+                    num_list[waiting_index] = 0;
+                }
+            }
+        }
+    }
+
+    int total{0};
+    for(int num : num_list) {
+        if(num != 0) {
+            cout << num << " ";
+            ++total;
+        }
+    }
+
+    cout << endl;
+    cout << "Total num is: " << total << endl;
 }
 
 void exercise_16_find_primes_between_1_to_max() {
