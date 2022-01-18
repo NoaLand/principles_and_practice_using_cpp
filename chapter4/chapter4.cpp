@@ -55,6 +55,8 @@ void exercise_21_solve_one_dimensional_quadratic_equation();
 
 string print_rule(double param);
 
+void exercise_22_score_system_v1();
+
 int main() {
     // try_it_out_print_char_and_num_while_version();
     // try_it_out_print_char_and_num_for_version();
@@ -76,10 +78,37 @@ int main() {
     // exercise_18_print_n_primes();
     // exercise_19_find_max_mode_and_min_element();
     // exercise_20_string_version_find_max_mode_and_min_element();
-    exercise_21_solve_one_dimensional_quadratic_equation();
+    // exercise_21_solve_one_dimensional_quadratic_equation();
+    exercise_22_score_system_v1();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_22_score_system_v1() {
+    vector<string> name_list;
+    string name;
+
+    vector<double> score_list;
+    double score;
+
+    cout << "Please enter names and scores:" << endl;
+
+    while(cin >> name >> score) {
+        // check duplicate name
+        for(const string& n : name_list) {
+            if(n == name) {
+                simple_error("duplicate name!");
+            }
+        }
+
+        name_list.push_back(name);
+        score_list.push_back(score);
+    }
+
+    for(int index = 0; index < name_list.size(); ++index) {
+        cout << "name: " << name_list.at(index) << ", score: " << score_list.at(index) << endl;
+    }
 }
 
 void exercise_21_solve_one_dimensional_quadratic_equation() {
