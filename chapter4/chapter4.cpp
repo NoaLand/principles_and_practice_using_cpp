@@ -45,6 +45,8 @@ void exercise_16_find_primes_between_1_to_max();
 
 void exercise_17_sieve_of_eratosthenes_method_find_primes();
 
+void exercise_18_print_n_primes();
+
 int main() {
     // try_it_out_print_char_and_num_while_version();
     // try_it_out_print_char_and_num_for_version();
@@ -62,10 +64,41 @@ int main() {
     // exercise_14_rock_paper_scissors_game();
     // exercise_15_find_primes_between_1_to_100();
     // exercise_16_find_primes_between_1_to_max();
-    exercise_17_sieve_of_eratosthenes_method_find_primes();
+    // exercise_17_sieve_of_eratosthenes_method_find_primes();
+    exercise_18_print_n_primes();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_18_print_n_primes() {
+    vector<int> primes{2};
+    int n;
+    cout << "Please enter the n you want:" << endl;
+    cin >> n;
+
+    int num = 3;
+    while(primes.size() < n) {
+        bool res{true};
+        for(int prime : primes) {
+            if(num % prime != 0) {
+                res = res & true;
+            } else {
+                res = res & false;
+            }
+        }
+
+        if(res) {
+            primes.push_back(num);
+        }
+
+        ++num;
+    }
+
+    cout << "total size: " << primes.size() << endl;
+    for(int prime : primes) {
+        cout << prime << " ";
+    }
 }
 
 void exercise_17_sieve_of_eratosthenes_method_find_primes() {
