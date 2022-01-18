@@ -47,6 +47,8 @@ void exercise_17_sieve_of_eratosthenes_method_find_primes();
 
 void exercise_18_print_n_primes();
 
+void exercise_19_find_max_mode_and_min_element();
+
 int main() {
     // try_it_out_print_char_and_num_while_version();
     // try_it_out_print_char_and_num_for_version();
@@ -65,10 +67,49 @@ int main() {
     // exercise_15_find_primes_between_1_to_100();
     // exercise_16_find_primes_between_1_to_max();
     // exercise_17_sieve_of_eratosthenes_method_find_primes();
-    exercise_18_print_n_primes();
+    // exercise_18_print_n_primes();
+    exercise_19_find_max_mode_and_min_element();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_19_find_max_mode_and_min_element() {
+    vector<int> num_list;
+    int mode{0}, times{1};
+    int mode_candidate{0}, times_candidate{1};
+
+    cout << "Please enter the vector of nature num:" << endl;
+    for(int num; cin >> num;) {
+        num_list.push_back(num);
+    }
+
+    std::sort(num_list.begin(), num_list.end());
+
+    for(int index = 1; index < num_list.size(); ++index) {
+        // compare with before element, and find out if you are duplicate
+        if(num_list.at(index - 1) == num_list.at(index)) {
+            // if satisfy this situation means duplicate already exists
+            if(mode_candidate == num_list.at(index)) {
+                ++times_candidate;
+            } else {
+                // move mode candidate and times candidate to mode and times
+                if(times_candidate > times) {
+                    mode = mode_candidate;
+                    times = times_candidate;
+                }
+
+                // accept new candidate, since already duplicate, time candidate just start from 2 is all right
+                mode_candidate = num_list.at(index);
+                times_candidate = 2;
+            }
+        }
+    }
+
+    cout << "min is: " << num_list.at(0) << endl;
+    cout << "max is: " << num_list.at(num_list.size() - 1) << endl;
+    cout << "mode is: " << mode << endl;
+    cout << "duplicate times are: " << times << endl;
 }
 
 void exercise_18_print_n_primes() {
