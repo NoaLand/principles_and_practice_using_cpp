@@ -57,6 +57,8 @@ string print_rule(double param);
 
 void exercise_22_score_system_v1();
 
+void exercise_23_score_system_v2();
+
 int main() {
     // try_it_out_print_char_and_num_while_version();
     // try_it_out_print_char_and_num_for_version();
@@ -79,10 +81,55 @@ int main() {
     // exercise_19_find_max_mode_and_min_element();
     // exercise_20_string_version_find_max_mode_and_min_element();
     // exercise_21_solve_one_dimensional_quadratic_equation();
-    exercise_22_score_system_v1();
+    // exercise_22_score_system_v1();
+    exercise_23_score_system_v2();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_23_score_system_v2() {
+    vector<string> name_list;
+    string name;
+
+    vector<double> score_list;
+    double score;
+
+    cout << "Please enter names and scores:" << endl;
+
+    while(cin >> name >> score) {
+        if(name == "esc" && score == 0) break;
+
+        // check duplicate name
+        for(const string& n : name_list) {
+            if(n == name) {
+                simple_error("duplicate name!");
+            }
+        }
+
+        name_list.push_back(name);
+        score_list.push_back(score);
+    }
+
+    for(int index = 0; index < score_list.size(); ++index) {
+        cout << "name: " << name_list.at(index) << ", score: " << score_list.at(index) << endl;
+    }
+
+    cout << "**********************" << endl;
+    cout << "******* Search *******" << endl;
+    for(string student_name; cin >> student_name;) {
+        bool is_exist = false;
+        for(int index = 0; index < name_list.size(); ++index) {
+            if(student_name == name_list.at(index)) {
+                cout << "Result, name: " << student_name << ", score: " << score_list.at(index) << endl;
+                is_exist = is_exist | true;
+            }
+        }
+
+        if(!is_exist) {
+            cout << "Name not found" << endl;
+        }
+    }
 }
 
 void exercise_22_score_system_v1() {
