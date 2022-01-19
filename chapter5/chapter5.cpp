@@ -31,7 +31,10 @@ void exercise_1_to_25_get_used_with_compile_err() {
 }
 
 void my_code() {
-    // 1. Cout << "Success!\n";
+    // 1. Cout << "Success!\n";  -- "Cout" is wrong, it should be "cout"
+    // cout << "Success!\n";
+
+    // 2. cout << "Success!\n; -- Lost " symbol
     cout << "Success!\n";
 }
 
