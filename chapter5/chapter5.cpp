@@ -234,11 +234,23 @@ void my_code() {
     //     cout << "Success!\n";
     // -- no j has been declared, and while loop will never end
     // -----------------------
-    int i = 0;
-    int j = 9;
-    while(i < 10)
-        ++i;
-    if(j < i)
+    // int i = 0;
+    // int j = 9;
+    // while(i < 10)
+    //     ++i;
+    // if(j < i)
+    //     cout << "Success!\n";
+
+    // 24.
+    // int x = 4;
+    // double d = 5 / (x - 2);
+    // if(d = 2 * x + 0.5)
+    //     cout << "Success!\n":
+    // -- double d will be 2.0, and d = 2 * x + 0.5 is a declare not an assert statement
+    // -----------------------
+    int x = 4;
+    double d = 5.0 / (x - 2);
+    if(d == 2 * 1 + 0.5)
         cout << "Success!\n";
 }
 
