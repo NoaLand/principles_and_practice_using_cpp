@@ -248,10 +248,16 @@ void my_code() {
     //     cout << "Success!\n":
     // -- double d will be 2.0, and d = 2 * x + 0.5 is a declare not an assert statement
     // -----------------------
-    int x = 4;
-    double d = 5.0 / (x - 2);
-    if(d == 2 * 1 + 0.5)
-        cout << "Success!\n";
+    // int x = 4;
+    // double d = 5.0 / (x - 2);
+    // if(d == 2 * 1 + 0.5)
+    //     cout << "Success!\n";
+
+    // 25.
+    // cin << "Success!\n";
+    // -- should be cout, instead of cin
+    // -----------------------
+    cout << "Success!\n";
 }
 
 void try_it_out_2() {
