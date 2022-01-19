@@ -38,7 +38,10 @@ void my_code() {
     // cout << "Success!\n";
 
     // 3. cout << "Success" << !\n" -- Lost " symbol, and ; symbol
-    cout << "Success" << "!\n";
+    // cout << "Success" << "!\n";
+
+    // 4. cout << success << '\n' -- Lost "" symbol
+    cout << "Success" << '\n';
 }
 
 void try_it_out_2() {
