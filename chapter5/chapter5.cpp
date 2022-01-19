@@ -174,10 +174,19 @@ void my_code() {
     //     cout << s[i];
     // -- can print, but may out of range, and print something strange
     // -----------------------
-    string s = "Success!\n";
-    for(int i = 0; i < s.length(); ++i)
-        cout << s[i];
+    // string s = "Success!\n";
+    // for(int i = 0; i < s.length(); ++i)
+    //     cout << s[i];
 
+    // 19.
+    // vector v(5);
+    // for(int i = 0; i <= v.size(); ++i) ;
+    // cout << "Success!\n";
+    // -- should declare type of the vector, and for loop may create potential logistic error
+    // -----------------------
+    vector<int> v(5);
+    for(int i = 0; i < v.size(); ++i) ;
+    cout << "Success!\n";
 }
 
 void try_it_out_2() {
