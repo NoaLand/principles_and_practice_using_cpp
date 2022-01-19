@@ -118,8 +118,15 @@ void my_code() {
     // if(s == "fool") cout < "Success!\n";
     // -- the same as exercise 10, and "cout <" should be "cout <<"
     // -----------------------
+    // string s = "ape";
+    // if(s != "fool") cout << "Success!\n";
+
+    // 12.
+    // string s = "ape";
+    // if(s + "fool") cout < "Success!\n";
+    // -- s + "fool" is string, not a bool, and "cout <" should be "cout <<"
     string s = "ape";
-    if(s != "fool") cout << "Success!\n";
+    if(s + "fool" == "apefool") cout << "Success!\n";
 }
 
 void try_it_out_2() {
