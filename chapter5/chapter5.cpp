@@ -129,10 +129,16 @@ void my_code() {
     // if(s + "fool" == "apefool") cout << "Success!\n";
 
     // 13.
-    vector<char> v(5);
-    for(int i = 0; i < v.size(); ++i);
-    cout << "Success\n";
+    // vector<char> v(5);
+    // for(int i = 0; i < v.size(); ++i);
+    // cout << "Success\n";
     // -- no error
+
+    // 14.
+    vector<char> v(5);
+    for(int i = 0; i <= v.size(); ++i);
+    cout << "Success!\n";
+    // -- potential compile or logistic error, i <= v.size() may create out of range error
 }
 
 void try_it_out_2() {
