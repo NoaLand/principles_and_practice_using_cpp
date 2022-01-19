@@ -146,9 +146,17 @@ void my_code() {
     //     cout << s[i];
     // -- 6 will only print part of string s
     // -----------------------
-    string s = "Success!\n";
-    for(int i = 0; i < s.length(); ++i)
-        cout << s[i];
+    // string s = "Success!\n";
+    // for(int i = 0; i < s.length(); ++i)
+    //     cout << s[i];
+
+    // 16.
+    // if(true) then cout << "Success!\n";
+    // else cout << "Fail!\n";
+    // -- no keyword named then
+    // -----------------------
+    if(true) cout << "Success!\n";
+    else cout << "Fail!\n";
 
 }
 
