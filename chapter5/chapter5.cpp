@@ -164,9 +164,19 @@ void my_code() {
     // if(c == 2000) cout << "Success!\n";
     // -- c cannot be the same as 2000
     // -----------------------
-    int x = 2000;
-    char c = x;
-    if(c != 2000) cout << "Success!\n";
+    // int x = 2000;
+    // char c = x;
+    // if(c != 2000) cout << "Success!\n";
+
+    // 18.
+    // string s = "Success!\n";
+    // for(int i = 0; i < 10; ++i)
+    //     cout << s[i];
+    // -- can print, but may out of range, and print something strange
+    // -----------------------
+    string s = "Success!\n";
+    for(int i = 0; i < s.length(); ++i)
+        cout << s[i];
 
 }
 
