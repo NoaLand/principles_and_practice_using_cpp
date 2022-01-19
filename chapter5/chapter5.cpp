@@ -101,9 +101,18 @@ void my_code() {
     // if(c) cout << "Success!\n";
     // -- "fool" is bigger than "ape", and type boo does not exist
     // -----------------------
-    string s = "ape";
-    bool c = "fool" > s;
-    if(c) cout << "Success!\n";
+    // string s = "ape";
+    // bool c = "fool" > s;
+    // if(c) cout << "Success!\n";
+
+    // 10.
+    // string s = "ape";
+    // if(s == "fool") cout << "Success!\n";
+    // -- fool is not equal to s, change statement to not equal
+    // -----------------------
+    // string s = "ape";
+    // if(s != "fool") cout << "Success!\n";
+
 }
 
 void try_it_out_2() {
