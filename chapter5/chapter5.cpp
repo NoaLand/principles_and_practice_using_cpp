@@ -125,8 +125,14 @@ void my_code() {
     // string s = "ape";
     // if(s + "fool") cout < "Success!\n";
     // -- s + "fool" is string, not a bool, and "cout <" should be "cout <<"
-    string s = "ape";
-    if(s + "fool" == "apefool") cout << "Success!\n";
+    // string s = "ape";
+    // if(s + "fool" == "apefool") cout << "Success!\n";
+
+    // 13.
+    vector<char> v(5);
+    for(int i = 0; i < v.size(); ++i);
+    cout << "Success\n";
+    // -- no error
 }
 
 void try_it_out_2() {
