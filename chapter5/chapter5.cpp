@@ -4,11 +4,20 @@ void try_it_out_1();
 
 int area(int length, int width);
 
+void try_it_out_2();
+
 int main() {
-    try_it_out_1();
+    // try_it_out_1();
+    try_it_out_2();
 
     keep_window_open();
     return 0;
+}
+
+void try_it_out_2() {
+    // int x0 = arena(7); // function "arena(int)" not declared
+    // int x1 = area(7);  // number of param is not matched
+    // int x2 = area("seven", 2); // the type of first param is not matched
 }
 
 void try_it_out_1() {
