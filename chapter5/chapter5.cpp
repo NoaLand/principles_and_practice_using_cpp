@@ -184,9 +184,25 @@ void my_code() {
     // cout << "Success!\n";
     // -- should declare type of the vector, and for loop may create potential logistic error
     // -----------------------
-    vector<int> v(5);
-    for(int i = 0; i < v.size(); ++i) ;
-    cout << "Success!\n";
+    // vector<int> v(5);
+    // for(int i = 0; i < v.size(); ++i) ;
+    // cout << "Success!\n";
+
+    // 20.
+    // int i = 0;
+    // int j = 9;
+    // while(i < 10)
+    //     ++j;
+    // if(j < i)
+    //     cout << "Success!\n";
+    // -- while loop will never end
+    // -----------------------
+    int i = 0;
+    int j = 9;
+    while(i < 10)
+        ++i;
+    if(j < i)
+        cout << "Success!\n";
 }
 
 void try_it_out_2() {
