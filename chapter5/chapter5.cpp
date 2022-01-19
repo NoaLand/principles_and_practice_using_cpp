@@ -222,9 +222,24 @@ void my_code() {
     //     cout << s[i];
     // -- should be string only, and i <= 10 potential create out of range error
     // -----------------------
-    string s = "Success!\n";
-    for(int i = 0; i <= s.size(); ++i)
-        cout << s[i];
+    // string s = "Success!\n";
+    // for(int i = 0; i <= s.size(); ++i)
+    //     cout << s[i];
+
+    // 23.
+    // int i = 0;
+    // while(i < 10)
+    //     ++j;
+    // if(j < i)
+    //     cout << "Success!\n";
+    // -- no j has been declared, and while loop will never end
+    // -----------------------
+    int i = 0;
+    int j = 9;
+    while(i < 10)
+        ++i;
+    if(j < i)
+        cout << "Success!\n";
 }
 
 void try_it_out_2() {
