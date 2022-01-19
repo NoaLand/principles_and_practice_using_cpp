@@ -113,6 +113,13 @@ void my_code() {
     // string s = "ape";
     // if(s != "fool") cout << "Success!\n";
 
+    // 11.
+    // string s = "ape";
+    // if(s == "fool") cout < "Success!\n";
+    // -- the same as exercise 10, and "cout <" should be "cout <<"
+    // -----------------------
+    string s = "ape";
+    if(s != "fool") cout << "Success!\n";
 }
 
 void try_it_out_2() {
