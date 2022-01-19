@@ -50,10 +50,24 @@ void my_code() {
     // cout << "Success!\n";
     // -- type of res is wrong
     // -----------------------
-    int res = 7;
+    // int res = 7;
+    // vector<int> v(10);
+    // v[5] = res;
+    // cout << "Success!\n";
+
+    // 6.
+    // vector<int> v(10);
+    // v(5) = 7;
+    // if(v(5) != 7)
+    // cout << "Success!\n";
+    // -- vector index symbol is wrong for () to [], cannot print Success, since
+    // -- v[5] is 7, so add ; symbol after if statement
+    // -----------------------
     vector<int> v(10);
-    v[5] = res;
+    v[5] = 7;
+    if(v[5] != 7);
     cout << "Success!\n";
+
 }
 
 void try_it_out_2() {
