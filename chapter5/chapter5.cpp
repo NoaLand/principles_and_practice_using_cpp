@@ -63,11 +63,27 @@ void my_code() {
     // -- vector index symbol is wrong for () to [], cannot print Success, since
     // -- v[5] is 7, so add ; symbol after if statement
     // -----------------------
-    vector<int> v(10);
-    v[5] = 7;
-    if(v[5] != 7)
-        ; // NOLINT(bugprone-suspicious-semicolon)
-    cout << "Success!\n";
+    // vector<int> v(10);
+    // v[5] = 7;
+    // if(v[5] != 7)
+    //     ; // NOLINT(bugprone-suspicious-semicolon)
+    // cout << "Success!\n";
+
+    // 7.
+    // if(cond)
+    //     cout << "Success!\n";
+    // else
+    //     cout << "Fail!\n";
+    // -- no cond declare, should declare cond as true
+    // -----------------------
+    bool cond = true;
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "ConstantConditionsOC"
+    if(cond)
+        cout << "Success!\n";
+    else
+        cout << "Fail!\n";
+#pragma clang diagnostic pop
 
 }
 
