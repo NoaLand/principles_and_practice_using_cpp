@@ -6,12 +6,33 @@ int area(int length, int width);
 
 void try_it_out_2();
 
+void exercise_1_to_25_get_used_with_compile_err();
+
+void my_code();
+
 int main() {
     // try_it_out_1();
-    try_it_out_2();
+    // try_it_out_2();
+    exercise_1_to_25_get_used_with_compile_err();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_1_to_25_get_used_with_compile_err() {
+    try {
+        // your code here
+        my_code();
+    } catch(exception& e) {
+        cerr << "error: " << e.what() << endl;
+    } catch(...) {
+        cerr << "Oops: unknown exception!" << endl;
+    }
+}
+
+void my_code() {
+    // 1. Cout << "Success!\n";
+    cout << "Success!\n";
 }
 
 void try_it_out_2() {
