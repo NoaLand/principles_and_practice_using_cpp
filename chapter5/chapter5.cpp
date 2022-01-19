@@ -91,9 +91,19 @@ void my_code() {
     // else cout << "Fail!\n";
     // -- false will lead code to else statement
     // -----------------------
-    bool c = true;
+    // bool c = true;
+    // if(c) cout << "Success!\n";
+    // else cout << "Fail!\n";
+
+    // 9.
+    // string s = "ape";
+    // boo c = "fool" < s;
+    // if(c) cout << "Success!\n";
+    // -- "fool" is bigger than "ape", and type boo does not exist
+    // -----------------------
+    string s = "ape";
+    bool c = "fool" > s;
     if(c) cout << "Success!\n";
-    else cout << "Fail!\n";
 }
 
 void try_it_out_2() {
