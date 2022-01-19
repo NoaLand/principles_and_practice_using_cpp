@@ -215,6 +215,16 @@ void my_code() {
     // double d = 5.0 / x + 2;
     // if(d == 2 * x + 0.5)
     //     cout << "Success!\n";
+
+    // 22.
+    // string<char> s = "Success!\n";
+    // for(int i = 0; i <= 10; ++i)
+    //     cout << s[i];
+    // -- should be string only, and i <= 10 potential create out of range error
+    // -----------------------
+    string s = "Success!\n";
+    for(int i = 0; i <= s.size(); ++i)
+        cout << s[i];
 }
 
 void try_it_out_2() {
