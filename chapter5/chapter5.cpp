@@ -155,8 +155,18 @@ void my_code() {
     // else cout << "Fail!\n";
     // -- no keyword named then
     // -----------------------
-    if(true) cout << "Success!\n";
-    else cout << "Fail!\n";
+    // if(true) cout << "Success!\n";
+    // else cout << "Fail!\n";
+
+    // 17.
+    // int x = 2000;
+    // char c = x;
+    // if(c == 2000) cout << "Success!\n";
+    // -- c cannot be the same as 2000
+    // -----------------------
+    int x = 2000;
+    char c = x;
+    if(c != 2000) cout << "Success!\n";
 
 }
 
