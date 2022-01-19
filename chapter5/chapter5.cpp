@@ -41,7 +41,19 @@ void my_code() {
     // cout << "Success" << "!\n";
 
     // 4. cout << success << '\n' -- Lost "" symbol
-    cout << "Success" << '\n';
+    // cout << "Success" << '\n';
+
+    // 5.
+    // string res = 7;
+    // vector<int> v(10);
+    // v[5] = res;
+    // cout << "Success!\n";
+    // -- type of res is wrong
+    // -----------------------
+    int res = 7;
+    vector<int> v(10);
+    v[5] = res;
+    cout << "Success!\n";
 }
 
 void try_it_out_2() {
