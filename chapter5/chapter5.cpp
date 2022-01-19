@@ -76,15 +76,24 @@ void my_code() {
     //     cout << "Fail!\n";
     // -- no cond declare, should declare cond as true
     // -----------------------
-    bool cond = true;
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "ConstantConditionsOC"
-    if(cond)
-        cout << "Success!\n";
-    else
-        cout << "Fail!\n";
-#pragma clang diagnostic pop
+    // bool cond = true;
+// #pragma clang diagnostic push
+// #pragma ide diagnostic ignored "ConstantConditionsOC"
+    // if(cond)
+    //     cout << "Success!\n";
+    // else
+    //     cout << "Fail!\n";
+// #pragma clang diagnostic pop
 
+    // 8.
+    // bool c = false;
+    // if(c) cout << "Success!\n";
+    // else cout << "Fail!\n";
+    // -- false will lead code to else statement
+    // -----------------------
+    bool c = true;
+    if(c) cout << "Success!\n";
+    else cout << "Fail!\n";
 }
 
 void try_it_out_2() {
