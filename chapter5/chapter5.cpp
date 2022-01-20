@@ -16,14 +16,44 @@ double ctok(double c);
 
 double ktoc(double k);
 
+void exercise_30_dc_to_df_and_df_to_dc();
+
+double dc_to_df(double dc);
+
+double df_to_dc(double df);
+
 int main() {
     // try_it_out_1();
     // try_it_out_2();
     // exercise_1_to_25_get_used_with_compile_err();
-    exercise_26_and_27_and_28_29_ctok_and_ktoc();
+    // exercise_26_and_27_and_28_29_ctok_and_ktoc();
+    exercise_30_dc_to_df_and_df_to_dc();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_30_dc_to_df_and_df_to_dc() {
+    double dc = 0;
+    cin >> dc;
+    double df = dc_to_df(dc);
+    cout << "convert dc to df is: " << df << endl;
+    double dc_convert_back = df_to_dc(df);
+    cout << "convert df to dc back is: " << dc_convert_back << endl;
+}
+
+double df_to_dc(double df) {
+    if(df < -523.67) simple_error("cannot be less than absolute zero");
+    double dc = (df - 32) / (9.0 / 5);
+
+    return dc;
+}
+
+double dc_to_df(double dc) {
+    if(dc < -273.15) simple_error("cannot be less than absolute zero");
+    double df = 9.0 / 5 * dc + 32;
+
+    return df;
 }
 
 void exercise_26_and_27_and_28_29_ctok_and_ktoc() {
