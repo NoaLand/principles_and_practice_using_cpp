@@ -33,7 +33,7 @@ void exercise_26_and_27_and_28_ctok() {
 
 // convert celsius to absolute temperature
 double ctok(double c) {
-    if(c < 273.15) simple_error("less than temperature physical law");
+    if(c < -273.15) simple_error("less than temperature physical law");
     double k = c + 273.15;
     return k;
 
