@@ -27,7 +27,7 @@ int main() {
 void exercise_26_and_27_and_28_ctok() {
     double c = 0; // declare input variable
     cin >> c; // get input, and store into variable
-    double k = ctok(c); // convert temperature
+    double k = ctok(c); // convert temperature to absolute temperature
     cout << k << '\n'; // print temperature
 }
 
