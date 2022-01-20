@@ -10,7 +10,7 @@ void exercise_1_to_25_get_used_with_compile_err();
 
 void my_code();
 
-void exercise_26_ctok();
+void exercise_26_and_27_and_28_ctok();
 
 double ctok(double c);
 
@@ -18,14 +18,13 @@ int main() {
     // try_it_out_1();
     // try_it_out_2();
     // exercise_1_to_25_get_used_with_compile_err();
-    exercise_26_ctok();
+    exercise_26_and_27_and_28_ctok();
 
     keep_window_open();
     return 0;
 }
 
-void exercise_26_ctok() {
-    // origin
+void exercise_26_and_27_and_28_ctok() {
     double c = 0; // declare input variable
     cin >> c; // get input, and store into variable
     double k = ctok(c); // convert temperature
@@ -34,7 +33,7 @@ void exercise_26_ctok() {
 
 // convert celsius to absolute temperature
 double ctok(double c) {
-    // origin
+    if(c < 273.15) simple_error("less than temperature physical law");
     double k = c + 273.15;
     return k;
 
