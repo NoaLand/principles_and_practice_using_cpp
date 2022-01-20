@@ -27,16 +27,16 @@ int main() {
 void exercise_26_ctok() {
     // origin
     double c = 0; // declare input variable
-    cin >> d; // get input, and store into variable
+    cin >> c; // get input, and store into variable
     double k = ctok(c); // convert temperature
-    Cout << k << '\n'; // print temperature
+    cout << k << '\n'; // print temperature
 }
 
 // convert celsius to absolute temperature
 double ctok(double c) {
     // origin
-    int k = c + 273.15;
-    return int;
+    double k = c + 273.15;
+    return k;
 
 }
 
