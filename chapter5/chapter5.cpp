@@ -10,25 +10,36 @@ void exercise_1_to_25_get_used_with_compile_err();
 
 void my_code();
 
-void exercise_26_and_27_and_28_ctok();
+void exercise_26_and_27_and_28_29_ctok_and_ktoc();
 
 double ctok(double c);
+
+double ktoc(double k);
 
 int main() {
     // try_it_out_1();
     // try_it_out_2();
     // exercise_1_to_25_get_used_with_compile_err();
-    exercise_26_and_27_and_28_ctok();
+    exercise_26_and_27_and_28_29_ctok_and_ktoc();
 
     keep_window_open();
     return 0;
 }
 
-void exercise_26_and_27_and_28_ctok() {
+void exercise_26_and_27_and_28_29_ctok_and_ktoc() {
     double c = 0; // declare input variable
     cin >> c; // get input, and store into variable
     double k = ctok(c); // convert temperature to absolute temperature
-    cout << k << '\n'; // print temperature
+    cout << "the absolute temperature is: " << k << '\n'; // print absolute temperature
+    double celsius = ktoc(k);
+    cout << "convert back to celsius is: " << celsius << '\n'; // print celsius
+}
+
+// convert absolute temperature to celsius
+double ktoc(double k) {
+    if(k < 0) simple_error("cannot be less than absolute zero");
+    double c = k - 273.15;
+    return c;
 }
 
 // convert celsius to absolute temperature
