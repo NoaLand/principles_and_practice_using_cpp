@@ -26,6 +26,8 @@ void exercise_31_solve_one_dimensional_quadratic_equation();
 
 void exercise_32_get_sum_of_int_vector();
 
+void exercise_33_get_sum_of_double_vector();
+
 int main() {
     // try_it_out_1();
     // try_it_out_2();
@@ -33,10 +35,51 @@ int main() {
     // exercise_26_and_27_and_28_29_ctok_and_ktoc();
     // exercise_30_dc_to_df_and_df_to_dc();
     // exercise_31_solve_one_dimensional_quadratic_equation();
-    exercise_32_get_sum_of_int_vector();
+    // exercise_32_get_sum_of_int_vector();
+    exercise_33_get_sum_of_double_vector();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_33_get_sum_of_double_vector() {
+    int total_num;
+    double sum{0};
+    string nums_string, diffs_string;
+    vector<double> num_list, diff_between_element;
+    cout << "Please enter the number of values you want to sum:\n";
+    cin >> total_num;
+    if(total_num < 1) simple_error("get wrong number, it should be more than 0 at least.");
+
+    cout << "Please enter some integers (press '|' to stop):\n";
+    for(double num; cin >> num;) {
+        num_list.push_back(num);
+    }
+
+    if(total_num > num_list.size()) simple_error("out of range!");
+    for(int index = 0; index < total_num; ++index) {
+        sum += num_list.at(index);
+
+        if (index == total_num - 1) {
+            nums_string.append(to_string(num_list.at(index)));
+        } else {
+            nums_string.append(to_string(num_list.at(index))).append(" ");
+        }
+    }
+
+    // calculate diff between two element
+    for(int index = 1; index < total_num; ++index) {
+        double diff = num_list.at(index) - num_list.at(index - 1);
+        diff_between_element.push_back(diff);
+    }
+
+    // format print diff info
+    for(double diff: diff_between_element) {
+        diffs_string.append(to_string(diff)).append(" ");
+    }
+
+    cout << "The sum of the first " << total_num << " numbers (" << nums_string << ") is " << sum << ".\n";
+    cout << "The diff of the first " << total_num << " numbers (" << nums_string << ") is " << diffs_string << "\n";
 }
 
 void exercise_32_get_sum_of_int_vector() {
