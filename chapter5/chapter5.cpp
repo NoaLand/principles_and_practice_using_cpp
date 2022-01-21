@@ -22,15 +22,36 @@ double dc_to_df(double dc);
 
 double df_to_dc(double df);
 
+void exercise_31_solve_one_dimensional_quadratic_equation();
+
 int main() {
     // try_it_out_1();
     // try_it_out_2();
     // exercise_1_to_25_get_used_with_compile_err();
     // exercise_26_and_27_and_28_29_ctok_and_ktoc();
-    exercise_30_dc_to_df_and_df_to_dc();
+    // exercise_30_dc_to_df_and_df_to_dc();
+    exercise_31_solve_one_dimensional_quadratic_equation();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_31_solve_one_dimensional_quadratic_equation() {
+    double a, b, c;
+    cout << "Please enter ax^2 + bx + c\n";
+    cout << "a: ";
+    cin >> a;
+    cout << "b: ";
+    cin >> b;
+    cout << "c: ";
+    cin >> c;
+
+    // solve one dimensional quadratic equation
+    double square_root = b * b - 4 * a * c;
+    if(square_root < 0) simple_error("square root is less than zero");
+
+    cout << "x1 is: " << (-b + square_root) / (2 * a) << endl;
+    cout << "x2 is: " << (-b - square_root) / (2 * a) << endl;
 }
 
 void exercise_30_dc_to_df_and_df_to_dc() {
