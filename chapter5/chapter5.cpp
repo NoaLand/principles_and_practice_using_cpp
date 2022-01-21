@@ -28,6 +28,8 @@ void exercise_32_get_sum_of_int_vector();
 
 void exercise_33_get_sum_of_double_vector();
 
+void exercise_34_fibonacci_number();
+
 int main() {
     // try_it_out_1();
     // try_it_out_2();
@@ -35,11 +37,31 @@ int main() {
     // exercise_26_and_27_and_28_29_ctok_and_ktoc();
     // exercise_30_dc_to_df_and_df_to_dc();
     // exercise_31_solve_one_dimensional_quadratic_equation();
-    // exercise_32_get_sum_of_int_vector();
-    exercise_33_get_sum_of_double_vector();
+    // exercise_32_get_sum_of_it_vector();
+    // exercise_33_get_sum_of_double_vector();
+    exercise_34_fibonacci_number();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_34_fibonacci_number() {
+    int first{1}, second{1};
+    int next;
+
+    cout << "1. " << first << endl;
+    cout << "2. " << second << endl;
+    int i{3};
+    while(i < 50) {
+        next = first + second;
+        cout << i << ". " << next << endl;
+        first = second;
+        second = next;
+
+        ++i;
+    }
+
+    // the answer of the max fibonacci number that an int can store is 1836311903, this is the number 46 of fibonacci.
 }
 
 void exercise_33_get_sum_of_double_vector() {
