@@ -24,16 +24,47 @@ double df_to_dc(double df);
 
 void exercise_31_solve_one_dimensional_quadratic_equation();
 
+void exercise_32_get_sum_of_int_vector();
+
 int main() {
     // try_it_out_1();
     // try_it_out_2();
     // exercise_1_to_25_get_used_with_compile_err();
     // exercise_26_and_27_and_28_29_ctok_and_ktoc();
     // exercise_30_dc_to_df_and_df_to_dc();
-    exercise_31_solve_one_dimensional_quadratic_equation();
+    // exercise_31_solve_one_dimensional_quadratic_equation();
+    exercise_32_get_sum_of_int_vector();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_32_get_sum_of_int_vector() {
+    int total_num;
+    int sum{0};
+    string nums{""};
+    vector<int> num_list;
+    cout << "Please enter the number of values you want to sum:\n";
+    cin >> total_num;
+    if(total_num < 1) simple_error("get wrong number, it should be more than 0 at least.");
+
+    cout << "Please enter some integers (press '|' to stop):\n";
+    for(int num; cin >> num;) {
+        num_list.push_back(num);
+    }
+
+    if(total_num > num_list.size()) simple_error("out of range!");
+    for(int index = 0; index < total_num; ++index) {
+        sum += num_list.at(index);
+
+        if (index == total_num - 1) {
+            nums.append(to_string(num_list.at(index)));
+        } else {
+            nums.append(to_string(num_list.at(index))).append(" ");
+        }
+    }
+
+    cout << "The sum of the first " << total_num << " numbers (" << nums << ") is "<< sum << ".\n";
 }
 
 void exercise_31_solve_one_dimensional_quadratic_equation() {
