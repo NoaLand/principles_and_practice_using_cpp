@@ -42,7 +42,7 @@ int main() {
 void exercise_32_get_sum_of_int_vector() {
     int total_num;
     int sum{0};
-    string nums{""};
+    string nums;
     vector<int> num_list;
     cout << "Please enter the number of values you want to sum:\n";
     cin >> total_num;
