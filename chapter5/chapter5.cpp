@@ -32,6 +32,8 @@ void exercise_34_fibonacci_number();
 
 void exercise_35_bulls_and_cows_game_v1();
 
+vector<int> generate_rand_nums();
+
 int main() {
     // try_it_out_1();
     // try_it_out_2();
@@ -49,7 +51,7 @@ int main() {
 }
 
 void exercise_35_bulls_and_cows_game_v1() {
-    vector<int> expected_nums{1, 2, 3, 4};
+    vector<int> expected_nums = generate_rand_nums();
     int correct_number{0}, correct_position{0};
 
     while(!(correct_number == correct_position && correct_number == expected_nums.size())) {
@@ -88,6 +90,10 @@ void exercise_35_bulls_and_cows_game_v1() {
     }
 
     cout << "!!! YOU WIN !!!" << endl;
+}
+
+vector<int> generate_rand_nums() {
+    return vector<int>{1, 2, 3, 4};
 }
 
 void exercise_34_fibonacci_number() {
