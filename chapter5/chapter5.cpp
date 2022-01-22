@@ -140,7 +140,28 @@ void exercise_35_bulls_and_cows_game_v1() {
 }
 
 vector<int> generate_rand_nums() {
-    return vector<int>{1, 2, 3, 4};
+    vector<int> res;
+    res.reserve(4);
+    // generate random number with time -- see README.md
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_int_distribution<int> dist(0, 9);
+
+    for(int index = 0; index < 4; ++index) {
+        bool not_repeated = true;
+        int rand_num = dist(mt);
+        for(int i = 0; i < index; ++i) {
+            if (rand_num == res.at(i)) {
+                not_repeated = false;
+                --index;
+            }
+        }
+
+        if(not_repeated) {
+            res.push_back(rand_num);
+        }
+    }
+    return res;
 }
 
 void exercise_34_fibonacci_number() {

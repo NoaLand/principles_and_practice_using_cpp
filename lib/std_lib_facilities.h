@@ -8,6 +8,7 @@
 #include<cmath>
 #include<map>
 #include<numeric>
+#include<random>
 
 using namespace std;
 
