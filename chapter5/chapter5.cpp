@@ -36,6 +36,8 @@ vector<int> generate_rand_nums();
 
 [[noreturn]] void exercise_36_bulls_and_cows_game_v2();
 
+void exercise_37_weeks_num_sum();
+
 int main() {
     // try_it_out_1();
     // try_it_out_2();
@@ -47,10 +49,61 @@ int main() {
     // exercise_33_get_sum_of_double_vector();
     // exercise_34_fibonacci_number();
     // exercise_35_bulls_and_cows_game_v1();
-    exercise_36_bulls_and_cows_game_v2();
+    // exercise_36_bulls_and_cows_game_v2();
+    exercise_37_weeks_num_sum();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_37_weeks_num_sum() {
+    vector<int> monday;
+    vector<int> tuesday;
+    vector<int> wednesday;
+    vector<int> thursday;
+    vector<int> friday;
+    vector<int> saturday;
+    vector<int> sunday;
+
+    cout << "Please enter weekday and nums:\n";
+    string week;
+    int input_num;
+    vector<string> refused_string_list;
+
+    while(cin >> week >> input_num) {
+        if(week == "Monday" || week == "Mon" || week == "monday") {
+            monday.push_back(input_num);
+        } else if(week == "Tuesday" || week == "Tue" || week == "tuesday") {
+            tuesday.push_back(input_num);
+        } else if(week == "Wednesday" || week == "Wed" || week == "wednesday") {
+            wednesday.push_back(input_num);
+        } else if(week == "Thursday" || week == "Thur" || week == "thursday") {
+            thursday.push_back(input_num);
+        } else if(week == "Friday" || week == "Fri" || week == "friday") {
+            friday.push_back(input_num);
+        } else if(week == "Saturday" || week == "Sat" || week == "saturday") {
+            saturday.push_back(input_num);
+        } else if(week == "Sunday" || week == "Sun" || week == "saturday") {
+            sunday.push_back(input_num);
+        } else {
+            refused_string_list.push_back(week);
+        }
+    }
+
+    cout << "Monday: " << accumulate(monday.begin(), monday.end(), 0) << endl;
+    cout << "Tuesday: " << accumulate(tuesday.begin(), tuesday.end(), 0) << endl;
+    cout << "Wednesday: " << accumulate(wednesday.begin(), wednesday.end(), 0) << endl;
+    cout << "Thursday: " << accumulate(thursday.begin(), thursday.end(), 0) << endl;
+    cout << "Friday: " << accumulate(friday.begin(), friday.end(), 0) << endl;
+    cout << "Saturday: " << accumulate(saturday.begin(), saturday.end(), 0) << endl;
+    cout << "Sunday: " << accumulate(sunday.begin(), sunday.end(), 0) << endl;
+    cout << "Refused number count: " << refused_string_list.size() << endl;
+    if(!refused_string_list.empty()) {
+        cout << "Refused number: ";
+        for(const string& refused_string: refused_string_list) {
+            cout << refused_string << " ";
+        }
+    }
 }
 
 [[noreturn]] void exercise_36_bulls_and_cows_game_v2() {
