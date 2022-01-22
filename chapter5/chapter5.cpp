@@ -34,6 +34,8 @@ void exercise_35_bulls_and_cows_game_v1();
 
 vector<int> generate_rand_nums();
 
+[[noreturn]] void exercise_36_bulls_and_cows_game_v2();
+
 int main() {
     // try_it_out_1();
     // try_it_out_2();
@@ -44,10 +46,55 @@ int main() {
     // exercise_32_get_sum_of_it_vector();
     // exercise_33_get_sum_of_double_vector();
     // exercise_34_fibonacci_number();
-    exercise_35_bulls_and_cows_game_v1();
+    // exercise_35_bulls_and_cows_game_v1();
+    exercise_36_bulls_and_cows_game_v2();
 
     keep_window_open();
     return 0;
+}
+
+[[noreturn]] void exercise_36_bulls_and_cows_game_v2() {
+    while(true) {
+        vector<int> expected_nums = generate_rand_nums();
+        int correct_number{0}, correct_position{0};
+
+        while(!(correct_number == correct_position && correct_number == expected_nums.size())) {
+            // reinit number and position
+            correct_number = 0;
+            correct_position = 0;
+
+            int a, b, c, d;
+            vector<int> actual_nums;
+            // get input
+            cout << "Please enter nums you guess:\n";
+            cin >> a >> b >> c >> d;
+            actual_nums.push_back(a);
+            actual_nums.push_back(b);
+            actual_nums.push_back(c);
+            actual_nums.push_back(d);
+
+            // match numbers and positions
+            for(int expected_index = 0; expected_index < expected_nums.size(); ++expected_index) {
+                for(int actual_index = 0; actual_index < actual_nums.size(); ++actual_index) {
+                    if(expected_nums.at(expected_index) == actual_nums.at(actual_index)) {
+                        ++correct_number;
+
+                        if(expected_index == actual_index) {
+                            ++correct_position;
+                        }
+                    }
+                }
+            }
+
+            // print
+            cout << "************\n";
+            cout << correct_position << " bulls, and " << correct_number - correct_position << " cows\n";
+            cout << "************\n";
+            cout << endl;
+        }
+
+        cout << "!!! YOU WIN !!!" << endl;
+    }
 }
 
 void exercise_35_bulls_and_cows_game_v1() {
