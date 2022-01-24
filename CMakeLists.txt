@@ -7,11 +7,13 @@ include_directories(chapter2)
 include_directories(chapter3)
 include_directories(chapter4)
 include_directories(chapter5)
+include_directories(chapter6)
 
 add_executable(principles_and_practice_using_cpp
 #        chapter2/hello_world.cpp
         lib/std_lib_facilities.h
 #        chapter3/chapter3.cpp
 #        chapter4/chapter4.cpp
-        chapter5/chapter5.cpp
+#        chapter5/chapter5.cpp
+        chapter6/calculator.cpp
 )
