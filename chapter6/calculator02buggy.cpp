@@ -180,6 +180,7 @@ int main() {
             if (t.kind == 'q') break; // 'q' for quit
             if (t.kind == ';') {        // ';' for "print now"
                 cout << "=" << val << '\n';
+                continue;
             }
             else {
                 ts.putback(t);
