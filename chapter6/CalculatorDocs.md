@@ -24,7 +24,7 @@ We say, the basic element for an `Expression` is a `Number`, and we borrow the f
 Here's an example for the parser above, what will happen when the grammar is trying to parse an `Expression` -- `45 + 11.5 * 7`:
 
 ```mermaid
-flowchart BT
+graph BT
 
     45[45] --> Num1[Number] --> Pri1[Primary] --> Term1[Term] --> Exp1[Expression] --> ExpTotal[Expression]
     
