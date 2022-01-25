@@ -25,6 +25,7 @@ Here's an example for the parser above, what will happen when the grammar is try
 
 ```mermaid
 flowchart BT
+
     45[45] --> Num1[Number] --> Pri1[Primary] --> Term1[Term] --> Exp1[Expression] --> ExpTotal[Expression]
     
     +[+] ------> ExpTotal[Expression]
