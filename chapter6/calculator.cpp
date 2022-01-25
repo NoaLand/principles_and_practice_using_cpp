@@ -18,6 +18,8 @@ private:
     Token buffer;
 };
 
+Token_stream::Token_stream(): full(false), buffer(0) {}
+
 void Token_stream::putback(Token t) {
     // precondition
     if(full) simple_error("putback() into a full buffer");
@@ -125,10 +127,11 @@ int main() {
             Token t = ts.get();
 
             if(t.kind == 'q') break;
-            if(t.kind == ';')
+            if (t.kind == ';') {
                 cout << val << endl;
-            else
-                ts.putback(t);
+                continue;
+            }
+            else { ts.putback(t); }
             val = expression();
         }
         keep_window_open();
