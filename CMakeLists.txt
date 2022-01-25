@@ -15,5 +15,6 @@ add_executable(principles_and_practice_using_cpp
 #        chapter3/chapter3.cpp
 #        chapter4/chapter4.cpp
 #        chapter5/chapter5.cpp
-        chapter6/calculator.cpp
+#        chapter6/calculator.cpp
+        chapter6/calculator02buggy.cpp
 )
