@@ -15,6 +15,7 @@ Term:
 Primary:
     Number
     "(" Expression ")"
+    "{" Expression "}"
 Number:
     floating-point-literal
 ```
