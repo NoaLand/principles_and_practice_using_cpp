@@ -173,8 +173,8 @@ double expression() {
 
 int main() {
     try {
+        double val{0};
         while (cin) {
-            double val = expression();
             Token t = ts.get();
 
             if (t.kind == 'q') break; // 'q' for quit
@@ -184,6 +184,7 @@ int main() {
             else {
                 ts.putback(t);
             }
+            val = expression();
         }
         keep_window_open();
     }
