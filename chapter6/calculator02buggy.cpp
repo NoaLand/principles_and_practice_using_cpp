@@ -174,6 +174,8 @@ double expression() {
 int main() {
     try {
         double val{0};
+        cout << "Welcome to our simple calculator." << endl;
+        cout << " Please enter expressions using floating-point numbers." << endl;
         while (cin) {
             Token t = ts.get();
 
