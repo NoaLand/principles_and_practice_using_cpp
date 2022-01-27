@@ -2,6 +2,8 @@
 
 We build a prototype of calculator in chapter 6, and trying to follow the instruction of PPP book to design a basic grammar for this calculator, like following:
 
+To support for factorial calculating, we need to re-design this grammar, which means should add an additional layer between `Term` and `Primary`.
+
 ```
 Expression:
     Term
@@ -13,6 +15,9 @@ Term:
     Term "/" Primary
     Term "%" Primary
 Primary:
+    SubPrimary
+    SubPrimary "!"
+SubPrimary:
     Number
     "(" Expression ")"
     "{" Expression "}"
