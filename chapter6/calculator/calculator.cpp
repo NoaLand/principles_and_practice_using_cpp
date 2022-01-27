@@ -41,11 +41,11 @@ Token Token_stream::get() {
     switch (ch) {
         case '=':    // for "print"
         case 'x':    // for "quit"
-        case '(': case ')': case '{': case '}': case '+': case '-': case '*': case '/':
+        case '(': case ')': case '{': case '}': case '+': case '-': case '*': case '/': case '!':
             return {ch};        // let each character represent itself
         case '.':
         case '0': case '1': case '2': case '3': case '4':
-        case '5': case '6': case '7': case '9':
+        case '5': case '6': case '7': case '8': case '9':
         {
             cin.putback(ch);         // put digit back into the input stream
             double val;
@@ -61,7 +61,7 @@ Token_stream ts;
 
 double expression();
 
-double primary() {
+double sub_primary() {
     Token t = ts.get();
     switch (t.kind) {
         case '(': {
@@ -83,11 +83,39 @@ double primary() {
     }
 }
 
+double primary() {
+    double left = sub_primary();
+    Token t = ts.get();
+
+    while(true) {
+        switch(t.kind) {
+            case '!': {
+                int integer_left = (int)left;
+                if(integer_left != left) simple_error("cannot handle double in factorial");
+                if(integer_left == 0){
+                    left = 1;
+                } else {
+                    int res = 1;
+                    for(int index = 1; index <= left; ++index) {
+                        res *= index;
+                    }
+                    left = res;
+                }
+                t = ts.get();
+                break;
+            }
+            default:
+                ts.putback(t);     // put t back into the token stream
+                return left;
+        }
+    }
+}
+
 double term() {
     double left = primary();
     Token t = ts.get();
 
-    while (true) {
+    while(true) {
         switch (t.kind) {
             case '*':
                 left *= primary();
@@ -111,7 +139,7 @@ double expression() {
     double left = term();
     Token t = ts.get();
 
-    while (true) {
+    while(true) {
         switch (t.kind) {
             case '+':
                 left += term();
