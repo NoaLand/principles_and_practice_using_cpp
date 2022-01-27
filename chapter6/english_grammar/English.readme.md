@@ -11,6 +11,11 @@ Conjunction:
     "or"
     "but"
 Noun:
+    NounDic
+    Determiner NounDic
+Determiner:
+    "the"
+NounDic:
     "birds"
     "fish"
     "C++"
