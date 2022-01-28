@@ -17,5 +17,6 @@ add_executable(principles_and_practice_using_cpp
 #        chapter5/chapter5.cpp
 #        chapter6/calculator/calculator.cpp
 #        chapter6/calculator/calculator02buggy.cpp
-        chapter6/exercise/chapter6.cpp
+#        chapter6/exercise/chapter6.cpp
+        chapter6/english_grammar/english_grammar.cpp
 )
