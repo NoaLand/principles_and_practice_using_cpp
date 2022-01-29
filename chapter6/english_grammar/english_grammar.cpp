@@ -18,12 +18,10 @@
  */
 #include<../lib/std_lib_facilities.h>
 
-#include <utility>
-
 class Token {
 public:
     char type{};
-    string value;
+    __attribute__((unused)) string value;
 };
 
 class Token_stream {
@@ -36,6 +34,9 @@ private:
     Token buffer;
 };
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreturn-type"
+// return or throw
 Token Token_stream::get() {
     if(full) {
         full = false;
@@ -59,6 +60,7 @@ Token Token_stream::get() {
         simple_error("Bad token");
     }
 }
+#pragma clang diagnostic pop
 
 void Token_stream::putback(Token token) {
     if (full) simple_error("putback() into a full buffer");
