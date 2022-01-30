@@ -32,12 +32,33 @@ void exercise_4_rewrite_chapter4_exercise_19_with_class();
 
 vector<char> generate_rand_chars();
 
+void test_for_generate_random_chars();
+
 int main() {
     // exercise_4_rewrite_chapter4_exercise_19_with_class();
-    exercise_8_rewrite_chapter5_bulls_and_cows_game_to_support_input_chars();
+    // exercise_8_rewrite_chapter5_bulls_and_cows_game_to_support_input_chars();
+    test_for_generate_random_chars();
 
     keep_window_open();
     return 0;
+}
+
+void test_for_generate_random_chars() {
+    for(int index = 0; index < 1000000; ++index) {
+        vector<char> rand_chars = generate_rand_chars();
+        std::sort(rand_chars.begin(), rand_chars.end(),
+                  [](unsigned char c1, unsigned char c2){ return std::tolower(c1) < std::tolower(c2); }
+        );
+        for(int char_index = 1; char_index < rand_chars.size(); ++char_index) {
+            if(rand_chars[char_index] == rand_chars[char_index - 1]) {
+                simple_error("repeated char!");
+            }
+        }
+
+        cout << index << ": " << rand_chars[0] << rand_chars[1] << rand_chars[2] << rand_chars[3] << endl;
+    }
+
+    cout << "!!! TEST SUCCESS !!!";
 }
 
 [[noreturn]] void exercise_8_rewrite_chapter5_bulls_and_cows_game_to_support_input_chars() {
