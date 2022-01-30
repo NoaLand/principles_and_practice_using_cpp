@@ -30,7 +30,7 @@ void exercise_4_rewrite_chapter4_exercise_19_with_class();
 
 [[noreturn]] void exercise_8_rewrite_chapter5_bulls_and_cows_game_to_support_input_chars();
 
-vector<int> generate_rand_nums();
+vector<char> generate_rand_chars();
 
 int main() {
     // exercise_4_rewrite_chapter4_exercise_19_with_class();
@@ -42,28 +42,29 @@ int main() {
 
 [[noreturn]] void exercise_8_rewrite_chapter5_bulls_and_cows_game_to_support_input_chars() {
     while (true) {
-        vector<int> expected_nums = generate_rand_nums();
+        vector<char> expected_chars = generate_rand_chars();
+        cout << "rand chars are: " << expected_chars[0] << expected_chars[1] << expected_chars[2] << expected_chars[3] << endl;
         int correct_number{0}, correct_position{0};
 
-        while (!(correct_number == correct_position && correct_number == expected_nums.size())) {
+        while (!(correct_number == correct_position && correct_number == expected_chars.size())) {
             // reinit number and position
             correct_number = 0;
             correct_position = 0;
 
-            int a, b, c, d;
-            vector<int> actual_nums;
+            char a, b, c, d;
+            vector<char> actual_chars;
             // get input
             cout << "Please enter nums you guess:\n";
             cin >> a >> b >> c >> d;
-            actual_nums.push_back(a);
-            actual_nums.push_back(b);
-            actual_nums.push_back(c);
-            actual_nums.push_back(d);
+            actual_chars.push_back(a);
+            actual_chars.push_back(b);
+            actual_chars.push_back(c);
+            actual_chars.push_back(d);
 
             // match numbers and positions
-            for (int expected_index = 0; expected_index < expected_nums.size(); ++expected_index) {
-                for (int actual_index = 0; actual_index < actual_nums.size(); ++actual_index) {
-                    if (expected_nums.at(expected_index) == actual_nums.at(actual_index)) {
+            for (int expected_index = 0; expected_index < expected_chars.size(); ++expected_index) {
+                for (int actual_index = 0; actual_index < actual_chars.size(); ++actual_index) {
+                    if (expected_chars.at(expected_index) == actual_chars.at(actual_index)) {
                         ++correct_number;
 
                         if (expected_index == actual_index) {
@@ -84,26 +85,27 @@ int main() {
     }
 }
 
-vector<int> generate_rand_nums() {
-    vector<int> res;
+vector<char> generate_rand_chars() {
+    vector<char> res;
     res.reserve(4);
     // generate random number with time -- see README.md
     std::random_device rd;
     std::mt19937 mt(rd());
-    std::uniform_int_distribution<int> dist(0, 9);
+    std::uniform_int_distribution<int> dist(0, 25);
 
     for (int index = 0; index < 4; ++index) {
         bool not_repeated = true;
         int rand_num = dist(mt);
+        char rand_char = 'a' + rand_num; // NOLINT(cppcoreguidelines-narrowing-conversions)
         for (int i = 0; i < index; ++i) {
-            if (rand_num == res.at(i)) {
+            if (rand_char == res.at(i)) {
                 not_repeated = false;
                 --index;
             }
         }
 
         if (not_repeated) {
-            res.push_back(rand_num);
+            res.push_back(rand_char);
         }
     }
     return res;
