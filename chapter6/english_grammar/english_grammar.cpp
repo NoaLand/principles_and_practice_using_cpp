@@ -1,5 +1,5 @@
 /*
- * This is the implement for english grammar exercise, according to the design in English.readme.md
+ * This is the implement for english grammar exercise, according to the design in English.grammar.md
  *
  * Token Type Map:
  *      1. Conjunction -> 'c'
