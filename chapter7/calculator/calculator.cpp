@@ -211,17 +211,16 @@ int main() {
             cout << "> ";
             Token t = ts.get();
 
-            if (t.kind == 'x') break;
-            if (t.kind == '=') {
-                cout << "=" << val << '\n';
-                continue;
+            while(t.kind == '=') t=ts.get();
+            if(t.kind == 'x') {
+                keep_window_open();
+                return 0;
             }
-            else {
-                ts.putback(t);
-            }
-            val = expression();
+            ts.putback(t);
+            cout << "= " << expression() << endl;
         }
         keep_window_open();
+        return 0;
     }
     catch (runtime_error& e) {
         cerr << e.what() << endl;
