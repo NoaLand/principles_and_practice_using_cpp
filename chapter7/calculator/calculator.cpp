@@ -23,7 +23,7 @@ double get_value(string s) {
     simple_error("get: undefined variable " + s);
 }
 
-void set_value(string s, double d) {
+void set_value(const string& s, double d) {
     for(Variable& v: var_table) {
         if(v.name == s) {
             v.value = d;
