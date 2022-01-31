@@ -1,5 +1,7 @@
 #include "../../lib/std_lib_facilities.h"
 
+static const char number = '8';
+
 class Token {
 public:
     Token(char ch)    // make a Token from a char
@@ -51,7 +53,7 @@ Token Token_stream::get() {
             cin.putback(ch);         // put digit back into the input stream
             double val;
             cin >> val;              // read a floating-point number
-            return {'8', val};   // let '8' represent "a number"
+            return {number, val};   // let '8' represent "a number"
         }
         default:
             simple_error("Bad token");
@@ -87,7 +89,7 @@ double sub_primary() {
             if(t.kind != '}') simple_error("'}' expected");
             return d;
         }
-        case '8':
+        case number:
             return t.value;
         case 'P': {
             t = ts.get();
