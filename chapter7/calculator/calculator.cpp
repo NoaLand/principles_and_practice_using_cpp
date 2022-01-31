@@ -201,7 +201,6 @@ double expression() {
 
 int main() {
     try {
-        double val{0};
         cout << "------------------------------------------------------------------------------" << endl;
         cout << "Welcome to our simple calculator." << endl;
         cout << "Please enter expressions using floating-point numbers." << endl;
