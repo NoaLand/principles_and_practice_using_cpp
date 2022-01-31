@@ -21,6 +21,7 @@ public:
     Token_stream();
     Token get();
     void putback(Token t);
+    void ignore(char c);
 private:
     bool full;
     Token buffer;
@@ -61,6 +62,18 @@ Token Token_stream::get() {
         default:
             simple_error("Bad token");
     }
+}
+
+void Token_stream::ignore(char c) {
+    if(full && c == buffer.kind) {
+        full = false;
+        return;
+    }
+    full = false;
+
+    char ch = 0;
+    while(cin >> ch)
+        if(ch == c) return;
 }
 
 Token_stream ts;
@@ -268,8 +281,5 @@ void calculate() {
 }
 
 void clean_up_mess() {
-    while(true) {
-        Token t = ts.get();
-        if(t.kind == print) return;
-    }
+    ts.ignore(print);
 }
