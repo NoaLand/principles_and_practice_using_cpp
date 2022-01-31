@@ -141,9 +141,7 @@ double factorial(double left) {
     // will get into this statement when left value is a double
     if(integer_left != left) simple_error("cannot handle double in factorial");
     if(integer_left == 0){
-        left = 1;
-    } else {
-        int res = 1;
+        left = 1; } else { int res = 1;
         for(int index = 1; index <= left; ++index) {
             res *= index;
         }
@@ -203,9 +201,11 @@ int main() {
         cout << "------------------------------------------------------------------------------" << endl;
         cout << "Welcome to our simple calculator." << endl;
         cout << "Please enter expressions using floating-point numbers." << endl;
-        cout << "You can use +, -, *, /, % to calculate." << endl;
-        cout << "1. By input '=' to print the result of expression you have entered." << endl;
-        cout << "2. By input 'x' to exit this calculator." << endl;
+        cout << "1. You can use +, -, *, /, % to calculate." << endl;
+        cout << "2. You can calculate Permutation by inputting P(a, b) " << endl;
+        cout << "3. You can calculate Combination by inputting C(a, b) " << endl;
+        cout << "4. By inputting '=' to print the result of expression you have entered." << endl;
+        cout << "5. By inputting 'x' to exit this calculator." << endl;
         cout << "------------------------------------------------------------------------------" << endl;
         while (cin) {
             Token t = ts.get();
