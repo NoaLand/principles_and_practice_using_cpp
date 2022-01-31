@@ -73,6 +73,8 @@ double permutation(double a, double b);
 
 double combination(double a, double b);
 
+void calculate();
+
 double sub_primary() {
     Token t = ts.get();
     switch (t.kind) {
@@ -222,18 +224,7 @@ int main() {
         cout << "4. By inputting '=' to print the result of expression you have entered." << endl;
         cout << "5. By inputting 'x' to exit this calculator." << endl;
         cout << "------------------------------------------------------------------------------" << endl;
-        while (cin) {
-            cout << prompt;
-            Token t = ts.get();
-
-            while(t.kind == print) t=ts.get();
-            if(t.kind == quit) {
-                keep_window_open();
-                return 0;
-            }
-            ts.putback(t);
-            cout << result << expression() << endl;
-        }
+        calculate();
         keep_window_open();
         return 0;
     }
@@ -252,5 +243,19 @@ int main() {
         cerr << "Oops: unknown exception!\n";
         keep_window_open();
         return 2;
+    }
+}
+
+void calculate() {
+    while (cin) {
+        cout << prompt;
+        Token t = ts.get();
+
+        while(t.kind == print) t = ts.get();
+        if(t.kind == quit) {
+            return;
+        }
+        ts.putback(t);
+        cout << result << expression() << endl;
     }
 }
