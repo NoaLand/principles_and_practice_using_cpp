@@ -105,6 +105,7 @@ double primary() {
 
 double factorial(double left) {
     int integer_left = (int)left;
+    // will get into this statement when left value is a double
     if(integer_left != left) simple_error("cannot handle double in factorial");
     if(integer_left == 0){
         left = 1;
@@ -115,7 +116,7 @@ double factorial(double left) {
         }
         left = res;
     }
-    return __1::left;
+    return left;
 }
 
 double term() {
