@@ -95,6 +95,18 @@ double sub_primary() {
 
             return permutation(a, b);
         }
+        case 'C': {
+            t = ts.get();
+            if(t.kind != '(') simple_error("Combination should has () statement");
+            double a = expression();
+            t = ts.get();
+            if(t.kind != ',') simple_error("there should be a ',' after expression A");
+            double b = expression();
+            t = ts.get();
+            if(t.kind != ')') simple_error("Combination should has () statement");
+
+            return permutation(a, b) / factorial(b);
+        }
         default:
             simple_error("primary expected");
     }
