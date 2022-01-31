@@ -3,6 +3,8 @@
 static const char number = '8';
 static const char quit = 'x';
 static const char print = '=';
+static const char *const prompt = "> ";
+static const char *const result = "= ";
 
 class Token {
 public:
@@ -221,7 +223,7 @@ int main() {
         cout << "5. By inputting 'x' to exit this calculator." << endl;
         cout << "------------------------------------------------------------------------------" << endl;
         while (cin) {
-            cout << "> ";
+            cout << prompt;
             Token t = ts.get();
 
             while(t.kind == print) t=ts.get();
@@ -230,7 +232,7 @@ int main() {
                 return 0;
             }
             ts.putback(t);
-            cout << "= " << expression() << endl;
+            cout << result << expression() << endl;
         }
         keep_window_open();
         return 0;
