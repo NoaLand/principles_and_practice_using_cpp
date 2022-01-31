@@ -5,6 +5,20 @@ We build a prototype of calculator in chapter 6, and trying to follow the instru
 To support for factorial calculating, we need to re-design this grammar, which means should add an additional layer between `Term` and `Primary`.
 
 ```
+Calculation:
+    Statement
+    Print
+    Quit
+    Calculation Statement
+Print:
+    "="
+Quit:
+    "x"
+Statement:
+    Declaration
+    Expression
+Declaration:
+    "let" Name "=" Expression
 Expression:
     Term
     Expression "+" Term
@@ -28,6 +42,8 @@ SubPrimary:
     "C" "(" Expression "," Expression ")"
 Number:
     floating-point-literal
+Name:
+    string-literal
 ```
 
 We say, the basic element for an `Expression` is a `Number`, and we borrow the floating number from C++.
