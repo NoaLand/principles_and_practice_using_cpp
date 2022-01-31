@@ -2,6 +2,7 @@
 
 static const char number = '8';
 static const char quit = 'x';
+static const char print = '=';
 
 class Token {
 public:
@@ -42,7 +43,7 @@ Token Token_stream::get() {
     cin >> ch;
 
     switch (ch) {
-        case '=':    // for "print"
+        case print:
         case quit:
         case '(': case ')': case '{': case '}': case '+': case '-': case '*': case '/': case '!':
         case 'P': case 'C': case ',': case '%':
@@ -223,7 +224,7 @@ int main() {
             cout << "> ";
             Token t = ts.get();
 
-            while(t.kind == '=') t=ts.get();
+            while(t.kind == print) t=ts.get();
             if(t.kind == quit) {
                 keep_window_open();
                 return 0;
