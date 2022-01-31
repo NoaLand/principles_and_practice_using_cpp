@@ -21,6 +21,8 @@ SubPrimary:
     Number
     "(" Expression ")"
     "{" Expression "}"
+    "+" SubPrimary
+    "-" SubPrimary
     # "P" is for "Permutation", "C" is for "Combination"
     "P" "(" Expression "," Expression ")"
     "C" "(" Expression "," Expression ")"
