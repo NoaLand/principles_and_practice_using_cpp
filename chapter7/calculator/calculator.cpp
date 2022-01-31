@@ -6,6 +6,33 @@ static const char print = '=';
 static const char *const prompt = "> ";
 static const char *const result = "= ";
 
+class Variable {
+public:
+    string name;
+    double value;
+};
+
+vector<Variable> var_table;
+
+double get_value(string s) {
+    for(const Variable& v: var_table) {
+        if(v.name == s) {
+            return v.value;
+        }
+    }
+    simple_error("get: undefined variable " + s);
+}
+
+void set_value(string s, double d) {
+    for(Variable& v: var_table) {
+        if(v.name == s) {
+            v.value = d;
+            return;
+        }
+    }
+    simple_error("set: undefined variable " + s);
+}
+
 class Token {
 public:
     Token(char ch)    // make a Token from a char
