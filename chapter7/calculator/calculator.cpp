@@ -208,6 +208,7 @@ int main() {
         cout << "5. By inputting 'x' to exit this calculator." << endl;
         cout << "------------------------------------------------------------------------------" << endl;
         while (cin) {
+            cout << "> ";
             Token t = ts.get();
 
             if (t.kind == 'x') break;
