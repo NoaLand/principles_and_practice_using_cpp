@@ -42,7 +42,7 @@ Token Token_stream::get() {
         case '=':    // for "print"
         case 'x':    // for "quit"
         case '(': case ')': case '{': case '}': case '+': case '-': case '*': case '/': case '!':
-        case 'P': case 'C': case ',':
+        case 'P': case 'C': case ',': case '%':
             return {ch};        // let each character represent itself
         case '.':
         case '0': case '1': case '2': case '3': case '4':
@@ -166,8 +166,15 @@ double term() {
                 break;
             case '/': {
                 double d = primary();
-                if (d == 0) simple_error("divide by zero");
+                if(d == 0) simple_error("divide by zero");
                 left /= d;
+                t = ts.get();
+                break;
+            }
+            case '%': {
+                double d = primary();
+                if(d == 0) simple_error("divide by zero");
+                left = left - d * (int)(left / d);
                 t = ts.get();
                 break;
             }
