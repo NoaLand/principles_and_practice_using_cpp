@@ -42,6 +42,7 @@ Token Token_stream::get() {
         case '=':    // for "print"
         case 'x':    // for "quit"
         case '(': case ')': case '{': case '}': case '+': case '-': case '*': case '/': case '!':
+        case 'P': case 'C': case ',':
             return {ch};        // let each character represent itself
         case '.':
         case '0': case '1': case '2': case '3': case '4':
@@ -80,6 +81,18 @@ double sub_primary() {
         }
         case '8':
             return t.value;
+        case 'P':{
+            t = ts.get();
+            if(t.kind != '(') simple_error("Permutation should has () statement");
+            double a = expression();
+            t = ts.get();
+            if(t.kind != ',') simple_error("there should be a ',' after expression A");
+            double b = expression();
+            t = ts.get();
+            if(t.kind != ')') simple_error("Permutation should has () statement");
+
+            return factorial(a) / factorial(a - b);
+        }
         default:
             simple_error("primary expected");
     }
