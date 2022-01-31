@@ -225,9 +225,8 @@ int main() {
     }
     catch (runtime_error& e) {
         cerr << e.what() << endl;
-        cout << "Please enter the character ~ to close the window." << endl;
-        for(char ch; cin >> ch;)
-            if(ch == '~') return 1;
+        cout << "Please enter the character ~~ to close the window." << endl;
+        keep_window_open("~~");
         return 1;
     }
     catch (exception &e) {

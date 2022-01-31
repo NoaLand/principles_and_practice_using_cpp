@@ -12,9 +12,10 @@
 
 using namespace std;
 
-inline void keep_window_open() {
-    char ch;
-    cin >> ch;
+inline int keep_window_open(const string& input = "") {
+    for(string ch; cin >> ch;)
+        if(ch == input)
+            return 1;
 }
 
 inline void simple_error(const string& err) {
