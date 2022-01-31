@@ -1,6 +1,7 @@
 #include "../../lib/std_lib_facilities.h"
 
 static const char number = '8';
+static const char quit = 'x';
 
 class Token {
 public:
@@ -42,7 +43,7 @@ Token Token_stream::get() {
 
     switch (ch) {
         case '=':    // for "print"
-        case 'x':    // for "quit"
+        case quit:
         case '(': case ')': case '{': case '}': case '+': case '-': case '*': case '/': case '!':
         case 'P': case 'C': case ',': case '%':
             return {ch};        // let each character represent itself
@@ -223,7 +224,7 @@ int main() {
             Token t = ts.get();
 
             while(t.kind == '=') t=ts.get();
-            if(t.kind == 'x') {
+            if(t.kind == quit) {
                 keep_window_open();
                 return 0;
             }
