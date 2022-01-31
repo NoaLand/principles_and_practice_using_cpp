@@ -83,7 +83,7 @@ double sub_primary() {
         }
         case '8':
             return t.value;
-        case 'P':{
+        case 'P': {
             t = ts.get();
             if(t.kind != '(') simple_error("Permutation should has () statement");
             double a = expression();
