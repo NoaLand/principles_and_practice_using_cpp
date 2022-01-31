@@ -71,6 +71,10 @@ double combination(double a, double b);
 double sub_primary() {
     Token t = ts.get();
     switch (t.kind) {
+        case '+':
+            return sub_primary();
+        case '-':
+            return -sub_primary();
         case '(': {
             double d = expression();
             t = ts.get();
