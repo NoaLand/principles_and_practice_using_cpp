@@ -61,6 +61,8 @@ Token_stream ts;
 
 double expression();
 
+double factorial(double left);
+
 double sub_primary() {
     Token t = ts.get();
     switch (t.kind) {
@@ -90,17 +92,7 @@ double primary() {
     while(true) {
         switch(t.kind) {
             case '!': {
-                int integer_left = (int)left;
-                if(integer_left != left) simple_error("cannot handle double in factorial");
-                if(integer_left == 0){
-                    left = 1;
-                } else {
-                    int res = 1;
-                    for(int index = 1; index <= left; ++index) {
-                        res *= index;
-                    }
-                    left = res;
-                }
+                left = factorial(left);
                 t = ts.get();
                 break;
             }
@@ -109,6 +101,21 @@ double primary() {
                 return left;
         }
     }
+}
+
+double factorial(double left) {
+    int integer_left = (int)left;
+    if(integer_left != left) simple_error("cannot handle double in factorial");
+    if(integer_left == 0){
+        left = 1;
+    } else {
+        int res = 1;
+        for(int index = 1; index <= left; ++index) {
+            res *= index;
+        }
+        left = res;
+    }
+    return __1::left;
 }
 
 double term() {
