@@ -64,6 +64,8 @@ double expression();
 
 double factorial(double left);
 
+double permutation(double a, double b);
+
 double sub_primary() {
     Token t = ts.get();
     switch (t.kind) {
@@ -91,12 +93,14 @@ double sub_primary() {
             t = ts.get();
             if(t.kind != ')') simple_error("Permutation should has () statement");
 
-            return factorial(a) / factorial(a - b);
+            return permutation(a, b);
         }
         default:
             simple_error("primary expected");
     }
 }
+
+double permutation(double a, double b) { return factorial(a) / factorial(a - b); }
 
 double primary() {
     double left = sub_primary();
