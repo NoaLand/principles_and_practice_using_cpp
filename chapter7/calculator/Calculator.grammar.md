@@ -13,7 +13,7 @@ Term:
     Primary
     Term "*" Primary
     Term "/" Primary
-    # Term "%" Primary
+    Term "%" Primary
 Primary:
     SubPrimary
     SubPrimary "!"
