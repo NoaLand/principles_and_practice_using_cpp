@@ -75,6 +75,8 @@ double combination(double a, double b);
 
 void calculate();
 
+void clean_up_mess();
+
 double sub_primary() {
     Token t = ts.get();
     switch (t.kind) {
@@ -248,14 +250,26 @@ int main() {
 
 void calculate() {
     while (cin) {
-        cout << prompt;
-        Token t = ts.get();
+        try {
+            cout << prompt;
+            Token t = ts.get();
 
-        while(t.kind == print) t = ts.get();
-        if(t.kind == quit) {
-            return;
+            while(t.kind == print) t = ts.get();
+            if(t.kind == quit) {
+                return;
+            }
+            ts.putback(t);
+            cout << result << expression() << endl;
+        } catch(exception& e) {
+            cerr << e.what() << endl;
+            clean_up_mess();
         }
-        ts.putback(t);
-        cout << result << expression() << endl;
+    }
+}
+
+void clean_up_mess() {
+    while(true) {
+        Token t = ts.get();
+        if(t.kind == print) return;
     }
 }
