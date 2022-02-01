@@ -174,6 +174,8 @@ void calculate();
 
 void clean_up_mess();
 
+void variable_predefine();
+
 double sub_primary() {
     Token t = ts.get();
     switch (t.kind) {
@@ -317,8 +319,7 @@ double expression() {
 
 int main() {
     try {
-        define_name("pi", 3.1415926535);
-        define_name("e", 2.7182818284);
+        variable_predefine();
 
         cout << "------------------------------------------------------------------------------" << endl;
         cout << "Welcome to our simple calculator." << endl;
@@ -349,6 +350,11 @@ int main() {
         keep_window_open();
         return 2;
     }
+}
+
+void variable_predefine() {
+    define_name("pi", 3.1415926535);
+    define_name("e", 2.7182818284);
 }
 
 void calculate() {
