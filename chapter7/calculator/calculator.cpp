@@ -96,9 +96,10 @@ Token Token_stream::get() {
         }
         default:
             if(isalpha(ch)) {
-                cin.putback(ch);
                 string s;
-                cin >> s;
+                s += ch;
+                while(cin.get(ch) && (isalpha(ch) || isdigit(ch))) s += ch;
+                cin.putback(ch);
                 if(s == declkey) return {let};
                 return {name, s};
             }
