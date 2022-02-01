@@ -317,6 +317,9 @@ double expression() {
 
 int main() {
     try {
+        define_name("pi", 3.1415926535);
+        define_name("e", 2.7182818284);
+
         cout << "------------------------------------------------------------------------------" << endl;
         cout << "Welcome to our simple calculator." << endl;
         cout << "Please enter expressions using floating-point numbers." << endl;
