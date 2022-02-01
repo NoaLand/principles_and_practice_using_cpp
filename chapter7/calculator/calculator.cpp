@@ -1,8 +1,13 @@
+#include <utility>
+
 #include "../../lib/std_lib_facilities.h"
 
+const char name = 'a';
+const char let = 'L';
+const string declkey = "let";
 static const char number = '8';
-static const char quit = 'x';
-static const char print = '=';
+static const char quit = 'q';
+static const char print = ';';
 static const char *const prompt = "> ";
 static const char *const result = "= ";
 
@@ -36,11 +41,14 @@ void set_value(const string& s, double d) {
 class Token {
 public:
     Token(char ch)    // make a Token from a char
-            :kind(ch), value(0) { }
+            :kind(ch), value(0) {}
     Token(char ch, double val)     // make a Token from a char and a double
-            :kind(ch), value(val) { }
+            :kind(ch), value(val) {}
+    Token(char ch, string n)
+            : kind(ch), name(std::move(n)) {}
     char kind;        // what kind of token
     double value;     // for numbers: a value
+    string name;
 };
 
 class Token_stream {
@@ -76,7 +84,7 @@ Token Token_stream::get() {
         case print:
         case quit:
         case '(': case ')': case '{': case '}': case '+': case '-': case '*': case '/': case '!':
-        case 'P': case 'C': case ',': case '%':
+        case 'P': case 'C': case ',': case '%': case '=':
             return {ch};        // let each character represent itself
         case '.':
         case '0': case '1': case '2': case '3': case '4':
@@ -87,6 +95,13 @@ Token Token_stream::get() {
             return {number, val};   // let '8' represent "a number"
         }
         default:
+            if(isalpha(ch)) {
+                cin.putback(ch);
+                string s;
+                cin >> s;
+                if(s == declkey) return {let};
+                return {name, s};
+            }
             simple_error("Bad token");
     }
 }
@@ -106,6 +121,47 @@ void Token_stream::ignore(char c) {
 Token_stream ts;
 
 double expression();
+
+bool is_declared(string var) {
+    for(Variable v: var_table) {
+        if(v.name == var)
+            return true;
+    }
+
+    return false;
+}
+
+double define_name(string var, double val) {
+    if(is_declared(var)) simple_error(var + " declared twice");
+    var_table.push_back({var, val});
+
+    return val;
+}
+
+double declaration() {
+    Token t = ts.get();
+    if(t.kind != name) simple_error("name expected in declaration");
+    string var_name = t.name;
+
+    Token t2 = ts.get();
+    if(t2.kind != '=') simple_error("= missing in declaration of " + var_name);
+
+    double d = expression();
+    define_name(var_name, d);
+
+    return d;
+}
+
+double statement() {
+    Token t = ts.get();
+    switch(t.kind) {
+        case let:
+            return declaration();
+        default:
+            ts.putback(t);
+            return expression();
+    }
+}
 
 double factorial(double left);
 
@@ -162,8 +218,11 @@ double sub_primary() {
 
             return combination(a, b);
         }
+        case name: {
+            return get_value(t.name);
+        }
         default:
-            simple_error("primary expected");
+            simple_error("sub-primary expected");
     }
 }
 
@@ -299,7 +358,7 @@ void calculate() {
                 return;
             }
             ts.putback(t);
-            cout << result << expression() << endl;
+            cout << result << statement() << endl;
         } catch(exception& e) {
             cerr << e.what() << endl;
             clean_up_mess();
