@@ -7,14 +7,15 @@
 	We have inserted 3 bugs that the compiler will catch and 3 that it won't.
 */
 
-#include "std_lib_facilities.h"
+#include "../../lib/std_lib_facilities.h"
 
 struct Token {
     char kind;
     double value;
     string name;
-    Token(char ch) :kind(ch), value(0) { }
-    Token(char ch, double val) :kind(ch), value(val) { }
+    Token(char ch) :kind(ch), value(0) {}
+    Token(char ch, double val) :kind(ch), value(val) {}
+    Token(char ch, string n): kind(ch), name(n) {}
 };
 
 class Token_stream {
@@ -77,7 +78,7 @@ Token Token_stream::get()
                 if (s == "quit") return Token(name);
                 return Token(name, s);
             }
-            error("Bad token");
+            simple_error("Bad token");
     }
 }
 
@@ -106,7 +107,7 @@ double get_value(string s)
 {
     for (int i = 0; i < names.size(); ++i)
         if (names[i].name == s) return names[i].value;
-    error("get: undefined name ", s);
+    simple_error("get: undefined name " + s);
 }
 
 void set_value(string s, double d)
@@ -116,7 +117,7 @@ void set_value(string s, double d)
             names[i].value = d;
             return;
         }
-    error("set: undefined name ", s);
+    simple_error("set: undefined name " + s);
 }
 
 bool is_declared(string s)
@@ -137,7 +138,7 @@ double primary()
         case '(':
         {	double d = expression();
             t = ts.get();
-            if (t.kind != ')') error("'(' expected");
+            if (t.kind != ')') simple_error("'(' expected");
         }
         case '-':
             return -primary();
@@ -146,7 +147,7 @@ double primary()
         case name:
             return get_value(t.name);
         default:
-            error("primary expected");
+            simple_error("primary expected");
     }
 }
 
@@ -161,7 +162,7 @@ double term()
                 break;
             case '/':
             {	double d = primary();
-                if (d == 0) error("divide by zero");
+                if (d == 0) simple_error("divide by zero");
                 left /= d;
                 break;
             }
@@ -194,11 +195,11 @@ double expression()
 double declaration()
 {
     Token t = ts.get();
-    if (t.kind != 'a') error("name expected in declaration");
+    if (t.kind != 'a') simple_error("name expected in declaration");
     string name = t.name;
-    if (is_declared(name)) error(name, " declared twice");
+    if (is_declared(name)) simple_error(name + " declared twice");
     Token t2 = ts.get();
-    if (t2.kind != '=') error("= missing in declaration of ", name);
+    if (t2.kind != '=') simple_error("= missing in declaration of " + name);
     double d = expression();
     names.push_back(Variable(name, d));
     return d;
@@ -240,21 +241,22 @@ void calculate()
         }
 }
 
-int main()
+int main(){
+    try {
+        calculate();
+        return 0;
+    }
+    catch (exception& e) {
+        cerr << "exception: " << e.what() << endl;
+        char c;
+        while (cin >> c && c != ';');
+        return 1;
+    }
+    catch (...) {
+        cerr << "exception\n";
+        char c;
+        while (cin >> c && c != ';');
+        return 2;
+    }
+}
 
-try {
-    calculate();
-    return 0;
-}
-catch (exception& e) {
-    cerr << "exception: " << e.what() << endl;
-    char c;
-    while (cin >> c && c != ';');
-    return 1;
-}
-catch (...) {
-    cerr << "exception\n";
-    char c;
-    while (cin >> c && c != ';');
-    return 2;
-}
