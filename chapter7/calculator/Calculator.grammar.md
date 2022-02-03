@@ -13,7 +13,7 @@ Calculation:
 Print:
     ";"
 Quit:
-    "q"
+    "exit"
 Statement:
     Declaration
     Expression
