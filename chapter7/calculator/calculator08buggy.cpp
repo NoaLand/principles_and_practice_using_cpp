@@ -143,6 +143,8 @@ double primary()
         }
         case '-':
             return -primary();
+        case '+':
+            return primary();
         case number:
             return t.value;
         case name:
