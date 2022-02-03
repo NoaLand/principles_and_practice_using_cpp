@@ -3,10 +3,13 @@
 #include "../../lib/std_lib_facilities.h"
 
 const char name = 'a';
+
 const char let = 'L';
 const string declkey = "let";
-const char sqrt_key = 'S';
-const string square_root = "sqrt";
+
+const char square_root = 'S';
+const string sqrt_key = "sqrt";
+
 static const char number = '8';
 static const char quit = 'q';
 static const char print = ';';
@@ -103,7 +106,7 @@ Token Token_stream::get() {
                 while(cin.get(ch) && (isalpha(ch) || isdigit(ch))) s += ch;
                 cin.putback(ch);
                 if(s == declkey) return {let};
-                if(s == square_root) return {sqrt_key};
+                if(s == sqrt_key) return {square_root};
                 return {name, s};
             }
             simple_error("Bad token");
@@ -224,7 +227,7 @@ double sub_primary() {
 
             return combination(a, b);
         }
-        case sqrt_key: {
+        case square_root: {
             t = ts.get();
             if(t.kind != '(') simple_error("Combination should has () statement");
             double a = expression();
