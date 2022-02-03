@@ -26,6 +26,9 @@ static const char *const result = "= ";
 
 static const char assignment = '=';
 
+static const char help_upper = 'H';
+static const char help_lower = 'h';
+
 int narrow_cast_to_int(double d) {
     int d_int = (int) d;
     // will get into this statement when left value is a double
@@ -135,7 +138,7 @@ Token Token_stream::get() {
     switch (ch) {
         case print:
         case '(': case ')': case '{': case '}': case '+': case '-': case '*': case '/': case '!':
-        case 'P': case 'C': case ',': case '%': case assignment:
+        case 'P': case 'C': case ',': case '%': case assignment: case help_upper: case help_lower:
             return {ch};
         case declkey:
             return {let};
@@ -410,7 +413,8 @@ int main() {
     try {
         variable_predefine();
 
-        help_info();
+        cout << "********************* WELCOME *********************" << endl;
+        cout << "************ Press 'H' or 'h' get help ************" << endl;
         calculate();
         keep_window_open();
         return 0;
@@ -444,7 +448,8 @@ void help_info() {
     cout << "5. You can calculate power by using `pow(3.2, 2);`." << endl;
     cout << "6. You can calculate square root of a number by inputting `sqrt(4.0);`" << endl;
     cout << "7. By inputting ';' to print the result of expression you have entered." << endl;
-    cout << "8. By inputting 'exit' to exit this calculator." << endl;
+    cout << "8. By inputting 'H' or 'h' to get help info of this calculator." << endl;
+    cout << "9. By inputting 'exit' to exit this calculator." << endl;
     cout << "------------------------------------------------------------------------------" << endl;
 }
 
@@ -463,6 +468,10 @@ void calculate() {
             while(t.kind == print) t = ts.get();
             if(t.kind == quit) {
                 return;
+            }
+            if(t.kind == help_upper || t.kind == help_lower) {
+                help_info();
+                continue;
             }
             ts.putback(t);
             cout << result << statement() << endl;
