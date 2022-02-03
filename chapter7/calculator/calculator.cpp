@@ -377,9 +377,10 @@ int main() {
         cout << "2. You can calculate Permutation by inputting P(a, b)." << endl;
         cout << "3. You can calculate Combination by inputting C(a, b)." << endl;
         cout << "4. You can declare a variable by using `let x = 2.4;`." << endl;
-        cout << "5. You can calculate square root of a number by inputting `sqrt(4.0);`" << endl;
-        cout << "6. By inputting '=' to print the result of expression you have entered." << endl;
-        cout << "7. By inputting 'x' to exit this calculator." << endl;
+        cout << "5. You can calculate power by using `pow(3.2, 2);`." << endl;
+        cout << "6. You can calculate square root of a number by inputting `sqrt(4.0);`" << endl;
+        cout << "7. By inputting ';' to print the result of expression you have entered." << endl;
+        cout << "8. By inputting 'q' to exit this calculator." << endl;
         cout << "------------------------------------------------------------------------------" << endl;
         calculate();
         keep_window_open();
