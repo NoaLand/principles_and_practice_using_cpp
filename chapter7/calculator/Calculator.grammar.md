@@ -7,9 +7,12 @@ To support for factorial calculating, we need to re-design this grammar, which m
 ```
 Calculation:
     Statement
+    Help
     Print
     Quit
     Calculation Statement
+Help:
+    "H"
 Print:
     ";"
 Quit:
