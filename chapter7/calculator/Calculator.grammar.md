@@ -19,6 +19,7 @@ Statement:
     Expression
 Declaration:
     "#" Name "=" Expression
+    "#" "const" Name "=" Expression
 Expression:
     Term
     Expression "+" Term
