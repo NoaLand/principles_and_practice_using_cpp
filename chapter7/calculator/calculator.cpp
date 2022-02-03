@@ -58,14 +58,14 @@ void set_value(const string& s, double d) {
 
 class Token {
 public:
-    Token(char ch)    // make a Token from a char
+    Token(char ch)
             :kind(ch), value(0) {}
-    Token(char ch, double val)     // make a Token from a char and a double
+    Token(char ch, double val)
             :kind(ch), value(val) {}
     Token(char ch, string n)
             : kind(ch), name(std::move(n)) {}
-    char kind;        // what kind of token
-    double value;     // for numbers: a value
+    char kind;
+    double value;
     string name;
 };
 
@@ -102,16 +102,16 @@ Token Token_stream::get() {
         case print:
         case '(': case ')': case '{': case '}': case '+': case '-': case '*': case '/': case '!':
         case 'P': case 'C': case ',': case '%': case '=':
-            return {ch};        // let each character represent itself
+            return {ch};
         case declkey:
             return {let};
         case '.':
         case '0': case '1': case '2': case '3': case '4':
         case '5': case '6': case '7': case '8': case '9': {
-            cin.putback(ch);         // put digit back into the input stream
+            cin.putback(ch);
             double val;
-            cin >> val;              // read a floating-point number
-            return {number, val};   // let '8' represent "a number"
+            cin >> val;
+            return {number, val};
         }
         default:
             if(isalpha(ch)) {
@@ -299,7 +299,7 @@ double primary() {
                 break;
             }
             default:
-                ts.putback(t);     // put t back into the token stream
+                ts.putback(t);
                 return left;
         }
     }
@@ -342,7 +342,7 @@ double term() {
                 break;
             }
             default:
-                ts.putback(t);     // put t back into the token stream
+                ts.putback(t);
                 return left;
         }
     }
