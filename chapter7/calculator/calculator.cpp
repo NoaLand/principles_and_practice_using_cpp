@@ -5,7 +5,7 @@
 const char name = 'a';
 
 const char let = 'L';
-const string declkey = "let";
+const char declkey = '#';
 
 const char square_root = 'S';
 const string sqrt_key = "sqrt";
@@ -102,6 +102,8 @@ Token Token_stream::get() {
         case '(': case ')': case '{': case '}': case '+': case '-': case '*': case '/': case '!':
         case 'P': case 'C': case ',': case '%': case '=':
             return {ch};        // let each character represent itself
+        case declkey:
+            return {let};
         case '.':
         case '0': case '1': case '2': case '3': case '4':
         case '5': case '6': case '7': case '8': case '9': {
@@ -116,7 +118,6 @@ Token Token_stream::get() {
                 s += ch;
                 while(cin.get(ch) && (isalpha(ch) || isdigit(ch))) s += ch;
                 cin.putback(ch);
-                if(s == declkey) return {let};
                 if(s == sqrt_key) return {square_root};
                 if(s == power_key) return {power};
                 return {name, s};
@@ -376,7 +377,7 @@ int main() {
         cout << "1. You can use +, -, *, /, % to calculate." << endl;
         cout << "2. You can calculate Permutation by inputting P(a, b)." << endl;
         cout << "3. You can calculate Combination by inputting C(a, b)." << endl;
-        cout << "4. You can declare a variable by using `let x = 2.4;`." << endl;
+        cout << "4. You can declare a variable by using `# x = 2.4;`." << endl;
         cout << "5. You can calculate power by using `pow(3.2, 2);`." << endl;
         cout << "6. You can calculate square root of a number by inputting `sqrt(4.0);`" << endl;
         cout << "7. By inputting ';' to print the result of expression you have entered." << endl;
