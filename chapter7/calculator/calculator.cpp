@@ -231,6 +231,8 @@ double my_pow(double x, int i);
 
 void help_info();
 
+void welcome_info();
+
 double sub_primary() {
     Token t = ts.get();
     switch (t.kind) {
@@ -413,8 +415,7 @@ int main() {
     try {
         variable_predefine();
 
-        cout << "********************* WELCOME *********************" << endl;
-        cout << "************ Press 'H' or 'h' get help ************" << endl;
+        welcome_info();
         calculate();
         keep_window_open();
         return 0;
@@ -435,6 +436,11 @@ int main() {
         keep_window_open();
         return 2;
     }
+}
+
+void welcome_info() {
+    cout << "********************* WELCOME *********************" << endl;
+    cout << "************ Press 'H' or 'h' get help ************" << endl;
 }
 
 void help_info() {
