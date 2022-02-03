@@ -40,6 +40,8 @@ SubPrimary:
     # "P" is for "Permutation", "C" is for "Combination"
     "P" "(" Expression "," Expression ")"
     "C" "(" Expression "," Expression ")"
+    # "sqrt" is for "Square Root"
+    "sqrt" "(" Expression ")"
 Number:
     floating-point-literal
 Name:
