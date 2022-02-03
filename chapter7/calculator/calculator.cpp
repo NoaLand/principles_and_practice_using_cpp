@@ -21,6 +21,8 @@ static const char print = ';';
 static const char *const prompt = "> ";
 static const char *const result = "= ";
 
+static const char assignment = '=';
+
 int narrow_cast_to_int(double d) {
     int d_int = (int) d;
     // will get into this statement when left value is a double
@@ -101,7 +103,7 @@ Token Token_stream::get() {
     switch (ch) {
         case print:
         case '(': case ')': case '{': case '}': case '+': case '-': case '*': case '/': case '!':
-        case 'P': case 'C': case ',': case '%': case '=':
+        case 'P': case 'C': case ',': case '%': case assignment:
             return {ch};
         case declkey:
             return {let};
@@ -166,7 +168,7 @@ double declaration() {
     string var_name = t.name;
 
     Token t2 = ts.get();
-    if(t2.kind != '=') simple_error("= missing in declaration of " + var_name);
+    if(t2.kind != assignment) simple_error("= missing in declaration of " + var_name);
 
     double d = expression();
     define_name(var_name, d);
@@ -267,7 +269,15 @@ double sub_primary() {
             return my_pow(x, i);
         }
         case name: {
-            return get_value(t.name);
+            Token symbol = ts.get();
+            if(symbol.kind == assignment) {
+                double v = expression();
+                set_value(t.name, v);
+                return v;
+            } else {
+                ts.putback(symbol);
+                return get_value(t.name);
+            }
         }
         default:
             simple_error("sub-primary expected");
