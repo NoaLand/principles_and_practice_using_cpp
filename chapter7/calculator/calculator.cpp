@@ -5,6 +5,8 @@
 const char name = 'a';
 const char let = 'L';
 const string declkey = "let";
+const char sqrt_key = 'S';
+const string square_root = "sqrt";
 static const char number = '8';
 static const char quit = 'q';
 static const char print = ';';
@@ -101,6 +103,7 @@ Token Token_stream::get() {
                 while(cin.get(ch) && (isalpha(ch) || isdigit(ch))) s += ch;
                 cin.putback(ch);
                 if(s == declkey) return {let};
+                if(s == square_root) return {sqrt_key};
                 return {name, s};
             }
             simple_error("Bad token");
@@ -221,6 +224,15 @@ double sub_primary() {
 
             return combination(a, b);
         }
+        case sqrt_key: {
+            t = ts.get();
+            if(t.kind != '(') simple_error("Combination should has () statement");
+            double a = expression();
+            t = ts.get();
+            if(t.kind != ')') simple_error("Combination should has () statement");
+
+            return sqrt(a);
+        }
         case name: {
             return get_value(t.name);
         }
@@ -325,10 +337,12 @@ int main() {
         cout << "Welcome to our simple calculator." << endl;
         cout << "Please enter expressions using floating-point numbers." << endl;
         cout << "1. You can use +, -, *, /, % to calculate." << endl;
-        cout << "2. You can calculate Permutation by inputting P(a, b) " << endl;
-        cout << "3. You can calculate Combination by inputting C(a, b) " << endl;
-        cout << "4. By inputting '=' to print the result of expression you have entered." << endl;
-        cout << "5. By inputting 'x' to exit this calculator." << endl;
+        cout << "2. You can calculate Permutation by inputting P(a, b)." << endl;
+        cout << "3. You can calculate Combination by inputting C(a, b)." << endl;
+        cout << "4. You can declare a variable by using `let x = 2.4;`." << endl;
+        cout << "5. You can calculate square root of a number by inputting `sqrt(4.0);`" << endl;
+        cout << "6. By inputting '=' to print the result of expression you have entered." << endl;
+        cout << "7. By inputting 'x' to exit this calculator." << endl;
         cout << "------------------------------------------------------------------------------" << endl;
         calculate();
         keep_window_open();
