@@ -13,8 +13,10 @@ const string sqrt_key = "sqrt";
 const char power = 'p';
 const string power_key = "pow";
 
+static const char quit = 'Q';
+const string quit_key = "exit";
+
 static const char number = '8';
-static const char quit = 'q';
 static const char print = ';';
 static const char *const prompt = "> ";
 static const char *const result = "= ";
@@ -98,7 +100,6 @@ Token Token_stream::get() {
 
     switch (ch) {
         case print:
-        case quit:
         case '(': case ')': case '{': case '}': case '+': case '-': case '*': case '/': case '!':
         case 'P': case 'C': case ',': case '%': case '=':
             return {ch};        // let each character represent itself
@@ -118,6 +119,7 @@ Token Token_stream::get() {
                 s += ch;
                 while(cin.get(ch) && (isalpha(ch) || isdigit(ch))) s += ch;
                 cin.putback(ch);
+                if(s == quit_key) return {quit};
                 if(s == sqrt_key) return {square_root};
                 if(s == power_key) return {power};
                 return {name, s};
@@ -381,7 +383,7 @@ int main() {
         cout << "5. You can calculate power by using `pow(3.2, 2);`." << endl;
         cout << "6. You can calculate square root of a number by inputting `sqrt(4.0);`" << endl;
         cout << "7. By inputting ';' to print the result of expression you have entered." << endl;
-        cout << "8. By inputting 'q' to exit this calculator." << endl;
+        cout << "8. By inputting 'exit' to exit this calculator." << endl;
         cout << "------------------------------------------------------------------------------" << endl;
         calculate();
         keep_window_open();
