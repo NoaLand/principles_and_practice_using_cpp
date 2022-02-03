@@ -41,9 +41,17 @@ public:
     bool is_const;
 };
 
-vector<Variable> var_table;
+class Symbol_table {
+public:
+    double get_value(const string&);
+    void set_value(const string&, double);
+    bool is_declared(string);
+    double define_name(string, double, bool);
+private:
+    vector<Variable> var_table;
+};
 
-double get_value(const string& s) {
+double Symbol_table::get_value(const string& s) {
     for(const Variable& v: var_table) {
         if(v.name == s) {
             return v.value;
@@ -52,7 +60,7 @@ double get_value(const string& s) {
     simple_error("get: undefined variable " + s);
 }
 
-void set_value(const string& s, double d) {
+void Symbol_table::set_value(const string& s, double d) {
     for(Variable& v: var_table) {
         if(v.name == s) {
             if(!v.is_const) {
@@ -64,6 +72,22 @@ void set_value(const string& s, double d) {
         }
     }
     simple_error("set: undefined variable " + s);
+}
+
+bool Symbol_table::is_declared(string var) {
+    for(Variable v: var_table) {
+        if(v.name == var)
+            return true;
+    }
+
+    return false;
+}
+
+double Symbol_table::define_name(string var, double val, bool is_const = false) {
+    if(is_declared(var)) simple_error(var + " declared twice");
+    var_table.push_back({var, val, is_const});
+
+    return val;
 }
 
 class Token {
@@ -152,24 +176,9 @@ void Token_stream::ignore(char c) {
 }
 
 Token_stream ts;
+Symbol_table st;
 
 double expression();
-
-bool is_declared(string var) {
-    for(Variable v: var_table) {
-        if(v.name == var)
-            return true;
-    }
-
-    return false;
-}
-
-double define_name(string var, double val, bool is_const = false) {
-    if(is_declared(var)) simple_error(var + " declared twice");
-    var_table.push_back({var, val, is_const});
-
-    return val;
-}
 
 double declaration(bool is_const = false) {
     Token t = ts.get();
@@ -181,7 +190,7 @@ double declaration(bool is_const = false) {
             if(t2.kind != assignment) simple_error("= missing in declaration of " + var_name);
 
             double d = expression();
-            define_name(var_name, d, is_const);
+            st.define_name(var_name, d, is_const);
 
             return d;
         }
@@ -288,11 +297,11 @@ double sub_primary() {
             Token symbol = ts.get();
             if(symbol.kind == assignment) {
                 double v = expression();
-                set_value(t.name, v);
+                st.set_value(t.name, v);
                 return v;
             } else {
                 ts.putback(symbol);
-                return get_value(t.name);
+                return st.get_value(t.name);
             }
         }
         default:
@@ -434,9 +443,9 @@ int main() {
 }
 
 void variable_predefine() {
-    define_name("pi", 3.1415926535, true);
-    define_name("e", 2.7182818284, true);
-    define_name("k", 1000);
+    st.define_name("pi", 3.1415926535, true);
+    st.define_name("e", 2.7182818284, true);
+    st.define_name("k", 1000);
 }
 
 void calculate() {
