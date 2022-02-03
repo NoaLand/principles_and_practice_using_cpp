@@ -233,6 +233,8 @@ void help_info();
 
 void welcome_info();
 
+void init_calculator();
+
 double sub_primary() {
     Token t = ts.get();
     switch (t.kind) {
@@ -413,10 +415,10 @@ double expression() {
 
 int main() {
     try {
-        variable_predefine();
+        init_calculator();
 
-        welcome_info();
         calculate();
+        
         keep_window_open();
         return 0;
     }
@@ -436,6 +438,11 @@ int main() {
         keep_window_open();
         return 2;
     }
+}
+
+void init_calculator() {
+    variable_predefine();
+    welcome_info();
 }
 
 void welcome_info() {
