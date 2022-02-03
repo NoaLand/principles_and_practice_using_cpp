@@ -10,11 +10,22 @@ const string declkey = "let";
 const char square_root = 'S';
 const string sqrt_key = "sqrt";
 
+const char power = 'p';
+const string power_key = "pow";
+
 static const char number = '8';
 static const char quit = 'q';
 static const char print = ';';
 static const char *const prompt = "> ";
 static const char *const result = "= ";
+
+int narrow_cast_to_int(double d) {
+    int d_int = (int) d;
+    // will get into this statement when left value is a double
+    if(d != d_int) simple_error("is not integer");
+    
+    return d_int;
+}
 
 class Variable {
 public:
@@ -107,6 +118,7 @@ Token Token_stream::get() {
                 cin.putback(ch);
                 if(s == declkey) return {let};
                 if(s == sqrt_key) return {square_root};
+                if(s == power_key) return {power};
                 return {name, s};
             }
             simple_error("Bad token");
@@ -182,6 +194,8 @@ void clean_up_mess();
 
 void variable_predefine();
 
+double my_pow(double x, int i);
+
 double sub_primary() {
     Token t = ts.get();
     switch (t.kind) {
@@ -237,12 +251,33 @@ double sub_primary() {
 
             return sqrt(a);
         }
+        case power: {
+            t = ts.get();
+            if(t.kind != '(') simple_error("Power calculation should has () statement");
+            double x = expression();
+            t = ts.get();
+            if(t.kind != ',') simple_error("there should be x ',' after expression A");
+            int i = narrow_cast_to_int(expression());
+            t = ts.get();
+            if(t.kind != ')') simple_error("Power calculation should has () statement");
+
+            return my_pow(x, i);
+        }
         case name: {
             return get_value(t.name);
         }
         default:
             simple_error("sub-primary expected");
     }
+}
+
+double my_pow(double x, int i) {
+    double res{1};
+    for(int index = 0; index < i; ++index) {
+        res *= x;
+    }
+
+    return res;
 }
 
 double combination(double a, double b) { return permutation(a, b) / factorial(b); }
