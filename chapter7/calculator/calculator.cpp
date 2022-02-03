@@ -7,6 +7,9 @@ const char name = 'a';
 const char let = 'L';
 const char declkey = '#';
 
+const char cons = 'C';
+const string const_key = "const";
+
 const char square_root = 'S';
 const string sqrt_key = "sqrt";
 
@@ -129,6 +132,7 @@ Token Token_stream::get() {
                 if(s == quit_key) return {quit};
                 if(s == sqrt_key) return {square_root};
                 if(s == power_key) return {power};
+                if(s == const_key) return {cons};
                 return {name, s};
             }
             simple_error("Bad token");
@@ -167,18 +171,25 @@ double define_name(string var, double val, bool is_const = false) {
     return val;
 }
 
-double declaration() {
+double declaration(bool is_const = false) {
     Token t = ts.get();
-    if(t.kind != name) simple_error("name expected in declaration");
-    string var_name = t.name;
+    switch(t.kind) {
+        case name: {
+            string var_name = t.name;
 
-    Token t2 = ts.get();
-    if(t2.kind != assignment) simple_error("= missing in declaration of " + var_name);
+            Token t2 = ts.get();
+            if(t2.kind != assignment) simple_error("= missing in declaration of " + var_name);
 
-    double d = expression();
-    define_name(var_name, d);
+            double d = expression();
+            define_name(var_name, d, is_const);
 
-    return d;
+            return d;
+        }
+        case cons:
+            return declaration(true);
+        default:
+            simple_error("wrong declaration");
+    }
 }
 
 double statement() {
