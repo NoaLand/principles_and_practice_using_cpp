@@ -18,7 +18,7 @@ Statement:
     Declaration
     Expression
 Declaration:
-    "let" Name "=" Expression
+    "#" Name "=" Expression
 Expression:
     Term
     Expression "+" Term
