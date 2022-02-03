@@ -303,9 +303,7 @@ double primary() {
 }
 
 double factorial(double left) {
-    int integer_left = (int)left;
-    // will get into this statement when left value is a double
-    if(integer_left != left) simple_error("cannot handle double in factorial");
+    int integer_left = narrow_cast_to_int(left);
     if(integer_left == 0){
         left = 1; } else { int res = 1;
         for(int index = 1; index <= left; ++index) {
