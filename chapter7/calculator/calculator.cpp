@@ -35,11 +35,12 @@ class Variable {
 public:
     string name;
     double value;
+    bool is_const;
 };
 
 vector<Variable> var_table;
 
-double get_value(string s) {
+double get_value(const string& s) {
     for(const Variable& v: var_table) {
         if(v.name == s) {
             return v.value;
@@ -51,8 +52,12 @@ double get_value(string s) {
 void set_value(const string& s, double d) {
     for(Variable& v: var_table) {
         if(v.name == s) {
-            v.value = d;
-            return;
+            if(!v.is_const) {
+                v.value = d;
+                return;
+            } else {
+                simple_error("set: variable is const, cannot change");
+            }
         }
     }
     simple_error("set: undefined variable " + s);
@@ -155,9 +160,9 @@ bool is_declared(string var) {
     return false;
 }
 
-double define_name(string var, double val) {
+double define_name(string var, double val, bool is_const = false) {
     if(is_declared(var)) simple_error(var + " declared twice");
-    var_table.push_back({var, val});
+    var_table.push_back({var, val, is_const});
 
     return val;
 }
@@ -418,8 +423,8 @@ int main() {
 }
 
 void variable_predefine() {
-    define_name("pi", 3.1415926535);
-    define_name("e", 2.7182818284);
+    define_name("pi", 3.1415926535, true);
+    define_name("e", 2.7182818284, true);
     define_name("k", 1000);
 }
 
