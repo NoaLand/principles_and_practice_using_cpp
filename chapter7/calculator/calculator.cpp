@@ -117,7 +117,7 @@ Token Token_stream::get() {
             if(isalpha(ch)) {
                 string s;
                 s += ch;
-                while(cin.get(ch) && (isalpha(ch) || isdigit(ch))) s += ch;
+                while(cin.get(ch) && (isalpha(ch) || isdigit(ch) || ch == '_')) s += ch;
                 cin.putback(ch);
                 if(s == quit_key) return {quit};
                 if(s == sqrt_key) return {square_root};
