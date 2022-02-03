@@ -11,9 +11,9 @@ Calculation:
     Quit
     Calculation Statement
 Print:
-    "="
+    ";"
 Quit:
-    "x"
+    "q"
 Statement:
     Declaration
     Expression
