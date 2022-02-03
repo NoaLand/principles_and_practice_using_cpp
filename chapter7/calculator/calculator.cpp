@@ -228,6 +228,7 @@ double sub_primary() {
             t = ts.get();
             if(t.kind != '(') simple_error("Combination should has () statement");
             double a = expression();
+            if(a < 0) simple_error("number should not less than zero, when try to calculate square root");
             t = ts.get();
             if(t.kind != ')') simple_error("Combination should has () statement");
 
