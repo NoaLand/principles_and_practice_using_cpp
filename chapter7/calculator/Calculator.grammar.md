@@ -19,7 +19,6 @@ Statement:
     Expression
 Declaration:
     "#" Name "=" Expression
-    Name "=" Expression
 Expression:
     Term
     Expression "+" Term
@@ -34,6 +33,8 @@ Primary:
     SubPrimary "!"
 SubPrimary:
     Number
+    Name
+    Name "=" Expression
     "(" Expression ")"
     "{" Expression "}"
     "+" SubPrimary
