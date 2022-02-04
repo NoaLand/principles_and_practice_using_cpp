@@ -8,20 +8,20 @@ const char let = 'L';
 const char declkey = '#';
 
 const char cons = 'C';
-const string const_key = "const";
+const string const_key = "const"; // NOLINT(cert-err58-cpp)
 
 const char square_root = 'S';
-const string sqrt_key = "sqrt";
+const string sqrt_key = "sqrt"; // NOLINT(cert-err58-cpp)
 
 const char power = 'p';
-const string power_key = "pow";
+const string power_key = "pow"; // NOLINT(cert-err58-cpp)
 
 static const char quit = 'Q';
-const string quit_key = "quit";
+const string quit_key = "quit"; // NOLINT(cert-err58-cpp)
 
 static const char help = 'H';
 static const char help_lower = 'h';
-static string help_key = "help";
+static string help_key = "help"; // NOLINT(cert-err58-cpp)
 
 static const char number = '8';
 static const char print = ';';
@@ -50,12 +50,14 @@ class Symbol_table {
 public:
     double get_value(const string&);
     void set_value(const string&, double);
-    bool is_declared(string);
-    double define_name(string, double, bool);
+    bool is_declared(const string&);
+    double define_name(const string&, double, bool);
 private:
     vector<Variable> var_table;
 };
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreturn-type"
 double Symbol_table::get_value(const string& s) {
     for(const Variable& v: var_table) {
         if(v.name == s) {
@@ -64,6 +66,7 @@ double Symbol_table::get_value(const string& s) {
     }
     simple_error("get: undefined variable " + s);
 }
+#pragma clang diagnostic pop
 
 void Symbol_table::set_value(const string& s, double d) {
     for(Variable& v: var_table) {
@@ -79,8 +82,8 @@ void Symbol_table::set_value(const string& s, double d) {
     simple_error("set: undefined variable " + s);
 }
 
-bool Symbol_table::is_declared(string var) {
-    for(Variable v: var_table) {
+bool Symbol_table::is_declared(const string& var) {
+    for(const Variable& v: var_table) {
         if(v.name == var)
             return true;
     }
@@ -88,7 +91,7 @@ bool Symbol_table::is_declared(string var) {
     return false;
 }
 
-double Symbol_table::define_name(string var, double val, bool is_const = false) {
+double Symbol_table::define_name(const string& var, double val, bool is_const = false) {
     if(is_declared(var)) simple_error(var + " declared twice");
     var_table.push_back({var, val, is_const});
 
@@ -104,7 +107,7 @@ public:
     Token(char ch, string n)
             : kind(ch), name(std::move(n)) {}
     char kind;
-    double value;
+    double value{};
     string name;
 };
 
@@ -124,10 +127,12 @@ Token_stream::Token_stream(): full(false), buffer(0) {
 
 void Token_stream::putback(Token t) {
     if (full) simple_error("putback() into a full buffer");
-    buffer = t;
+    buffer = std::move(t);
     full = true;
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreturn-type"
 Token Token_stream::get() {
     if (full) {
         full = false;
@@ -168,6 +173,7 @@ Token Token_stream::get() {
             simple_error("Bad token");
     }
 }
+#pragma clang diagnostic pop
 
 void Token_stream::ignore(char c) {
     if(full && c == buffer.kind) {
@@ -181,11 +187,14 @@ void Token_stream::ignore(char c) {
         if(ch == c) return;
 }
 
-Token_stream ts;
+Token_stream ts; // NOLINT(cert-err58-cpp)
 Symbol_table st;
 
 double expression();
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "misc-no-recursion"
+#pragma clang diagnostic ignored "-Wreturn-type"
 double declaration(bool is_const = false) {
     Token t = ts.get();
     switch(t.kind) {
@@ -206,6 +215,7 @@ double declaration(bool is_const = false) {
             simple_error("wrong declaration");
     }
 }
+#pragma clang diagnostic pop
 
 double statement() {
     Token t = ts.get();
@@ -238,6 +248,9 @@ void welcome_info();
 
 void init_calculator();
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "misc-no-recursion"
+#pragma clang diagnostic ignored "-Wreturn-type"
 double sub_primary() {
     Token t = ts.get();
     switch (t.kind) {
@@ -320,6 +333,7 @@ double sub_primary() {
             simple_error("sub-primary expected");
     }
 }
+#pragma clang diagnostic pop
 
 double my_pow(double x, int i) {
     double res{1};
@@ -334,6 +348,8 @@ double combination(double a, double b) { return permutation(a, b) / factorial(b)
 
 double permutation(double a, double b) { return factorial(a) / factorial(a - b); }
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "misc-no-recursion"
 double primary() {
     double left = sub_primary();
     Token t = ts.get();
@@ -351,6 +367,7 @@ double primary() {
         }
     }
 }
+#pragma clang diagnostic pop
 
 double factorial(double left) {
     int integer_left = narrow_cast_to_int(left);
@@ -364,6 +381,8 @@ double factorial(double left) {
     return left;
 }
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "misc-no-recursion"
 double term() {
     double left = primary();
     Token t = ts.get();
@@ -394,17 +413,21 @@ double term() {
         }
     }
 }
+#pragma clang diagnostic pop
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "misc-no-recursion"
 double expression() {
     double left = term();
     Token t = ts.get();
 
     while(true) {
         switch (t.kind) {
-            case '+':
+            case '+': {
                 left += term();
                 t = ts.get();
                 break;
+            }
             case '-':
                 left += term();
                 t = ts.get();
@@ -415,6 +438,7 @@ double expression() {
         }
     }
 }
+#pragma clang diagnostic pop
 
 int main() {
     try {
