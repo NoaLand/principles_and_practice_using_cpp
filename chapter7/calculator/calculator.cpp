@@ -17,7 +17,7 @@ const char power = 'p';
 const string power_key = "pow";
 
 static const char quit = 'Q';
-const string quit_key = "exit";
+const string quit_key = "quit";
 
 static const char number = '8';
 static const char print = ';';
@@ -418,7 +418,7 @@ int main() {
         init_calculator();
 
         calculate();
-        
+
         keep_window_open();
         return 0;
     }
@@ -462,7 +462,7 @@ void help_info() {
     cout << "6. You can calculate square root of a number by inputting `sqrt(4.0);`" << endl;
     cout << "7. By inputting ';' to print the result of expression you have entered." << endl;
     cout << "8. By inputting 'H' or 'h' to get help info of this calculator." << endl;
-    cout << "9. By inputting 'exit' to exit this calculator." << endl;
+    cout << "9. By inputting 'quit' to exit this calculator." << endl;
     cout << "------------------------------------------------------------------------------" << endl;
 }
 
