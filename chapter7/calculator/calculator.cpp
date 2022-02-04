@@ -19,15 +19,17 @@ const string power_key = "pow";
 static const char quit = 'Q';
 const string quit_key = "quit";
 
+static const char help = 'H';
+static const char help_lower = 'h';
+static string help_key = "help";
+
 static const char number = '8';
 static const char print = ';';
 static const char *const prompt = "> ";
+
 static const char *const result = "= ";
 
 static const char assignment = '=';
-
-static const char help_upper = 'H';
-static const char help_lower = 'h';
 
 int narrow_cast_to_int(double d) {
     int d_int = (int) d;
@@ -138,7 +140,7 @@ Token Token_stream::get() {
     switch (ch) {
         case print:
         case '(': case ')': case '{': case '}': case '+': case '-': case '*': case '/': case '!':
-        case 'P': case 'C': case ',': case '%': case assignment: case help_upper: case help_lower:
+        case 'P': case 'C': case ',': case '%': case assignment:
             return {ch};
         case declkey:
             return {let};
@@ -160,6 +162,7 @@ Token Token_stream::get() {
                 if(s == sqrt_key) return {square_root};
                 if(s == power_key) return {power};
                 if(s == const_key) return {cons};
+                if(s == help_key) return {help};
                 return {name, s};
             }
             simple_error("Bad token");
@@ -447,7 +450,7 @@ void init_calculator() {
 
 void welcome_info() {
     cout << "********************* WELCOME *********************" << endl;
-    cout << "************ Press 'H' or 'h' get help ************" << endl;
+    cout << "************** Press 'help' get help **************" << endl;
 }
 
 void help_info() {
@@ -461,7 +464,7 @@ void help_info() {
     cout << "5. You can calculate power by using `pow(3.2, 2);`." << endl;
     cout << "6. You can calculate square root of a number by inputting `sqrt(4.0);`" << endl;
     cout << "7. By inputting ';' to print the result of expression you have entered." << endl;
-    cout << "8. By inputting 'H' or 'h' to get help info of this calculator." << endl;
+    cout << "8. By inputting 'help' to get help info of this calculator." << endl;
     cout << "9. By inputting 'quit' to exit this calculator." << endl;
     cout << "------------------------------------------------------------------------------" << endl;
 }
@@ -482,7 +485,7 @@ void calculate() {
             if(t.kind == quit) {
                 return;
             }
-            if(t.kind == help_upper || t.kind == help_lower) {
+            if(t.kind == help) {
                 help_info();
                 continue;
             }
