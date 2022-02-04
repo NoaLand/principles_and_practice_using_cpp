@@ -75,4 +75,9 @@ graph BT
 ```
 
 TODO List
+- [x] Implement `Permutation`
+- [x] Implement `Combination`
+- [x] Implement `Square root`
+- [x] Implement `Power`
+- [x] Implement `Define variables`
 - [ ] Implement custom define function, with dynamic params and can use global variables -- low priority
