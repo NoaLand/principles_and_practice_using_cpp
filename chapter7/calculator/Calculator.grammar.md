@@ -73,3 +73,6 @@ graph BT
     
     TermTotal[Term] --> ExpTotal[Expression]
 ```
+
+TODO List
+- [ ] Implement custom define function, with dynamic params and can use global variables -- low priority
