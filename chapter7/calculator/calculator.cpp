@@ -20,7 +20,6 @@ static const char quit = 'Q';
 const string quit_key = "quit"; // NOLINT(cert-err58-cpp)
 
 static const char help = 'H';
-static const char help_lower = 'h';
 static string help_key = "help"; // NOLINT(cert-err58-cpp)
 
 static const char number = '8';
