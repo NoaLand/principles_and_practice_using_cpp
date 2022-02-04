@@ -82,12 +82,11 @@ void Symbol_table::set_value(const string& s, double d) {
 }
 
 bool Symbol_table::is_declared(const string& var) {
-    for(const Variable& v: var_table) {
-        if(v.name == var)
-            return true;
-    }
-
-    return false;
+    return std::any_of(
+            var_table.begin(),
+            var_table.end(),
+            [var](const Variable& v){return v.name == var;}
+            );
 }
 
 double Symbol_table::define_name(const string& var, double val, bool is_const = false) {
