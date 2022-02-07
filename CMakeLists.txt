@@ -8,6 +8,8 @@ include_directories(chapter3)
 include_directories(chapter4)
 include_directories(chapter5)
 include_directories(chapter6)
+include_directories(chapter7)
+include_directories(chapter8)
 
 add_executable(principles_and_practice_using_cpp
 #        chapter2/hello_world.cpp
@@ -21,5 +23,7 @@ add_executable(principles_and_practice_using_cpp
 #        chapter6/english_grammar/english_grammar.cpp
 #        chapter7/calculator/calculator.cpp
 #        chapter7/calculator/calculator08buggy.cpp
-        chapter8/chapter8.cpp
+#        chapter8/chapter8.cpp
+        chapter8/simple_exercise1/my.cpp
+        chapter8/simple_exercise1/use.cpp
 )
