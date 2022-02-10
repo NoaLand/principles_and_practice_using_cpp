@@ -30,7 +30,7 @@ void exercise_7_get_name_and_age();
 
 void exercise_8_calculate_price_times_weight();
 
-double sum(vector<double> price, vector<double> weight);
+double sum(const vector<double>& price, const vector<double>& weight);
 
 void exercise_9_print_max_int_value();
 
@@ -77,7 +77,7 @@ void exercise_8_calculate_price_times_weight() {
     cout << "sum is: " << s << endl;
 }
 
-double sum(vector<double> price, vector<double> weight) {
+double sum(const vector<double>& price, const vector<double>& weight) {
     double sum{0};
     if(price.size() != weight.size()) simple_error("wrong size!!!");
     for(int index = 0; index < price.size(); ++index) {
