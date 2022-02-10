@@ -28,5 +28,6 @@ add_executable(principles_and_practice_using_cpp
 #        chapter8/simple_exercise1/use.cpp
 #        chapter8/simple_exercise2/swap_test.cpp
 #        chapter8/simple_exercise3/namespace_x_y_and_z.cpp
+        chapter8/calculator/variable/variable.cpp
         chapter8/calculator/calculator.cpp
 )
