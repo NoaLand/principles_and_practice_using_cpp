@@ -2,7 +2,7 @@
 
 void exercise_2_print_int_vector_with_label();
 
-void print(string &label, vector<int> &iv);
+void print(const string &label, const vector<int> &iv);
 
 int main() {
     exercise_2_print_int_vector_with_label();
@@ -17,7 +17,7 @@ void exercise_2_print_int_vector_with_label() {
     print(label, iv);
 }
 
-void print(string &label, vector<int> &iv) {
+void print(const string &label, const vector<int> &iv) {
     cout << label << endl;
     for(int i: iv) {
         cout << i << endl;
