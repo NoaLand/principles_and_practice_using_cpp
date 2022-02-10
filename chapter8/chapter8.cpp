@@ -58,8 +58,18 @@ void exercise_7_get_name_and_age() {
         if(ages.size() == 5) break;
     }
 
+    vector<string> names_copy = names;
+    sort(names.begin(), names.end());
+
     for(int index = 0; index < names.size(); ++index) {
-        cout << names.at(index) << " " << ages.at(index) << endl;
+        string &name = names.at(index);
+        cout << name << " ";
+        for(int original_index = 0; original_index < names.size(); ++original_index) {
+            if(names_copy.at(original_index) == name) {
+                cout << ages.at(original_index) << endl;
+                break;
+            }
+        }
     }
 }
 
