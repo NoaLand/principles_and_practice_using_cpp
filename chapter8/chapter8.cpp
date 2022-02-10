@@ -61,9 +61,9 @@ void exercise_9_print_max_int_value() {
 int maxv(const vector<int> &v) {
     int max = v.at(0);
 
-    for(int index = 0; index < v.size(); ++index) {
-        if(v.at(index) > max)
-            max = v.at(index);
+    for(int index : v) {
+        if(index > max)
+            max = index;
     }
 
     return max;
