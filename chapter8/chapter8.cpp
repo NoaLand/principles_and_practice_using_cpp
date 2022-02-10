@@ -28,16 +28,39 @@ void my_swap_string_version(string &s1, string &s2);
 
 void exercise_7_get_name_and_age();
 
+void exercise_8_calculate_price_times_weight();
+
+double sum(vector<double> price, vector<double> weight);
+
 int main() {
     // exercise_2_print_int_vector_with_label();
     // exercise_3_fibonacci();
     // exercise 4, the approximate int max value is 1836311903, the n in fibonacci is 46
     // exercise_5_swap_int_vector();
     // exercise_6_swap_string_vector();
-    exercise_7_get_name_and_age();
+    // exercise_7_get_name_and_age();
+    exercise_8_calculate_price_times_weight();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_8_calculate_price_times_weight() {
+    vector<double> price{1.0, 2.0, 3.0};
+    vector<double> weight{4.2, 5.5, 6.8};
+    double s = sum(price, weight);
+
+    cout << "sum is: " << s << endl;
+}
+
+double sum(vector<double> price, vector<double> weight) {
+    double sum{0};
+    if(price.size() != weight.size()) simple_error("wrong size!!!");
+    for(int index = 0; index < price.size(); ++index) {
+        sum += price.at(index) * weight.at(index);
+    }
+
+    return sum;
 }
 
 void exercise_7_get_name_and_age() {
