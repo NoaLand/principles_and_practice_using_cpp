@@ -1,5 +1,12 @@
 #include<../lib/std_lib_facilities.h>
 
+struct nums{
+    int max;
+    int min;
+    double average;
+    double mid;
+};
+
 void exercise_2_print_int_vector_with_label();
 
 void print(const string &label, const vector<int> &iv);
@@ -36,6 +43,10 @@ void exercise_9_print_max_int_value();
 
 int maxv(const vector<int> &v);
 
+void exercise_10_print_max_min_average_and_mid();
+
+nums find_out(vector<int> &v);
+
 int main() {
     // exercise_2_print_int_vector_with_label();
     // exercise_3_fibonacci();
@@ -44,10 +55,51 @@ int main() {
     // exercise_6_swap_string_vector();
     // exercise_7_get_name_and_age();
     // exercise_8_calculate_price_times_weight();
-    exercise_9_print_max_int_value();
+    // exercise_9_print_max_int_value();
+    exercise_10_print_max_min_average_and_mid();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_10_print_max_min_average_and_mid() {
+    vector<int> v{2, 3, 5, 1, 9, 10, 29, 11, 33, 2, 4, 5, 10};
+
+    nums res = find_out(v);
+
+    cout << "max: " << res.max << endl;
+    cout << "min: " << res.min << endl;
+    cout << "average: " << res.average << endl;
+    cout << "mid: " << res.mid << endl;
+}
+
+nums find_out(vector<int> &v) {
+    int sum{0};
+    int max{v.at(0)}, min{v.at(0)};
+    double average{0}, mid{0};
+
+    for(int element : v) {
+        if(max < element) max = element;
+
+        if(min > element) min = element;
+
+        sum += element;
+    }
+
+    average = sum * 1.0 / v.size();
+
+    sort(v.begin(), v.end());
+
+    if(v.size() % 2 == 0) {
+        int left = v.size() / 2 - 1;
+        int right = v.size() / 2;
+        mid = (v.at(left) + v.at(right)) / 2.0;
+    } else {
+        int middle_index = v.size() / 2;
+        mid = v.at(middle_index);
+    }
+
+    return {max, min, average, mid};
 }
 
 void exercise_9_print_max_int_value() {
