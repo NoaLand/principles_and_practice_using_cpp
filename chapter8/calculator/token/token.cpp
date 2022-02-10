@@ -1,7 +1,7 @@
 #include "token.h"
 #include "../constant.h"
 
-Token_stream::Token_stream(): full(false), buffer(0) {
+Token_stream::Token_stream(istream& i): is(i), full(false), buffer(0) {
 }
 
 void Token_stream::putback(Token t) {
@@ -19,7 +19,7 @@ Token Token_stream::get() {
     }
 
     char ch;
-    cin >> ch;
+    is >> ch;
 
     switch (ch) {
         case print:
@@ -31,17 +31,17 @@ Token Token_stream::get() {
         case '.':
         case '0': case '1': case '2': case '3': case '4':
         case '5': case '6': case '7': case '8': case '9': {
-            cin.putback(ch);
+            is.putback(ch);
             double val;
-            cin >> val;
+            is >> val;
             return {number, val};
         }
         default:
             if(isalpha(ch)) {
                 string s;
                 s += ch;
-                while(cin.get(ch) && (isalpha(ch) || isdigit(ch) || ch == '_')) s += ch;
-                cin.putback(ch);
+                while(is.get(ch) && (isalpha(ch) || isdigit(ch) || ch == '_')) s += ch;
+                is.putback(ch);
                 if(s == quit_key) return {quit};
                 if(s == sqrt_key) return {square_root};
                 if(s == power_key) return {power};
@@ -62,6 +62,10 @@ void Token_stream::ignore(char c) {
     full = false;
 
     char ch = 0;
-    while(cin >> ch)
+    while(is >> ch)
         if(ch == c) return;
+}
+
+istream &Token_stream::get_istream() {
+    return is;
 }

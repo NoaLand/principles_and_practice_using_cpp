@@ -16,12 +16,14 @@ public:
 
 class Token_stream {
 public:
-    Token_stream();
+    Token_stream(istream&);
     Token get();
     void putback(Token t);
     void ignore(char c);
+    istream& get_istream();
 private:
     bool full;
     Token buffer;
+    istream& is;
 };
 #endif //PRINCIPLES_AND_PRACTICE_USING_CPP_TOKEN_H

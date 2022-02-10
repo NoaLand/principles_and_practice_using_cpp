@@ -262,7 +262,8 @@ double expression(Token_stream& ts, Symbol_table& st) {
 
 int main() {
     try {
-        Token_stream ts;
+        istream& is{cin};
+        Token_stream ts(is);
         Symbol_table st;
 
         init_calculator(st);
@@ -323,7 +324,7 @@ void variable_predefine(Symbol_table& st) {
 }
 
 void calculate(Token_stream& ts, Symbol_table& st) {
-    while (cin) {
+    while (ts.get_istream()) {
         try {
             cout << prompt;
             Token t = ts.get();
