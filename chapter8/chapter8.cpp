@@ -8,7 +8,7 @@ void exercise_3_fibonacci();
 
 void fibonacci(int x, int y, vector<int> &fib, int n);
 
-void exercise_5_swap_vector();
+void exercise_5_swap_int_vector();
 
 void swap_vector_by_creating_new_vector(const vector<int> &v1, vector<int> &v2);
 
@@ -20,13 +20,13 @@ int main() {
     // exercise_2_print_int_vector_with_label();
     // exercise_3_fibonacci();
     // exercise 4, the approximate int max value is 1836311903, the n in fibonacci is 46
-    exercise_5_swap_vector();
+    exercise_5_swap_int_vector();
     
     keep_window_open();
     return 0;
 }
 
-void exercise_5_swap_vector() {
+void exercise_5_swap_int_vector() {
     vector<int> original_v{1, 3, 5, 7, 9};
     vector<int> new_v;
     swap_vector_by_creating_new_vector(original_v, new_v);
