@@ -23,12 +23,12 @@ add_executable(principles_and_practice_using_cpp
 #        chapter6/english_grammar/english_grammar.cpp
 #        chapter7/calculator/calculator.cpp
 #        chapter7/calculator/calculator08buggy.cpp
-#        chapter8/chapter8.cpp
+        chapter8/chapter8.cpp
 #        chapter8/simple_exercise1/my.cpp
 #        chapter8/simple_exercise1/use.cpp
 #        chapter8/simple_exercise2/swap_test.cpp
 #        chapter8/simple_exercise3/namespace_x_y_and_z.cpp
-        chapter8/calculator/variable/variable.cpp
-        chapter8/calculator/token/token.cpp
-        chapter8/calculator/calculator.cpp
+#        chapter8/calculator/variable/variable.cpp
+#        chapter8/calculator/token/token.cpp
+#        chapter8/calculator/calculator.cpp
 )
