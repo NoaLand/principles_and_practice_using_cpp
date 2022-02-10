@@ -1,7 +1,6 @@
 #include <utility>
 
 #include "calculator/variable/variable.h"
-//#include "../../lib/std_lib_facilities.h"
 
 const char name = 'a';
 
