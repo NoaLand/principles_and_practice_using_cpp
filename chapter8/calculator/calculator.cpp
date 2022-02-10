@@ -185,14 +185,12 @@ void Token_stream::ignore(char c) {
         if(ch == c) return;
 }
 
-Symbol_table st;
-
-double expression(Token_stream&);
+double expression(Token_stream&, Symbol_table&);
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "misc-no-recursion"
 #pragma clang diagnostic ignored "-Wreturn-type"
-double declaration(Token_stream& ts, bool is_const = false) {
+double declaration(Token_stream& ts, Symbol_table& st, bool is_const = false) {
     Token t = ts.get();
     switch(t.kind) {
         case name: {
@@ -201,27 +199,27 @@ double declaration(Token_stream& ts, bool is_const = false) {
             Token t2 = ts.get();
             if(t2.kind != assignment) simple_error("= missing in declaration of " + var_name);
 
-            double d = expression(ts);
+            double d = expression(ts, st);
             st.define_name(var_name, d, is_const);
 
             return d;
         }
         case cons:
-            return declaration(ts, true);
+            return declaration(ts, st, true);
         default:
             simple_error("wrong declaration");
     }
 }
 #pragma clang diagnostic pop
 
-double statement(Token_stream& ts) {
+double statement(Token_stream& ts, Symbol_table& st) {
     Token t = ts.get();
     switch(t.kind) {
         case let:
-            return declaration(ts);
+            return declaration(ts, st);
         default:
             ts.putback(t);
-            return expression(ts);
+            return expression(ts, st);
     }
 }
 
@@ -231,11 +229,11 @@ double permutation(double a, double b);
 
 double combination(double a, double b);
 
-void calculate(Token_stream&);
+void calculate(Token_stream&, Symbol_table&);
 
 void clean_up_mess(Token_stream&);
 
-void variable_predefine();
+void variable_predefine(Symbol_table&);
 
 double my_pow(double x, int i);
 
@@ -243,26 +241,26 @@ void help_info();
 
 void welcome_info();
 
-void init_calculator();
+void init_calculator(Symbol_table&);
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "misc-no-recursion"
 #pragma clang diagnostic ignored "-Wreturn-type"
-double sub_primary(Token_stream& ts) {
+double sub_primary(Token_stream& ts, Symbol_table& st) {
     Token t = ts.get();
     switch (t.kind) {
         case '+':
-            return sub_primary(ts);
+            return sub_primary(ts, st);
         case '-':
-            return -sub_primary(ts);
+            return -sub_primary(ts, st);
         case '(': {
-            double d = expression(ts);
+            double d = expression(ts, st);
             t = ts.get();
             if(t.kind != ')') simple_error("')' expected");
             return d;
         }
         case '{': {
-            double d = expression(ts);
+            double d = expression(ts, st);
             t = ts.get();
             if(t.kind != '}') simple_error("'}' expected");
             return d;
@@ -272,10 +270,10 @@ double sub_primary(Token_stream& ts) {
         case 'P': {
             t = ts.get();
             if(t.kind != '(') simple_error("Permutation should has () statement");
-            double a = expression(ts);
+            double a = expression(ts, st);
             t = ts.get();
             if(t.kind != ',') simple_error("there should be a ',' after expression A");
-            double b = expression(ts);
+            double b = expression(ts, st);
             t = ts.get();
             if(t.kind != ')') simple_error("Permutation should has () statement");
 
@@ -284,10 +282,10 @@ double sub_primary(Token_stream& ts) {
         case 'C': {
             t = ts.get();
             if(t.kind != '(') simple_error("Combination should has () statement");
-            double a = expression(ts);
+            double a = expression(ts, st);
             t = ts.get();
             if(t.kind != ',') simple_error("there should be a ',' after expression A");
-            double b = expression(ts);
+            double b = expression(ts, st);
             t = ts.get();
             if(t.kind != ')') simple_error("Combination should has () statement");
 
@@ -296,7 +294,7 @@ double sub_primary(Token_stream& ts) {
         case square_root: {
             t = ts.get();
             if(t.kind != '(') simple_error("Combination should has () statement");
-            double a = expression(ts);
+            double a = expression(ts, st);
             if(a < 0) simple_error("number should not less than zero, when try to calculate square root");
             t = ts.get();
             if(t.kind != ')') simple_error("Combination should has () statement");
@@ -306,10 +304,10 @@ double sub_primary(Token_stream& ts) {
         case power: {
             t = ts.get();
             if(t.kind != '(') simple_error("Power calculation should has () statement");
-            double x = expression(ts);
+            double x = expression(ts, st);
             t = ts.get();
             if(t.kind != ',') simple_error("there should be x ',' after expression A");
-            int i = narrow_cast_to_int(expression(ts));
+            int i = narrow_cast_to_int(expression(ts, st));
             t = ts.get();
             if(t.kind != ')') simple_error("Power calculation should has () statement");
 
@@ -318,7 +316,7 @@ double sub_primary(Token_stream& ts) {
         case name: {
             Token symbol = ts.get();
             if(symbol.kind == assignment) {
-                double v = expression(ts);
+                double v = expression(ts, st);
                 st.set_value(t.name, v);
                 return v;
             } else {
@@ -347,8 +345,8 @@ double permutation(double a, double b) { return factorial(a) / factorial(a - b);
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "misc-no-recursion"
-double primary(Token_stream& ts) {
-    double left = sub_primary(ts);
+double primary(Token_stream& ts, Symbol_table& st) {
+    double left = sub_primary(ts, st);
     Token t = ts.get();
 
     while(true) {
@@ -380,25 +378,25 @@ double factorial(double left) {
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "misc-no-recursion"
-double term(Token_stream& ts) {
-    double left = primary(ts);
+double term(Token_stream& ts, Symbol_table& st) {
+    double left = primary(ts, st);
     Token t = ts.get();
 
     while(true) {
         switch (t.kind) {
             case '*':
-                left *= primary(ts);
+                left *= primary(ts, st);
                 t = ts.get();
                 break;
             case '/': {
-                double d = primary(ts);
+                double d = primary(ts, st);
                 if(d == 0) simple_error("divide by zero");
                 left /= d;
                 t = ts.get();
                 break;
             }
             case '%': {
-                double d = primary(ts);
+                double d = primary(ts, st);
                 if(d == 0) simple_error("divide by zero");
                 left = left - d * (int)(left / d);
                 t = ts.get();
@@ -414,19 +412,19 @@ double term(Token_stream& ts) {
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "misc-no-recursion"
-double expression(Token_stream& ts) {
-    double left = term(ts);
+double expression(Token_stream& ts, Symbol_table& st) {
+    double left = term(ts, st);
     Token t = ts.get();
 
     while(true) {
         switch (t.kind) {
             case '+': {
-                left += term(ts);
+                left += term(ts, st);
                 t = ts.get();
                 break;
             }
             case '-':
-                left += term(ts);
+                left += term(ts, st);
                 t = ts.get();
                 break;
             default:
@@ -440,10 +438,11 @@ double expression(Token_stream& ts) {
 int main() {
     try {
         Token_stream ts;
+        Symbol_table st;
 
-        init_calculator();
+        init_calculator(st);
 
-        calculate(ts);
+        calculate(ts, st);
 
         keep_window_open();
         return 0;
@@ -466,8 +465,8 @@ int main() {
     }
 }
 
-void init_calculator() {
-    variable_predefine();
+void init_calculator(Symbol_table& st) {
+    variable_predefine(st);
     welcome_info();
 }
 
@@ -492,13 +491,13 @@ void help_info() {
     cout << "------------------------------------------------------------------------------" << endl;
 }
 
-void variable_predefine() {
+void variable_predefine(Symbol_table& st) {
     st.define_name("pi", 3.1415926535, true);
     st.define_name("e", 2.7182818284, true);
     st.define_name("k", 1000);
 }
 
-void calculate(Token_stream& ts) {
+void calculate(Token_stream& ts, Symbol_table& st) {
     while (cin) {
         try {
             cout << prompt;
@@ -513,7 +512,7 @@ void calculate(Token_stream& ts) {
                 continue;
             }
             ts.putback(t);
-            cout << result << statement(ts) << endl;
+            cout << result << statement(ts, st) << endl;
         } catch(exception& e) {
             cerr << e.what() << endl;
             clean_up_mess(ts);
