@@ -26,15 +26,41 @@ void swap_vector_by_using_swap_num_string_version(vector<string> &v);
 
 void my_swap_string_version(string &s1, string &s2);
 
+void exercise_7_get_name_and_age();
+
 int main() {
     // exercise_2_print_int_vector_with_label();
     // exercise_3_fibonacci();
     // exercise 4, the approximate int max value is 1836311903, the n in fibonacci is 46
     // exercise_5_swap_int_vector();
-    exercise_6_swap_string_vector();
+    // exercise_6_swap_string_vector();
+    exercise_7_get_name_and_age();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_7_get_name_and_age() {
+    vector<string> names;
+    vector<int> ages;
+
+    cout << "input 5 names: ";
+    for(string name; cin >> name;) {
+        names.push_back(name);
+
+        if(names.size() == 5) break;
+    }
+
+    cout << "input 5 ages: ";
+    for(int age; cin >> age;) {
+        ages.push_back(age);
+
+        if(ages.size() == 5) break;
+    }
+
+    for(int index = 0; index < names.size(); ++index) {
+        cout << names.at(index) << " " << ages.at(index) << endl;
+    }
 }
 
 void exercise_6_swap_string_vector() {
