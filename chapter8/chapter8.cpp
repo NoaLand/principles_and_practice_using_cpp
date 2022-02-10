@@ -32,6 +32,10 @@ void exercise_8_calculate_price_times_weight();
 
 double sum(vector<double> price, vector<double> weight);
 
+void exercise_9_print_max_int_value();
+
+int maxv(const vector<int> &v);
+
 int main() {
     // exercise_2_print_int_vector_with_label();
     // exercise_3_fibonacci();
@@ -39,10 +43,30 @@ int main() {
     // exercise_5_swap_int_vector();
     // exercise_6_swap_string_vector();
     // exercise_7_get_name_and_age();
-    exercise_8_calculate_price_times_weight();
+    // exercise_8_calculate_price_times_weight();
+    exercise_9_print_max_int_value();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_9_print_max_int_value() {
+    int max;
+    vector<int> v{2, 3, 5, 1, 9, 10, 29, 11, 33, 2, 4, 5, 10};
+    max = maxv(v);
+
+    cout << "max: " << max << endl;
+}
+
+int maxv(const vector<int> &v) {
+    int max = v.at(0);
+
+    for(int index = 0; index < v.size(); ++index) {
+        if(v.at(index) > max)
+            max = v.at(index);
+    }
+
+    return max;
 }
 
 void exercise_8_calculate_price_times_weight() {
