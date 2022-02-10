@@ -46,16 +46,15 @@ void exercise_7_get_name_and_age() {
 
     cout << "input 5 names: ";
     for(string name; cin >> name;) {
+        if(name == "|") break;
         names.push_back(name);
-
-        if(names.size() == 5) break;
     }
 
     cout << "input 5 ages: ";
     for(int age; cin >> age;) {
         ages.push_back(age);
 
-        if(ages.size() == 5) break;
+        if(ages.size() == names.size()) break;
     }
 
     vector<string> names_copy = names;
