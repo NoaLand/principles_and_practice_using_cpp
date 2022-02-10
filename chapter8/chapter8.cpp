@@ -11,6 +11,7 @@ void fibonacci(int x, int y, vector<int> &fib, int n);
 int main() {
     // exercise_2_print_int_vector_with_label();
     exercise_3_fibonacci();
+    // exercise 4, the approximate int max value is 1836311903, the n in fibonacci is 46
     
     keep_window_open();
     return 0;
@@ -18,7 +19,7 @@ int main() {
 
 void exercise_3_fibonacci() {
     int x{1}, y{1};
-    int n{20};
+    int n{47};
     vector<int> v{x, y};
     fibonacci(x, y, v, n);
     const string label = "the fibs: ";
