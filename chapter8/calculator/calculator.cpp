@@ -1,34 +1,6 @@
-#include <utility>
-
 #include "calculator/variable/variable.h"
-
-const char name = 'a';
-
-const char let = 'L';
-const char declkey = '#';
-
-const char cons = 'C';
-const string const_key = "const"; // NOLINT(cert-err58-cpp)
-
-const char square_root = 'S';
-const string sqrt_key = "sqrt"; // NOLINT(cert-err58-cpp)
-
-const char power = 'p';
-const string power_key = "pow"; // NOLINT(cert-err58-cpp)
-
-static const char quit = 'Q';
-const string quit_key = "quit"; // NOLINT(cert-err58-cpp)
-
-static const char help = 'H';
-static string help_key = "help"; // NOLINT(cert-err58-cpp)
-
-static const char number = '8';
-static const char print = ';';
-static const char *const prompt = "> ";
-
-static const char *const result = "= ";
-
-static const char assignment = '=';
+#include "calculator/token/token.h"
+#include "calculator/constant.h"
 
 int narrow_cast_to_int(double d) {
     int d_int = (int) d;
@@ -36,96 +8,6 @@ int narrow_cast_to_int(double d) {
     if(d != d_int) simple_error("is not integer");
     
     return d_int;
-}
-
-
-class Token {
-public:
-    Token(char ch)
-            :kind(ch), value(0) {}
-    Token(char ch, double val)
-            :kind(ch), value(val) {}
-    Token(char ch, string n)
-            : kind(ch), name(std::move(n)) {}
-    char kind;
-    double value{};
-    string name;
-};
-
-class Token_stream {
-public:
-    Token_stream();
-    Token get();
-    void putback(Token t);
-    void ignore(char c);
-private:
-    bool full;
-    Token buffer;
-};
-
-Token_stream::Token_stream(): full(false), buffer(0) {
-}
-
-void Token_stream::putback(Token t) {
-    if (full) simple_error("putback() into a full buffer");
-    buffer = std::move(t);
-    full = true;
-}
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wreturn-type"
-Token Token_stream::get() {
-    if (full) {
-        full = false;
-        return buffer;
-    }
-
-    char ch;
-    cin >> ch;
-
-    switch (ch) {
-        case print:
-        case '(': case ')': case '{': case '}': case '+': case '-': case '*': case '/': case '!':
-        case 'P': case 'C': case ',': case '%': case assignment:
-            return {ch};
-        case declkey:
-            return {let};
-        case '.':
-        case '0': case '1': case '2': case '3': case '4':
-        case '5': case '6': case '7': case '8': case '9': {
-            cin.putback(ch);
-            double val;
-            cin >> val;
-            return {number, val};
-        }
-        default:
-            if(isalpha(ch)) {
-                string s;
-                s += ch;
-                while(cin.get(ch) && (isalpha(ch) || isdigit(ch) || ch == '_')) s += ch;
-                cin.putback(ch);
-                if(s == quit_key) return {quit};
-                if(s == sqrt_key) return {square_root};
-                if(s == power_key) return {power};
-                if(s == const_key) return {cons};
-                if(s == help_key) return {help};
-                return {name, s};
-            }
-            simple_error("Bad token");
-    }
-}
-#pragma clang diagnostic pop
-
-void Token_stream::ignore(char c) {
-    if(full && c == buffer.kind) {
-        full = false;
-        return;
-    }
-    full = false;
-
-    char ch = 0;
-    while(cin >> ch)
-        if(ch == c) return;
 }
 
 double expression(Token_stream&, Symbol_table&);

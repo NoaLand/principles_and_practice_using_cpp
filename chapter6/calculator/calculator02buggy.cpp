@@ -23,9 +23,9 @@
 
 class Token {
 public:
-    Token(char ch)    // make a Token from a char
+    Token(char ch)    // make a token from a char
             :kind(ch), value(0) { }
-    Token(char ch, double val)     // make a Token from a char and a double
+    Token(char ch, double val)     // make a token from a char and a double
             :kind(ch), value(val) { }
     char kind;        // what kind of token
     double value;     // for numbers: a value
@@ -36,17 +36,17 @@ public:
 class Token_stream {
 public:
     Token_stream();   // make a Token_stream that reads from cin
-    Token get();      // get a Token (get() is defined elsewhere)
-    void putback(Token t);    // put a Token back
+    Token get();      // get a token (get() is defined elsewhere)
+    void putback(Token t);    // put a token back
 private:
-    bool full;        // is there a Token in the buffer?
-    Token buffer;     // here is where we keep a Token put back using putback()
+    bool full;        // is there a token in the buffer?
+    Token buffer;     // here is where we keep a token put back using putback()
 };
 
 //------------------------------------------------------------------------------
 
 // The constructor just sets full to indicate that the buffer is empty:
-Token_stream::Token_stream(): full(false), buffer(0)    // no Token in buffer
+Token_stream::Token_stream(): full(false), buffer(0)    // no token in buffer
 {
 }
 
@@ -62,7 +62,7 @@ void Token_stream::putback(Token t) {
 //------------------------------------------------------------------------------
 
 Token Token_stream::get() {
-    if (full) {       // do we already have a Token ready?
+    if (full) {       // do we already have a token ready?
         full = false; // remove token from buffer
         return buffer;
     }

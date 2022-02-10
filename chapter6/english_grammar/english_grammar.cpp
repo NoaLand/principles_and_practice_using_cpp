@@ -1,14 +1,14 @@
 /*
  * This is the implement for english grammar exercise, according to the design in English.grammar.md
  *
- * Token Type Map:
+ * token Type Map:
  *      1. Conjunction -> 'c'
  *      2. Determiner -> 'd'
  *      3. NounDic -> 'n'
  *      4. Verb -> 'v'
  *
  * Define:
- *      * `Token` is a word, or ".", so basically, we define Token has a `type` and `value` field
+ *      * `token` is a word, or ".", so basically, we define token has a `type` and `value` field
  *        And it should be similar to the design in calculator. Quit by type in `q`, and get result
  *        by type in `.`, and the result should be "OK" or "not OK".
  *

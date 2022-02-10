@@ -2,9 +2,9 @@
 
 class Token {
 public:
-    Token(char ch)    // make a Token from a char
+    Token(char ch)    // make a token from a char
             :kind(ch), value(0) { }
-    Token(char ch, double val)     // make a Token from a char and a double
+    Token(char ch, double val)     // make a token from a char and a double
             :kind(ch), value(val) { }
     char kind;        // what kind of token
     double value;     // for numbers: a value
