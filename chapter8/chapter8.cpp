@@ -47,6 +47,10 @@ void exercise_10_print_max_min_average_and_mid();
 
 nums find_out(vector<int> &v);
 
+void exercise_11_print_until_s();
+
+void print_until_s(const vector<string> &v, const string &quit);
+
 int main() {
     // exercise_2_print_int_vector_with_label();
     // exercise_3_fibonacci();
@@ -56,10 +60,24 @@ int main() {
     // exercise_7_get_name_and_age();
     // exercise_8_calculate_price_times_weight();
     // exercise_9_print_max_int_value();
-    exercise_10_print_max_min_average_and_mid();
+    // exercise_10_print_max_min_average_and_mid();
+    exercise_11_print_until_s();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_11_print_until_s() {
+    vector<string> v{"ab", "cd", "ef", "fg", "quit"};
+    string quit{"quit"};
+    print_until_s(v, quit);
+}
+
+void print_until_s(const vector<string> &v, const string &quit) {
+    for(const string& s: v) {
+        if(s == quit) return;
+        cout << s << endl;
+    }
 }
 
 void exercise_10_print_max_min_average_and_mid() {
