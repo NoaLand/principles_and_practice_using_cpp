@@ -51,6 +51,8 @@ void exercise_11_print_until_s();
 
 void print_until_s(const vector<string> &v, const string &quit);
 
+void print_until_ss(const vector<string> &v, const string &quit);
+
 int main() {
     // exercise_2_print_int_vector_with_label();
     // exercise_3_fibonacci();
@@ -68,9 +70,14 @@ int main() {
 }
 
 void exercise_11_print_until_s() {
-    vector<string> v{"ab", "cd", "ef", "fg", "quit"};
+    vector<string> v{"ab", "cd", "ef", "fg", "quit", "a", "c", "quit"};
     string quit{"quit"};
+    cout << "print_until_s: " << endl;
     print_until_s(v, quit);
+    cout << endl;
+
+    cout << "print_until_ss: " << endl;
+    print_until_ss(v, quit);
 
     // tc1: quit string in final position
     vector<string> v1{"ab", "cd", "ef", "quit"};
@@ -87,6 +94,18 @@ void exercise_11_print_until_s() {
     // tc4: no quit string in vector
     vector<string> v4{"a", "b", "c", "d"};
     string quit4{"quit"};
+}
+
+void print_until_ss(const vector<string> &v, const string &quit) {
+    int quit_times{0};
+
+    for(const string& s: v) {
+        if(s == quit) {
+            ++quit_times;
+            if(quit_times == 2) return;
+        }
+        cout << s << endl;
+    }
 }
 
 void print_until_s(const vector<string> &v, const string &quit) {
