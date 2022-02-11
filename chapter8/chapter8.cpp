@@ -71,6 +71,22 @@ void exercise_11_print_until_s() {
     vector<string> v{"ab", "cd", "ef", "fg", "quit"};
     string quit{"quit"};
     print_until_s(v, quit);
+
+    // tc1: quit string in final position
+    vector<string> v1{"ab", "cd", "ef", "quit"};
+    string quit1{"quit"};
+
+    // tc2: quit string in the middle of string vector
+    vector<string> v2{"ab", "quit", "ef", "cd"};
+    string quit2{"quit"};
+
+    // tc3: quit string in the very front of string vector
+    vector<string> v3{"quit", "a", "b", "c"};
+    string quit3{"quit"};
+
+    // tc4: no quit string in vector
+    vector<string> v4{"a", "b", "c", "d"};
+    string quit4{"quit"};
 }
 
 void print_until_s(const vector<string> &v, const string &quit) {
