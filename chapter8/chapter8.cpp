@@ -53,6 +53,18 @@ void print_until_s(const vector<string> &v, const string &quit);
 
 void print_until_ss(const vector<string> &v, const string &quit);
 
+void exercise_12_string_vector_operation();
+
+vector<int> get_length(const vector<string> &sv);
+
+string get_longest(const vector<string> &sv);
+
+string get_shortest(const vector<string> &sv);
+
+string get_first(vector<string> &sv);
+
+string get_last(vector<string> &sv);
+
 int main() {
     // exercise_2_print_int_vector_with_label();
     // exercise_3_fibonacci();
@@ -63,10 +75,75 @@ int main() {
     // exercise_8_calculate_price_times_weight();
     // exercise_9_print_max_int_value();
     // exercise_10_print_max_min_average_and_mid();
-    exercise_11_print_until_s();
+    // exercise_11_print_until_s();
+    exercise_12_string_vector_operation();
 
     keep_window_open();
     return 0;
+}
+
+void exercise_12_string_vector_operation() {
+    vector<string> s{"bc", "this is a string", "edward", "noaland"};
+
+    vector<int> l = get_length(s);
+    print("string length vector: ", l);
+
+    string longest_s = get_longest(s);
+    cout << "longest string: " << longest_s << endl;
+
+    string shortest_s = get_shortest(s);
+    cout << "shortest string: " << shortest_s << endl;
+
+    string first = get_first(s);
+    cout << "first string: " << first << endl;
+
+    string last = get_last(s);
+    cout << "last string: " << last << endl;
+}
+
+string get_last(vector<string> &sv) {
+    sort(sv.begin(), sv.end());
+    return sv.at(sv.size() - 1);
+}
+
+string get_first(vector<string> &sv) {
+    sort(sv.begin(), sv.end());
+
+    return sv.at(0);
+}
+
+string get_shortest(const vector<string> &sv) {
+    int min_length{static_cast<int>(sv.at(0).length())};
+    string min_string{sv.at(0)};
+    for(const string& s: sv) {
+        if(s.length() < min_length) {
+            min_length = s.length();
+            min_string = s;
+        }
+    }
+    return min_string;
+}
+
+string get_longest(const vector<string> &sv) {
+    int max_length{0};
+    string max_string;
+    for(const string& s: sv) {
+        if(s.length() > max_length) {
+            max_length = s.length();
+            max_string = s;
+        }
+    }
+    return max_string;
+}
+
+vector<int> get_length(const vector<string> &sv) {
+    vector<int> l;
+    l.reserve(sv.size());
+    for(const string& s: sv) {
+        l.push_back(s.length());
+    }
+
+    return l;
 }
 
 void exercise_11_print_until_s() {
