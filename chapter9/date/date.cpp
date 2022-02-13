@@ -4,6 +4,12 @@ enum class Month {
     jan = 1, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec
 };
 
+Month operator++(Month& m) {
+    m = (m == Month::dec) ? Month::jan : Month(int(m) + 1);
+
+    return m;
+}
+
 Month int_to_month(int x) {
     if(x < int(Month::jan) || int(Month::dec) < x) simple_error("bad month");
 
