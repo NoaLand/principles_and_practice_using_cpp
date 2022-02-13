@@ -1,5 +1,17 @@
 #include "../lib/std_lib_facilities.h"
 
+class Year {
+    static const int min = 1800;
+    static const int max = 2200;
+public:
+    class Invalid {};
+    Year(int x): y{x} { if(x < min || x > max) throw Invalid{}; }
+    int year() { return y; }
+
+private:
+    int y;
+};
+
 enum class Month {
     jan = 1, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec
 };
@@ -19,19 +31,20 @@ Month int_to_month(int x) {
 class Date {
 public:
     class Invalid {};
-    Date(int y, Month m, int d);
+    Date(Year y, Month m, int d);
     void add_day(int n);
     Month month() { return m; }
     int day() { return d; }
-    int year() { return y; }
+    Year year() { return y; }
 
 private:
-    int y, d;
+    Year y;
     Month m;
+    int d;
     bool is_valid();
 };
 
-Date::Date(int y, Month m, int d): y{y}, m{m}, d{d} {
+Date::Date(Year y, Month m, int d): y{y}, m{m}, d{d} {
     if(!is_valid()) throw Invalid{};
 }
 
