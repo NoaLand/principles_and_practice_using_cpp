@@ -7,3 +7,5 @@
    3. [Cpp reference -- srand](https://www.cplusplus.com/reference/cstdlib/srand/)
 2. chapter 9 mentioned that you can also use `struct` for a data structure
    1. here's a link to discuss the diff between `class` and `struct`: [Function for C++ struct](https://stackoverflow.com/questions/13125944/function-for-c-struct)
+3. you'd better use `scoped enumeration` instead of using `plain enumeration`, which means:
+   1. `enum class` is better than `enum` declaration
