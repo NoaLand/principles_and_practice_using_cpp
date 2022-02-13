@@ -10,12 +10,18 @@ public:
 
 private:
     int y, m, d;
+    bool is_valid();
 };
 
 Date::Date(int y, int m, int d): y{y}, m{m}, d{d} {
+    if(!is_valid()) simple_error("invalid date");
 }
 
 void Date::add_day(int n) {
+}
+
+bool Date::is_valid() {
+    if(m < 1 || 12 < m) return false;
 }
 
 int main() {
