@@ -23,7 +23,7 @@ add_executable(principles_and_practice_using_cpp
 #        chapter6/english_grammar/english_grammar.cpp
 #        chapter7/calculator/calculator.cpp
 #        chapter7/calculator/calculator08buggy.cpp
-        chapter8/chapter8.cpp
+#        chapter8/chapter8.cpp
 #        chapter8/simple_exercise1/my.cpp
 #        chapter8/simple_exercise1/use.cpp
 #        chapter8/simple_exercise2/swap_test.cpp
@@ -31,4 +31,5 @@ add_executable(principles_and_practice_using_cpp
 #        chapter8/calculator/variable/variable.cpp
 #        chapter8/calculator/token/token.cpp
 #        chapter8/calculator/calculator.cpp
+        chapter9/date/date.cpp
 )
