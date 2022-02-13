@@ -33,6 +33,9 @@ public:
     class Invalid {};
     Date();
     Date(Year y, Month m, int d);
+    // this kind of function with `const` means, function not changing value in a class, so that this function can be called
+    // in some function like this: `void some_func(const Date& start_of_term) { start_of_term.month(); }`.
+    // If there's no `const` after, compiler will complain an error
     Month month() const { return m; }
     int day() const { return d; }
     Year year() const { return y; }
