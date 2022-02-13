@@ -33,11 +33,13 @@ public:
     class Invalid {};
     Date();
     Date(Year y, Month m, int d);
-    void add_day(int n);
-    Month month() { return m; }
-    int day() { return d; }
-    Year year() { return y; }
+    Month month() const { return m; }
+    int day() const { return d; }
+    Year year() const { return y; }
 
+    void add_day(int n);
+    void add_month(int n);
+    void add_year(int n);
 private:
     Year y;
     Month m;
