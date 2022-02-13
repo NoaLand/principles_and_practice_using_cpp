@@ -1,12 +1,10 @@
 #include "../lib/std_lib_facilities.h"
 
 struct Date {
-    int y; // for year
-    int m; // for month
-    int d; // for day
+    int y, m, d;
+    Date(int y, int m, int d);
+    void add_day(int n);
 };
-
-Date today;
 
 int main() {
     keep_window_open();
