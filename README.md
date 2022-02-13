@@ -9,3 +9,11 @@
    1. here's a link to discuss the diff between `class` and `struct`: [Function for C++ struct](https://stackoverflow.com/questions/13125944/function-for-c-struct)
 3. you'd better use `scoped enumeration` instead of using `plain enumeration`, which means:
    1. `enum class` is better than `enum` declaration
+4. code like below, `static` will let `dd` created only once:
+```c++
+const Date& default_date() {
+    static Date dd{Year{2001}, Month::jan, 1};
+
+    return dd;
+}
+```
