@@ -45,6 +45,12 @@ private:
     bool is_valid();
 };
 
+const Date& default_date() {
+    static Date dd{Year{2001}, Month::jan, 1};
+
+    return dd;
+}
+
 Date::Date(Year y, Month m, int d): y{y}, m{m}, d{d} {
     if(!is_valid()) throw Invalid{};
 }
@@ -56,7 +62,7 @@ bool Date::is_valid() {
     if(int(m) < 1 || 12 < int(m)) return false;
 }
 
-Date::Date(): y{Year{2001}}, m{Month::jan}, d{1} {
+Date::Date(): y{default_date().y}, m{default_date().m}, d{default_date().d} {
 }
 
 void f(int m) {
