@@ -31,6 +31,7 @@ Month int_to_month(int x) {
 class Date {
 public:
     class Invalid {};
+    Date();
     Date(Year y, Month m, int d);
     void add_day(int n);
     Month month() { return m; }
@@ -53,6 +54,9 @@ void Date::add_day(int n) {
 
 bool Date::is_valid() {
     if(int(m) < 1 || 12 < int(m)) return false;
+}
+
+Date::Date(): y{Year{2001}}, m{Month::jan}, d{1} {
 }
 
 void f(int m) {
