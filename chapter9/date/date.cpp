@@ -4,6 +4,12 @@ enum class Month {
     jan = 1, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec
 };
 
+Month int_to_month(int x) {
+    if(x < int(Month::jan) || int(Month::dec) < x) simple_error("bad month");
+
+    return Month(x);
+}
+
 class Date {
 public:
     class Invalid {};
@@ -27,6 +33,10 @@ void Date::add_day(int n) {
 
 bool Date::is_valid() {
     if(m < 1 || 12 < m) return false;
+}
+
+void f(int m) {
+    Month mm = int_to_month(m);
 }
 
 int main() {
