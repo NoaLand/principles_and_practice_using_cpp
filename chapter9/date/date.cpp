@@ -2,6 +2,7 @@
 
 class Date {
 public:
+    class Invalid {};
     Date(int y, int m, int d);
     void add_day(int n);
     int month() { return m; }
@@ -14,7 +15,7 @@ private:
 };
 
 Date::Date(int y, int m, int d): y{y}, m{m}, d{d} {
-    if(!is_valid()) simple_error("invalid date");
+    if(!is_valid()) throw Invalid{};
 }
 
 void Date::add_day(int n) {
