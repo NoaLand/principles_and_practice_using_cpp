@@ -32,5 +32,7 @@ add_executable(principles_and_practice_using_cpp
 #        chapter8/calculator/token/token.cpp
 #        chapter8/calculator/calculator.cpp
 #        chapter9/date/date.cpp
-        chapter9/date/Chrono.cpp
+#        chapter9/date/Chrono.cpp
+        chapter9/exercise1_name_pairs/name_pairs.cpp
+        chapter9/exercise1_name_pairs/exercise1.cpp
 )
