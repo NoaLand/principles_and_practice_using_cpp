@@ -7,10 +7,10 @@ int main() {
     Name_pairs np;
     np.read_names(names);
     np.read_ages();
-    np.print();
+    cout << np << endl;
 
     np.sort();
-    np.print();
+    cout << np << endl;
 
     keep_window_open();
     return 0;
