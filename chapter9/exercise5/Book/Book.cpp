@@ -23,7 +23,7 @@ namespace My_Library {
         if(!isbn_is_qualified(isbn)) throw Book::Invalid{};
 
         string book_name;
-        cout << "book name(max size 255): ";
+        cout << "book name: ";
         getline(is, book_name);
 
         string author;
