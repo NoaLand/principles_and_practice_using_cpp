@@ -45,6 +45,7 @@ namespace My_Library {
         os << "name: " << b.get_book_name() << endl;
         os << "author: " << b.get_author() << endl;
         os << "copyright date: " << b.get_copyright_date() << endl;
+        os << "status: " << (b.get_is_borrowed() ? "borrowed" : "stock") << endl;
         os << "****************" << endl;
 
         return os;
