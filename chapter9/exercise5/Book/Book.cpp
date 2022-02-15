@@ -19,20 +19,20 @@ namespace My_Library {
     istream &operator>>(istream &is, Book &b) {
         string isbn;
         cout << "isbn: ";
-        is >> isbn;
+        getline(is, isbn);
         if(!isbn_is_qualified(isbn)) throw Book::Invalid{};
 
         string book_name;
-        cout << "book name: ";
-        is >> book_name;
+        cout << "book name(max size 255): ";
+        getline(is, book_name);
 
         string author;
         cout << "author: ";
-        is >> author;
+        getline(is, author);
 
         string copyright_date;
         cout << "copyright date: ";
-        is >> copyright_date;
+        getline(is, copyright_date);
 
         b = Book{isbn, book_name, author, copyright_date};
 
