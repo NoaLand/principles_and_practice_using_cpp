@@ -36,6 +36,6 @@ add_executable(principles_and_practice_using_cpp
 #        chapter9/exercise2_and_3_name_pairs/name_pairs.cpp
 #        chapter9/exercise2_and_3_name_pairs/exercise2_and_3.cpp
 #        chapter9/exercise4/exercise4.cpp
-        chapter9/exercise5/Book.cpp
+        chapter9/exercise5/Book/Book.cpp
         chapter9/exercise5/exercise5.cpp
 )
