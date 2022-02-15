@@ -38,4 +38,4 @@ add_executable(principles_and_practice_using_cpp
 #        chapter9/exercise4/exercise4.cpp
         chapter9/exercise5/Book/Book.cpp
         chapter9/exercise5/exercise5.cpp
-)
+        chapter9/exercise5/Chrono/Chrono.cpp chapter9/exercise5/Chrono/Chrono.h)

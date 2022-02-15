@@ -4,15 +4,15 @@
 #include <sstream>
 
 namespace My_Library {
-    Book::Book(string i, string bn, string a, string cd):
+    Book::Book(string i, string bn, string a, Chrono::Date cd):
             isbn{std::move(i)},
             book_name{std::move(bn)},
             author{std::move(a)},
-            copyright_date{std::move(cd)} {
+            copyright_date{cd} {
         if(!isbn_is_qualified(isbn)) throw Invalid{};
     }
 
-    Book::Book(): isbn{"0-0-0-0"}, book_name{"default book"}, author{"default author"}, copyright_date{"(2001,1,1)"} {
+    Book::Book(): isbn{"0-0-0-0"}, book_name{"default book"}, author{"default author"}, copyright_date{Chrono::default_date()} {
         if(!isbn_is_qualified(isbn)) throw Invalid{};
     }
 
@@ -30,9 +30,9 @@ namespace My_Library {
         cout << "author: ";
         getline(is, author);
 
-        string copyright_date;
-        cout << "copyright date: ";
-        getline(is, copyright_date);
+        Chrono::Date copyright_date;
+        cout << "copyright date(yyyy-mm-dd): ";
+        is >> copyright_date;
 
         b = Book{isbn, book_name, author, copyright_date};
 

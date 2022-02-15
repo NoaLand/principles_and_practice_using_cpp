@@ -1,18 +1,20 @@
 #ifndef PRINCIPLES_AND_PRACTICE_USING_CPP_BOOK_H
 #define PRINCIPLES_AND_PRACTICE_USING_CPP_BOOK_H
 #include "../../../lib/std_lib_facilities.h"
+#include "../Chrono/Chrono.h"
+
 namespace My_Library {
     class Book {
     public:
         class Invalid: exception {};
 
         Book();
-        Book(string i, string bn, string a, string cd);
+        Book(string i, string bn, string a, Chrono::Date cd);
 
         string get_isbn() const { return isbn; }
         string get_book_name() const { return book_name; }
         string get_author() const { return author; }
-        string get_copyright_date() const { return copyright_date; }
+        Chrono::Date get_copyright_date() const { return copyright_date; }
         bool get_is_borrowed() const { return is_borrowed; }
 
         void borrowing();
@@ -21,7 +23,7 @@ namespace My_Library {
         string isbn;
         string book_name;
         string author;
-        string copyright_date;
+        Chrono::Date copyright_date;
         bool is_borrowed{false};
     };
 
