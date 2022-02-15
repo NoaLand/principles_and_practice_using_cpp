@@ -4,8 +4,11 @@
 
 class Book {
 public:
-    Book();
     class Invalid: exception {};
+
+    Book();
+    Book(string isbn, string book_name, string author, string copyright_date);
+
     string get_isbn() const { return isbn; }
     string get_book_name() const { return book_name; }
     string get_author() const { return author; }
@@ -14,10 +17,7 @@ public:
 
     void borrowing();
     void returning();
-
 private:
-    Book(string isbn, string book_name, string author, string copyright_date);
-
     string isbn;
     string book_name;
     string author;
