@@ -16,6 +16,22 @@ namespace My_Library {
         if(!isbn_is_qualified(isbn)) throw Invalid{};
     }
 
+    void Book::borrowing() {
+        if(is_borrowed) {
+            simple_error("cannot borrow book which has already been borrowed!");
+        } else {
+            is_borrowed = true;
+        }
+    }
+
+    void Book::returning() {
+        if(!is_borrowed) {
+            simple_error("book is not borrowed!");
+        } else {
+            is_borrowed = false;
+        }
+    }
+
     istream &operator>>(istream &is, Book &b) {
         string isbn;
         cout << "isbn: ";
@@ -40,7 +56,7 @@ namespace My_Library {
     }
 
     ostream& operator<<(ostream& os, const Book& b) {
-        os << "*** NEW BOOK ***" << endl;
+        os << "****************" << endl;
         os << "isbn: " << b.get_isbn() << endl;
         os << "name: " << b.get_book_name() << endl;
         os << "author: " << b.get_author() << endl;
