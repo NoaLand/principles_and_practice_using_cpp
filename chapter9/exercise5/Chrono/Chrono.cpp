@@ -36,6 +36,7 @@ namespace Chrono {
     }
 
     bool is_date(int y, Month m, int d) {
+        if(y <= 1980) return false;
         if(d <= 0) return false;
         if(m < Month::jan || m > Month::dec) return false;
 
