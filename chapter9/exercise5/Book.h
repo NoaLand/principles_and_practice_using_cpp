@@ -7,7 +7,7 @@ namespace My_Library {
         class Invalid: exception {};
 
         Book();
-        Book(string isbn, string book_name, string author, string copyright_date);
+        Book(string i, string bn, string a, string cd);
 
         string get_isbn() const { return isbn; }
         string get_book_name() const { return book_name; }
@@ -26,5 +26,8 @@ namespace My_Library {
     };
 
     istream& operator>>(istream& is, Book& b);
+    ostream& operator<<(ostream& os, const Book& b);
+
+    bool isbn_is_qualified(const string&);
 }
 #endif //PRINCIPLES_AND_PRACTICE_USING_CPP_BOOK_H
