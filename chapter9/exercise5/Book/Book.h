@@ -30,6 +30,9 @@ namespace My_Library {
     istream& operator>>(istream& is, Book& b);
     ostream& operator<<(ostream& os, const Book& b);
 
+    bool operator==(const Book& a, const Book& b);
+    bool operator!=(const Book& a, const Book& b);
+
     bool isbn_is_qualified(const string&);
 }
 #endif //PRINCIPLES_AND_PRACTICE_USING_CPP_BOOK_H

@@ -33,9 +33,17 @@ namespace My_Library {
     }
 
     istream &operator>>(istream &is, Book &b) {
+        if(!is) return is;
+
         string isbn;
         cout << "isbn: ";
         getline(is, isbn);
+
+        // this is for continue get, while getline gets an empty string
+        // situation: when you cin >> b1, then cin >> b2, b2 will get a blank line for isbn first
+        while(isbn.length() == 0)
+            getline(is, isbn);
+
         if(!isbn_is_qualified(isbn)) throw Book::Invalid{};
 
         string book_name;
@@ -65,6 +73,14 @@ namespace My_Library {
         os << "****************" << endl;
 
         return os;
+    }
+
+    bool operator==(const Book& a, const Book& b) {
+        return a.get_isbn() == b.get_isbn();
+    }
+
+    bool operator!=(const Book& a, const Book& b) {
+        return !(a == b);
     }
 
     bool isbn_is_qualified(const string &isbn) {
