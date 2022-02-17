@@ -4,6 +4,10 @@
 #include "../Chrono/Chrono.h"
 
 namespace My_Library {
+    enum class Genre {
+        fiction, nonfiction, periodical, biography, children
+    };
+    
     class Book {
     public:
         class Invalid: exception {};
