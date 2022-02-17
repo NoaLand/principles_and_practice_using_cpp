@@ -41,5 +41,22 @@ namespace My_Library {
 
     bool isbn_is_qualified(const string&);
     Genre get_genre_from_string(const string& g);
+
+    class Patron {
+    public:
+        Patron(string n, string lcn, double lf);
+
+        string get_name() const { return name; }
+        string get_lib_car_no() const { return lib_card_no; }
+        double get_late_fee() const { return late_fee; }
+
+        void set_late_fee(const double& fee);
+    private:
+        string name;
+        string lib_card_no;
+        double late_fee;
+    };
+
+    bool is_arrears(const Patron& p);
 }
 #endif //PRINCIPLES_AND_PRACTICE_USING_CPP_BOOK_H

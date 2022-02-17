@@ -137,4 +137,15 @@ namespace My_Library {
             throw Book::Invalid{};
         }
     }
+
+    bool is_arrears(const Patron &p) {
+        return p.get_late_fee() < 0;
+    }
+
+    Patron::Patron(string n, string lcn, double lf): name{std::move(n)}, lib_card_no{std::move(lcn)}, late_fee{lf} {
+    }
+
+    void Patron::set_late_fee(const double &fee) {
+        late_fee = fee;
+    }
 }
