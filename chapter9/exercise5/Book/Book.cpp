@@ -149,6 +149,10 @@ namespace My_Library {
         late_fee = fee;
     }
 
+    void Patron::spend(const double& fee) {
+        late_fee -= fee;
+    }
+
     void Library::add_book(const Book& book) {
         for(const Book& b : book_list) {
             if(b == book) simple_error("duplicated book");

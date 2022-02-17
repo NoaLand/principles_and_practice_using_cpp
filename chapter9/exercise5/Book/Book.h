@@ -51,6 +51,7 @@ namespace My_Library {
         double get_late_fee() const { return late_fee; }
 
         void set_late_fee(const double& fee);
+        void spend(const double& fee);
     private:
         string name;
         string lib_card_no;
