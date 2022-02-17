@@ -58,5 +58,22 @@ namespace My_Library {
     };
 
     bool is_arrears(const Patron& p);
+
+    struct Transaction {
+        Book b;
+        Patron p;
+        Chrono::Date d;
+    };
+
+    class Library {
+        void add_book(const Book& book);
+        void add_patron(const Patron& patron);
+        void add_transaction(const Transaction& transaction);
+        vector<string> get_all_arrears_patron() const;
+    private:
+        vector<Book> book_list;
+        vector<Patron> patron_list;
+        vector<Transaction> transaction_list;
+    };
 }
 #endif //PRINCIPLES_AND_PRACTICE_USING_CPP_BOOK_H

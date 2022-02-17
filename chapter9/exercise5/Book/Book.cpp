@@ -148,4 +148,40 @@ namespace My_Library {
     void Patron::set_late_fee(const double &fee) {
         late_fee = fee;
     }
+
+    void Library::add_book(const Book& book) {
+        for(const Book& b : book_list) {
+            if(b == book) simple_error("duplicated book");
+        }
+
+        book_list.push_back(book);
+    }
+
+    void Library::add_patron(const Patron &patron) {
+        for(const Patron& p : patron_list) {
+            if(p.get_lib_car_no() == patron.get_lib_car_no()) simple_error("duplicated patron");
+        }
+
+        patron_list.push_back(patron);
+    }
+
+    void Library::add_transaction(const Transaction &transaction) {
+        for(const Transaction& t : transaction_list) {
+            if(t.b == transaction.b && t.p.get_lib_car_no() == transaction.p.get_lib_car_no()) simple_error("duplicated transaction");
+        }
+
+        transaction_list.push_back(transaction);
+    }
+
+    vector<string> Library::get_all_arrears_patron() const {
+        vector<string> name_list;
+
+        for(const Patron& p : patron_list) {
+            if(p.get_late_fee() < 0) {
+                name_list.push_back(p.get_name());
+            }
+        }
+
+        return name_list;
+    }
 }
