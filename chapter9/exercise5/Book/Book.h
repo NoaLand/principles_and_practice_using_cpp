@@ -69,17 +69,27 @@ namespace My_Library {
         Book b;
         Patron p;
         Chrono::Date d;
+
+        string get_info() const;
     };
 
     class Library {
+    public:
+        vector<string> get_all_arrears_patron() const;
+
         void add_book(const Book& book);
         void add_patron(const Patron& patron);
-        void add_transaction(const Transaction& transaction);
-        vector<string> get_all_arrears_patron() const;
+        void borrowing(Book& book, Patron& patron);
+        void returning(Book& book, Patron& patron);
+        void print_transactions() const;
     private:
         vector<Book> book_list;
         vector<Patron> patron_list;
         vector<Transaction> transaction_list;
+
+        void add_transaction(const Transaction& transaction);
+        bool in_book_list(const Book& b);
+        bool in_patron_list(const Patron& p);
     };
 }
 #endif //PRINCIPLES_AND_PRACTICE_USING_CPP_BOOK_H

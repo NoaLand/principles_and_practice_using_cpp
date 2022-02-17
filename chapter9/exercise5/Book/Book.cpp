@@ -177,12 +177,81 @@ namespace My_Library {
         vector<string> name_list;
 
         for(const Patron& p : patron_list) {
-            if(p.get_late_fee() < 0) {
             if(is_arrears(p)) {
                 name_list.push_back(p.get_name());
             }
         }
 
         return name_list;
+    }
+
+    void Library::borrowing(Book &book, Patron &patron) {
+        if(!in_book_list(book) || !in_patron_list(patron)) simple_error("not in lib record");
+        if(is_arrears(patron)) simple_error("this patron is arrears");
+
+        book.borrowing();
+        patron.spend(1);
+        Transaction t{Transaction_type::borrowing, book, patron, Chrono::today()};
+        add_transaction(t);
+    }
+
+    bool Library::in_book_list(const Book& b) {
+        return any_of(
+                book_list.begin(),
+                book_list.end(),
+                [b](const Book& book){ return b == book; }
+                );
+    }
+
+    bool Library::in_patron_list(const Patron &p) {
+        return any_of(
+                patron_list.begin(),
+                patron_list.end(),
+                [p](const Patron& patron){ return p.get_lib_car_no() == patron.get_lib_car_no(); }
+        );
+    }
+
+    void Library::returning(Book &book, Patron &patron) {
+        if(!in_book_list(book) || !in_patron_list(patron)) simple_error("not in lib record");
+        if(is_arrears(patron)) simple_error("this patron is arrears");
+
+        bool can_return{false};
+        for(const Transaction& tran: transaction_list) {
+            if(tran.b == book && tran.p.get_lib_car_no() == patron.get_lib_car_no()) {
+                if(tran.type == Transaction_type::borrowing) {
+                    can_return = true;
+                }
+                if(tran.type == Transaction_type::returning && can_return) {
+                    can_return = false;
+                }
+            }
+        }
+
+        if(can_return) {
+            book.returning();
+            Transaction t{Transaction_type::returning, book, patron, Chrono::today()};
+            add_transaction(t);
+        } else {
+            simple_error("cannot return book, since already returned");
+        }
+    }
+
+    void Library::print_transactions() const {
+        for(const Transaction& trans: transaction_list) {
+            cout << trans.get_info() << endl;
+        }
+    }
+
+    string Transaction::get_info() const {
+        string t;
+        switch (type) {
+            case Transaction_type::borrowing:
+                t = "borrowing";
+                break;
+            case Transaction_type::returning:
+                t = "returning";
+                break;
+        }
+        return "info: [" + t + "]" + b.get_book_name() + ", " + p.get_name();
     }
 }
