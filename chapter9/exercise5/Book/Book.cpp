@@ -170,10 +170,6 @@ namespace My_Library {
     }
 
     void Library::add_transaction(const Transaction &transaction) {
-        for(const Transaction& t : transaction_list) {
-            if(t.b == transaction.b && t.p.get_lib_car_no() == transaction.p.get_lib_car_no()) simple_error("duplicated transaction");
-        }
-
         transaction_list.push_back(transaction);
     }
 
