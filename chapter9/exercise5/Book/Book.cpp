@@ -4,15 +4,16 @@
 #include <sstream>
 
 namespace My_Library {
-    Book::Book(string i, string bn, string a, Chrono::Date cd):
+    Book::Book(string i, string bn, string a, Chrono::Date cd, Genre g):
             isbn{std::move(i)},
             book_name{std::move(bn)},
             author{std::move(a)},
-            copyright_date{cd} {
+            copyright_date{cd},
+            genre{g} {
         if(!isbn_is_qualified(isbn)) throw Invalid{};
     }
 
-    Book::Book(): isbn{"0-0-0-0"}, book_name{"default book"}, author{"default author"}, copyright_date{Chrono::default_date()} {
+    Book::Book(): isbn{"0-0-0-0"}, book_name{"default book"}, author{"default author"}, copyright_date{Chrono::default_date()}, genre{Genre::nonfiction} {
         if(!isbn_is_qualified(isbn)) throw Invalid{};
     }
 
@@ -29,6 +30,21 @@ namespace My_Library {
             simple_error("book is not borrowed!");
         } else {
             is_borrowed = false;
+        }
+    }
+
+    string Book::genre_to_string() const {
+        switch(genre) {
+            case Genre::fiction:
+                return "fiction";
+            case Genre::nonfiction:
+                return "nonfiction";
+            case Genre::periodical:
+                return "periodical";
+            case Genre::biography:
+                return "biography";
+            case Genre::children:
+                return "children";
         }
     }
 
@@ -58,7 +74,12 @@ namespace My_Library {
         cout << "copyright date(yyyy-mm-dd): ";
         is >> copyright_date;
 
-        b = Book{isbn, book_name, author, copyright_date};
+        string genre_str;
+        cout << "genre_str: ";
+        is >> genre_str;
+        Genre genre = get_genre_from_string(genre_str);
+
+        b = Book{isbn, book_name, author, copyright_date, genre};
 
         return is;
     }
@@ -68,6 +89,7 @@ namespace My_Library {
         os << "isbn: " << b.get_isbn() << endl;
         os << "name: " << b.get_book_name() << endl;
         os << "author: " << b.get_author() << endl;
+        os << "genre: " << b.genre_to_string() << endl;
         os << "copyright date: " << b.get_copyright_date() << endl;
         os << "status: " << (b.get_is_borrowed() ? "borrowed" : "stock") << endl;
         os << "****************" << endl;
@@ -98,5 +120,21 @@ namespace My_Library {
         }
 
         return true;
+    }
+
+    Genre get_genre_from_string(const string& g) {
+        if(g == "fiction") {
+            return Genre::fiction;
+        } else if(g == "nonfiction") {
+            return Genre::nonfiction;
+        } else if(g == "periodical") {
+            return Genre::periodical;
+        } else if(g == "biography") {
+            return Genre::biography;
+        } else if(g == "children") {
+            return Genre::children;
+        } else {
+            throw Book::Invalid{};
+        }
     }
 }
