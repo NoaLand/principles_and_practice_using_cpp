@@ -178,6 +178,7 @@ namespace My_Library {
 
         for(const Patron& p : patron_list) {
             if(p.get_late_fee() < 0) {
+            if(is_arrears(p)) {
                 name_list.push_back(p.get_name());
             }
         }
