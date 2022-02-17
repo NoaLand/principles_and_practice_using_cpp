@@ -1,5 +1,7 @@
 #include "Chrono.h"
 
+#include<ctime>
+
 namespace Chrono {
     const Date& default_date() {
         static Date dd {2001, Month::jan, 1};
@@ -57,5 +59,11 @@ namespace Chrono {
         if(days_in_month < d) return false;
 
         return true;
+    }
+
+    Date today(){
+        time_t t = time(nullptr);
+        tm *const now = localtime(&t);
+        return Date{1900 + now->tm_year, Month(now->tm_mon), now->tm_mday};
     }
 }

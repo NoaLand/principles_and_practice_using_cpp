@@ -28,5 +28,7 @@ namespace Chrono {
     ostream& operator<<(ostream& os, const Date& d);
 
     bool is_date(int y, Month m, int d);
+
+    Date today();
 }
 #endif //PRINCIPLES_AND_PRACTICE_USING_CPP_CHRONO_H
