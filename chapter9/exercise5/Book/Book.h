@@ -60,7 +60,12 @@ namespace My_Library {
 
     bool is_arrears(const Patron& p);
 
+    enum class Transaction_type {
+        borrowing, returning
+    };
+
     struct Transaction {
+        Transaction_type type;
         Book b;
         Patron p;
         Chrono::Date d;
