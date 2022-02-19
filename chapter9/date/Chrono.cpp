@@ -15,7 +15,7 @@ namespace Chrono {
     void Date::add_day(int n) {
         int day_in_month = get_day_in_month(y, m);
 
-        if(d + n < day_in_month) {
+        if(d + n <= day_in_month) {
             d = d + n;
             return;
         }
