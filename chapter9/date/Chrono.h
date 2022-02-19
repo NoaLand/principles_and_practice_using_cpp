@@ -39,6 +39,7 @@ namespace Chrono {
     std::ostream& operator<<(std::ostream& os, const Date& d);
 
     std::istream& operator>>(std::istream& is, Date& dd);
+    Day day_of_week(const Date& d);
     Date next_workday(Date& d);
 }
 #endif //PRINCIPLES_AND_PRACTICE_USING_CPP_CHRONO_H

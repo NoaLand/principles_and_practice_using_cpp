@@ -104,9 +104,19 @@ namespace Chrono {
         return is;
     }
 
-
     Day day_of_week(const Date& d) {
-        // ...
+        int k = d.day();
+        int m_abs = int(d.month());
+        int m_rel = (m_abs > 2) ? m_abs - 2 : 10 + m_abs;
+        int c = d.year() / 100;
+        int y = d.year() - c * 100 - (m_abs > 2 ? 0 : 1);
+
+        int param1 = 2.6 * m_rel - 0.2;
+        int param2 = y / 4;
+        int param3 = c / 4;
+        int w = (k + param1 - 2 * c + y + param2 + param3) % 7;
+
+        return Day(w);
     }
 
     Date next_sunday(const Date& d) {
