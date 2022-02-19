@@ -131,7 +131,7 @@ namespace Chrono {
         int c = d.year() / 100;
         int y = d.year() - c * 100 - (m_abs > 2 ? 0 : 1);
 
-        int param1 = 2.6 * m_rel - 0.2;
+        int param1 = static_cast<int>(2.6 * m_rel - 0.2);
         int param2 = y / 4;
         int param3 = c / 4;
         int w = (k + param1 - 2 * c + y + param2 + param3) % 7;
