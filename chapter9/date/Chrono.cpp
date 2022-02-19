@@ -13,7 +13,27 @@ namespace Chrono {
     Date::Date(): y{default_date().year()}, m{default_date().month()}, d{default_date().day()}{}
 
     void Date::add_day(int n) {
-        // ...
+        int day_in_month = get_day_in_month(y, m);
+
+        if(d + n < day_in_month) {
+            d = d + n;
+            return;
+        }
+
+        while(d + n > day_in_month) {
+            d = d + n - day_in_month;
+
+            if(int(m) + 1 > 12) {
+                m = Month(1);
+                y += 1;
+            } else {
+                m = Month(int(m) + 1);
+            }
+
+            day_in_month = get_day_in_month(y, m);
+            // n should only use once, when getting into this loop
+            n = 0;
+        }
     }
 
     void Date::add_month(int n) {
