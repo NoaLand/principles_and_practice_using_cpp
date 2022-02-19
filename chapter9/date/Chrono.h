@@ -6,6 +6,10 @@ namespace Chrono {
         jan = 1, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec
     };
 
+    enum class Day {
+        sunday, monday, tuesday, wednesday, thursday, friday, saturday
+    };
+
     class Date {
     public:
         class Invalid {};
