@@ -14,6 +14,13 @@ int main() {
     bool res4 = Chrono::leapyear(2005);
     cout << "2005 is leap year? " << res4 << endl;
 
+    Chrono::Date my_day = Chrono::Date{2022, Chrono::Month::feb, 19};
+    Chrono::Day weekday = Chrono::day_of_week(my_day);
+    cout << "my day's weekday is: " << int(weekday) << endl;
+
+    const Chrono::Date &next_workday = Chrono::next_workday(my_day);
+    cout << "next workday is: " << next_workday << endl;
+
     keep_window_open();
     return 0;
 }
