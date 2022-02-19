@@ -113,4 +113,21 @@ namespace Chrono {
     Date next_weekday(const Date& d) {
         // ...
     }
+
+    Date next_workday(Date& d) {
+        switch (day_of_week(d)) {
+            case Day::sunday:
+            case Day::monday:
+            case Day::tuesday:
+            case Day::wednesday:
+            case Day::thursday:
+                d.add_day(1);
+            case Day::friday:
+                d.add_day(3);
+            case Day::saturday:
+                d.add_day(2);
+        }
+
+        return d;
+    }
 }
