@@ -37,9 +37,10 @@ namespace Chrono {
     bool operator!=(const Date& a, const Date& b);
 
     std::ostream& operator<<(std::ostream& os, const Date& d);
-
     std::istream& operator>>(std::istream& is, Date& dd);
+
     Day day_of_week(const Date& d);
+    int get_day_in_month(int y, const Month &m);
     Date next_workday(Date& d);
 }
 #endif //PRINCIPLES_AND_PRACTICE_USING_CPP_CHRONO_H
