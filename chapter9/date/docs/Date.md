@@ -4,3 +4,5 @@
   - [Gregorian calendar](https://en.wikipedia.org/wiki/Gregorian_calendar)
   - In this function, we used a formula, and you can get the reference from [this website](https://cs.uwaterloo.ca/~alopez-o/math-faq/node73.html)
     ![formula.png](image/formula.png)
+
+since cannot understand the meaning of exercise 12, will skip this exercise.
