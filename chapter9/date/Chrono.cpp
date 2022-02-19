@@ -35,6 +35,15 @@ namespace Chrono {
 
         int days_in_month;
 
+        days_in_month = get_day_in_month(y, m);
+
+        if(days_in_month < d) return false;
+
+        return true;
+    }
+
+    int get_day_in_month(int y, const Month &m) {
+        int days_in_month;
         switch (m) {
             case Month::feb:
                 days_in_month = (leapyear(y)) ? 29 : 28;
@@ -46,10 +55,7 @@ namespace Chrono {
                 days_in_month = 31;
                 break;
         }
-
-        if(days_in_month < d) return false;
-
-        return true;
+        return days_in_month;
     }
 
     bool leapyear(int y) {
