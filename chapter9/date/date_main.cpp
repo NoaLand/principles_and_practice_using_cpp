@@ -21,6 +21,9 @@ int main() {
     const Chrono::Date &next_workday = Chrono::next_workday(my_day);
     cout << "next workday is: " << next_workday << endl;
 
+    int week_of_year = Chrono::week_of_year(my_day);
+    cout << "week of year is: " << week_of_year << endl;
+
     keep_window_open();
     return 0;
 }

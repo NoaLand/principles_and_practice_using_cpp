@@ -42,5 +42,6 @@ namespace Chrono {
     Day day_of_week(const Date& d);
     int get_day_in_month(int y, const Month &m);
     Date next_workday(Date& d);
+    int week_of_year(const Date& d);
 }
 #endif //PRINCIPLES_AND_PRACTICE_USING_CPP_CHRONO_H

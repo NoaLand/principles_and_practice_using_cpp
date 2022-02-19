@@ -163,4 +163,15 @@ namespace Chrono {
 
         return d;
     }
+
+    int week_of_year(const Date &d) {
+        int weeks{0};
+        Date start_of_year{d.year(), Month::jan, 1};
+        while(start_of_year != d) {
+            if(day_of_week(start_of_year) == Day::sunday) ++weeks;
+            start_of_year.add_day(1);
+        }
+
+        return weeks;
+    }
 }
