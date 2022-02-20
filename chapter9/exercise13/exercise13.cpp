@@ -32,6 +32,11 @@ int main() {
     cout << "multiplication res is: " << multiplication_res << endl;
     cout << "approximate value of multiplication is: " << approximate_val6 << endl;
 
+    Rational divide_res = r1 / r2;
+    double approximate_val7 = divide_res.approximate();
+    cout << "divided res is: " << divide_res << endl;
+    cout << "approximate value of divide is: " << approximate_val7 << endl;
+
     keep_window_open();
     return 0;
 }
