@@ -14,3 +14,7 @@ Rational operator+(const Rational &a, const Rational &b) {
     int d{a.denominator() * b.denominator()};
     return {n, d};
 }
+
+ostream &operator<<(ostream &os, const Rational &r) {
+    return os << r.numerator() << "/" << r.denominator();
+}
