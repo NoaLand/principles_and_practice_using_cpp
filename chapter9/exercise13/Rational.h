@@ -23,4 +23,6 @@ private:
     int d;
     double approximate_val{(n * 1.0) / d};
 };
+
+Rational operator+(const Rational& a, const Rational& b);
 #endif //PRINCIPLES_AND_PRACTICE_USING_CPP_RATIONAL_H

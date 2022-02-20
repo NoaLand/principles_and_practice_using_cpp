@@ -8,3 +8,9 @@ Rational::Rational(int nn, int dd): n{nn}, d{dd} {
 
 Rational::Invalid::Invalid(string  e): message{std::move(e)} {
 }
+
+Rational operator+(const Rational &a, const Rational &b) {
+    int n{a.numerator() * b.denominator() + b.numerator() * a.denominator()};
+    int d{a.denominator() * b.denominator()};
+    return {n, d};
+}

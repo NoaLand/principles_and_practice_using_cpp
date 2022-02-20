@@ -15,6 +15,10 @@ int main() {
         cout << "exception: " << e.what() << endl;
     }
 
+    Rational add_res = r1 + r2;
+    double approximate_val4 = add_res.approximate();
+    cout << "approximate value of add is: " << approximate_val4 << endl;
+
     keep_window_open();
     return 0;
 }
