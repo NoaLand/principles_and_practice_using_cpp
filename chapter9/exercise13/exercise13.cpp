@@ -37,6 +37,17 @@ int main() {
     cout << "divided res is: " << divide_res << endl;
     cout << "approximate value of divide is: " << approximate_val7 << endl;
 
+    bool is_eq1 = r1 == r2;
+    cout << "r1 is equal to r2? " << is_eq1 << endl;
+
+    Rational r8{20, 6};
+    double approximate_val8 = r8.approximate();
+    cout << "r8 is: " << r8 << endl;
+    cout << "approximate value 8 is: " << approximate_val8 << endl;
+
+    bool is_eq2 = r1 == r8;
+    cout << "r1 is equal to r8? " << is_eq2 << endl;
+
     keep_window_open();
     return 0;
 }
