@@ -26,7 +26,12 @@ int main() {
     double approximate_val5 = minus_res.approximate();
     cout << "minus res is: " << minus_res << endl;
     cout << "approximate value of minus is: " << approximate_val5 << endl;
-    
+
+    Rational multiplication_res = r1 * r2;
+    double approximate_val6 = multiplication_res.approximate();
+    cout << "multiplication res is: " << multiplication_res << endl;
+    cout << "approximate value of multiplication is: " << approximate_val6 << endl;
+
     keep_window_open();
     return 0;
 }

@@ -24,3 +24,9 @@ Rational operator-(const Rational &a, const Rational &b) {
     int d{a.denominator() * b.denominator()};
     return {n, d};
 }
+
+Rational operator*(const Rational &a, const Rational &b) {
+    int n{a.numerator() * b.numerator()};
+    int d{a.denominator() * b.denominator()};
+    return {n, d};
+}
