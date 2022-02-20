@@ -22,6 +22,11 @@ int main() {
     cout << "add res is: " << add_res << endl;
     cout << "approximate value of add is: " << approximate_val4 << endl;
 
+    Rational minus_res = r1 - r2;
+    double approximate_val5 = minus_res.approximate();
+    cout << "minus res is: " << minus_res << endl;
+    cout << "approximate value of minus is: " << approximate_val5 << endl;
+    
     keep_window_open();
     return 0;
 }
