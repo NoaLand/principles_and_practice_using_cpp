@@ -16,6 +16,7 @@ double get_rate(Currency f, Currency t);
 
 class Money {
 public:
+    Money();
     explicit Money(double dollar, Currency currency);
 
     long int cents() const { return c; }
@@ -28,6 +29,8 @@ private:
     static long int approximate_rule(const double& d);
 };
 
+istream& operator>>(istream& is, Money& m);
 ostream& operator<<(ostream& os, const Money& m);
 Money operator+(const Money& m1, const Money& m2);
+Currency to_currency(const string& cs);
 #endif //PRINCIPLES_AND_PRACTICE_USING_CPP_MONEY_H

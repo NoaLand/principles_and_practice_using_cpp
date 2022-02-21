@@ -14,6 +14,11 @@ int main() {
     Money m3 = m1 + m2;
     cout << "m3: " << m3 << endl;
 
+    Money m4;
+    cout << "enter m4: ";
+    cin >> m4;
+    cout << "m4: " << m4 << endl;
+
     keep_window_open();
     return 0;
 }

@@ -24,6 +24,9 @@ string Money::currency_string() const {
     }
 }
 
+Money::Money(): c{0}, cur{Currency::USD} {
+}
+
 ostream &operator<<(ostream &os, const Money &m) {
     return os << m.currency_string() << static_cast<double>(m.cents()) / 100.0;
 }
@@ -45,4 +48,33 @@ double get_rate(Currency f, Currency t) {
     }
 
     simple_error("no rate found");
+}
+
+istream &operator>>(istream &is, Money &m) {
+    string currency;
+    double cents{0};
+
+    for(char c; is >> c;) {
+        if(!isdigit(c)) {
+            currency += c;
+        } else {
+            is.putback(c);
+            is >> cents;
+            break;
+        }
+    }
+
+    m = Money{cents, to_currency(currency)};
+
+    return is;
+}
+
+Currency to_currency(const string &cs) {
+    if(cs == "USD") {
+        return Currency::USD;
+    } else if(cs == "DKK") {
+        return Currency::DKK;
+    } else if(cs == "CNY") {
+        return Currency::CNY;
+    }
 }
