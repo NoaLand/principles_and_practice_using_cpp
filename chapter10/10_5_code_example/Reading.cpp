@@ -15,7 +15,6 @@ int main() {
     if(!ist) simple_error("can't open input file " + iname);
 
     cout << "path: " << std::__fs::filesystem::current_path().string() << endl;
-    cout << "please enter input file name: ";
     cout << "please enter output file name: ";
     string oname;
     cin >> oname;
