@@ -41,6 +41,7 @@ add_executable(principles_and_practice_using_cpp
 #        chapter9/exercise5/Chrono/Chrono.cpp
 #        chapter9/exercise13/Rational.cpp
 #        chapter9/exercise13/exercise13.cpp
-        chapter9/money/Money.cpp
-        chapter9/money/exercise14_and_15.cpp
+#        chapter9/money/Money.cpp
+#        chapter9/money/exercise14_and_15.cpp
+        chapter10/10_5_code_example/Reading.cpp
 )
