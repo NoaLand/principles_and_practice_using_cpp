@@ -1,4 +1,3 @@
-#include <fstream>
 #include "../lib/std_lib_facilities.h"
 
 struct Reading {

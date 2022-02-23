@@ -9,6 +9,7 @@
 #include<map>
 #include<numeric>
 #include<random>
+#include <fstream>
 
 using namespace std;
 
