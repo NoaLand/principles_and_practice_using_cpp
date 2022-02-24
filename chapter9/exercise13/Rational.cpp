@@ -49,8 +49,9 @@ bool operator==(const Rational &a, const Rational &b) {
 }
 
 int gcd(int n1, int n2) {
-    if(n1 % n2 != 0) {
-        return gcd(n2, n1 % n2);
+    int mod = n1 % n2;
+    if(mod != 0) {
+        return gcd(n2, mod);
     } else {
         return n2;
     }
