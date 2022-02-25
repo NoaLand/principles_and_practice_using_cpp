@@ -11,7 +11,16 @@ int main() {
     string iname;
     cin >> iname;
     ifstream ist{iname};
-    if(!ist) simple_error("can't open input file " + iname);
+    if(!ist) {
+        if(ist.bad()) simple_error("ist is bad!");
+        if(ist.eof()) {
+            cout << "ist is in eof state";
+            ist.clear();
+        }
+        if(ist.fail()) {
+            ist.clear();
+        }
+    }
 
     cout << "path: " << std::__fs::filesystem::current_path().string() << endl;
     cout << "please enter output file name: ";
