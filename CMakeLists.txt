@@ -44,5 +44,6 @@ add_executable(principles_and_practice_using_cpp
 #        chapter9/money/Money.cpp
 #        chapter9/money/exercise14_and_15.cpp
 #        chapter10/10_5_code_example/Reading.cpp
-        chapter10/10_6_code_example/fill_vector.cpp
+#        chapter10/10_6_code_example/fill_vector.cpp
+        chapter10/10_10_code_example/end_of_loop.cpp
 )
