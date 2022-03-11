@@ -48,6 +48,6 @@ add_executable(principles_and_practice_using_cpp
 #        chapter10/10_10_code_example/end_of_loop.cpp
 #        chapter10/exercise_1/Point.cpp
 #        chapter10/exercise_1/exercise_1.cpp
-        chapter10/exercise_2_3/Point.cpp
-        chapter10/exercise_2_3/exercise_2_3.cpp
+        chapter10/exercise_2_to_4/Point.cpp
+        chapter10/exercise_2_to_4/exercise_2_to_4.cpp
 )
