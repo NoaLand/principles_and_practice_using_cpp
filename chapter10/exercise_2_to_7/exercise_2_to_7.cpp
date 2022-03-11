@@ -44,4 +44,15 @@ int main() {
     for(Point p : processed_points) {
         cout << p;
     }
+
+    cout << endl;
+
+    cout << "Compare vectors..." << endl;
+    if(original_points.size() != processed_points.size()) cout << "Something's wrong!" << endl;
+    for(int index = 0; index < original_points.size(); ++index) {
+        if(original_points[index] != processed_points[index]) {
+            cout << "Something's wrong!" << endl;
+        }
+    }
+    cout << "FINISH COMPARE" << endl;
 }

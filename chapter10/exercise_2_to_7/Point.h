@@ -10,6 +10,8 @@ public:
     double y{0};
 };
 
+bool operator==(const Point& p1, const Point& p2);
+bool operator!=(const Point& p1, const Point& p2);
 istream& operator>>(istream& ist, Point& p);
 ostream& operator<<(ostream& ost, const Point& p);
 
