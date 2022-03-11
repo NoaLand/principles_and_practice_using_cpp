@@ -4,12 +4,15 @@ istream &operator>>(istream &is, Point& p) {
     double x;
     char separator;
     double y;
-    is >> x >> separator >> y;
-    if(separator != ',') {
-        is.unget();
-        is.clear(ios_base::failbit);
-        return is;
+    is >> x;
+
+    is >> separator;
+    if(separator != ',' && !is.eof()) {
+        simple_error("wrong format");
     }
+
+    is >> y;
+
     p = {x, y};
 
     return is;
