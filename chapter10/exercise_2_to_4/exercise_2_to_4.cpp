@@ -31,4 +31,17 @@ int main() {
         ost << p;
     }
     cout << "FINISH" << endl;
+
+    cout << "start reading file" << endl;
+    vector<Point> processed_points;
+    ifstream ist{oname};
+    if(!ist) simple_error("wrong ist");
+    for(Point p; ist >> p;) {
+        processed_points.push_back(p);
+    }
+
+    cout << "Processed points are: " << endl;
+    for(Point p : processed_points) {
+        cout << p;
+    }
 }
