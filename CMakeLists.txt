@@ -51,5 +51,6 @@ add_executable(principles_and_practice_using_cpp
 #        chapter10/practice_2_to_7/Point.cpp
 #        chapter10/practice_2_to_7/practice_2_to_7.cpp
 #        chapter10/exercise_1/exercise_1.cpp
-        chapter10/exercise_2/store_temps.cpp
+#        chapter10/exercise_2/store_temps.cpp
+        chapter10/exercise_3/temp_stats.cpp
 )
