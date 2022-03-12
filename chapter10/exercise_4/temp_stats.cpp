@@ -1,14 +1,20 @@
 #include "../lib/std_lib_facilities.h"
 
+enum class Temp_type {
+    C, F
+};
+
 struct Reading {
     int hour{-1};
     double temperature{-999};
+    Temp_type type;
 };
 
 istream& operator>>(istream& is, Reading& r) {
     int hour;
     double temperature;
-    is >> hour >> temperature;
+    char temp_type;
+    is >> hour >> temperature >> temp_type;
     if(!is) {
         is.unget();
         is.clear(ios_base::failbit);
@@ -17,7 +23,17 @@ istream& operator>>(istream& is, Reading& r) {
 
     if(hour < 0 || hour > 23) simple_error("wrong hour format: " + to_string(hour));
 
-    r = {hour, temperature};
+    switch (temp_type) {
+        case 'c':
+            r = {hour, temperature, Temp_type::C};
+            break;
+        case 'f':
+            r = {hour, temperature, Temp_type::F};
+            break;
+        default:
+            simple_error("wrong temp type: " + to_string(temp_type));
+            break;
+    }
 
     return is;
 }
@@ -25,6 +41,8 @@ istream& operator>>(istream& is, Reading& r) {
 double calculate_average(const vector<Reading> &readings);
 
 double calculate_median(vector<Reading> &readings);
+
+void to_fahrenheit(Reading &reading);
 
 int main() {
     cout << "please enter input raw data file: ";
@@ -35,6 +53,9 @@ int main() {
 
     vector<Reading> readings;
     for(Reading r; ist >> r;) {
+        if(r.type == Temp_type::C) {
+            to_fahrenheit(r);
+        }
         readings.push_back(r);
     }
 
@@ -46,6 +67,11 @@ int main() {
 
     keep_window_open();
     return 0;
+}
+
+void to_fahrenheit(Reading &reading) {
+    reading.temperature = reading.temperature * 1.8 + 32;
+    reading.type = Temp_type::F;
 }
 
 double calculate_median(vector<Reading> &readings) {
