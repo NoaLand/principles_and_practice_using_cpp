@@ -48,6 +48,8 @@ struct Reading {
 
 bool is_valid(const Reading& r);
 
+void print_year(ofstream &os, const Year &year);
+
 istream& operator>>(istream& is, Reading& r) {
     char ch1;
     if(is >> ch1 && ch1 != '(') {
@@ -135,6 +137,32 @@ bool is_valid(const Reading& r) {
 }
 
 int main() {
+    cout << "Please enter input file name\n";
+    string iname;
+    cin >> iname;
+    ifstream ist{iname};
+    if(!ist) simple_error("can't open input file " + iname);
+
+    ist.exceptions(ist.exceptions() | ios_base::badbit);
+
+    cout << "Please enter output file name\n";
+    string oname;
+    cin >> oname;
+    ofstream ost{oname};
+    if(!ost) simple_error("can't open output file " + oname);
+
+    vector<Year> ys;
+    while(true) {
+        Year y;
+        if(!(ist >> y)) break;
+        ys.push_back(y);
+    }
+    cout << "read " << ys.size() << " years of readings\n";
+
+    for(Year& y : ys) print_year(ost, y);
     keep_window_open();
     return 0;
+}
+
+void print_year(ofstream &os, const Year &year) {
 }
