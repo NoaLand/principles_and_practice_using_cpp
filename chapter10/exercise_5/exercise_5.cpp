@@ -28,7 +28,19 @@ void end_of_loop(istream& ist, char term, const string& message) {
 
 struct Day {
     vector<double> hour {vector<double>(24, not_a_reading)};
+
+    bool has_temp() const;
 };
+
+bool Day::has_temp() const {
+    for(double temp : hour) {
+        if(temp != not_a_reading) {
+            return true;
+        }
+    }
+
+    return false;
+}
 
 struct Month {
     int month{not_a_month};
@@ -100,6 +112,29 @@ istream& operator>>(istream& is, Month& m) {
     }
 }
 
+ostream& operator<<(ostream& os, const Day& d) {
+    for(int index = 0; index < d.hour.size(); ++index) {
+        if(d.hour[index] != not_a_reading) {
+            os << "time:" << index << "," << "temp:" << d.hour[index];
+        }
+    }
+    return os;
+}
+
+ostream& operator<<(ostream& os, const Month& m) {
+    if(m.month != not_a_month) {
+        os << "{" <<  month_input_tbl[m.month] << ":" << "[";
+        for(int index = 0; index < m.day.size(); ++index) {
+            if(m.day[index].has_temp()) {
+                os << "{" << "date:" << index + 1  << ", " << m.day[index] << "}" << ",";
+            }
+        }
+        os << "]" << "}";
+    }
+
+    return os;
+}
+
 istream& operator>>(istream& is, Year& y) {
     char ch;
     is >> ch;
@@ -119,10 +154,23 @@ istream& operator>>(istream& is, Year& y) {
         Month m;
         if(!(is >> m)) break;
         y.month[m.month] = m;
+        m = Month();
     }
 
     end_of_loop(is, '}', "bad end of year");
     return is;
+}
+
+ostream& operator<<(ostream& os, const Year& y) {
+    os << "{ " << "y: " << y.year << ", " << "m: " << "[";
+    for(const Month& m : y.month) {
+        if(m.month != not_a_month) {
+            os << m << ",";
+        }
+    }
+    os << "]" << "}";
+
+    return os;
 }
 
 constexpr int implausible_min = -200;
@@ -165,4 +213,5 @@ int main() {
 }
 
 void print_year(ofstream &os, const Year &year) {
+    os << year << endl;
 }
