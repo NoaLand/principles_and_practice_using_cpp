@@ -1,0 +1,7 @@
+#ifndef PRINCIPLES_AND_PRACTICE_USING_CPP_ROMAN_INT_H
+#define PRINCIPLES_AND_PRACTICE_USING_CPP_ROMAN_INT_H
+#include "../lib/std_lib_facilities.h"
+
+class Roman_int {
+};
+#endif //PRINCIPLES_AND_PRACTICE_USING_CPP_ROMAN_INT_H
