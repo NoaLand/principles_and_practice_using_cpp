@@ -1,5 +1,13 @@
 #include "Roman_int.h"
 
+void Roman_int::push_back(const Roman_element &re) {
+    if(roman_num.size() == 1 && roman_num[0] == NONE) {
+        roman_num.clear();
+    }
+
+    roman_num.push_back(re);
+}
+
 istream &operator>>(istream &is, Roman_int& r) {
     for(char raw_roman; is >> raw_roman;) {
         if(raw_roman != ';') {
@@ -10,6 +18,15 @@ istream &operator>>(istream &is, Roman_int& r) {
         }
     }
     return is;
+}
+
+ostream &operator<<(ostream &os, const Roman_int& r) {
+    for(Roman_element re : r.get_num()) {
+        os << to_str(re);
+    }
+    os << endl;
+
+    return os;
 }
 
 Roman_element to_roman_element(const char &re) {
@@ -33,15 +50,6 @@ Roman_element to_roman_element(const char &re) {
     }
 }
 
-ostream &operator<<(ostream &os, const Roman_int& r) {
-    for(Roman_element re : r.get_num()) {
-        os << to_str(re);
-    }
-    os << endl;
-
-    return os;
-}
-
 string to_str(const Roman_element &re) {
     switch(re) {
         case NONE:
@@ -61,12 +69,4 @@ string to_str(const Roman_element &re) {
         case M:
             return "M";
     }
-}
-
-void Roman_int::push_back(const Roman_element &re) {
-    if(roman_num.size() == 1 && roman_num[0] == NONE) {
-        roman_num.clear();
-    }
-
-    roman_num.push_back(re);
 }
