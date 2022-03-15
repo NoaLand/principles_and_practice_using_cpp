@@ -8,11 +8,27 @@ void Roman_int::push_back(const Roman_element &re) {
     roman_num.push_back(re);
 }
 
+bool Roman_int::validating(Roman_element re) const {
+    Roman_element last_element = roman_num[roman_num.size() - 1];
+    Roman_element last_second_element = roman_num[roman_num.size() - 2];
+
+    bool element_can_be_left = last_element < re
+                               && std::find(CAN_BE_LEFT.begin(), CAN_BE_LEFT.end(), last_element) != CAN_BE_LEFT.end();
+
+    bool element_not_consecutive_3_times = last_element != last_second_element && last_element != re;
+
+    return element_can_be_left && element_not_consecutive_3_times;
+}
+
 istream &operator>>(istream &is, Roman_int& r) {
     for(char raw_roman; is >> raw_roman;) {
         if(raw_roman != ';') {
             Roman_element re = translating(raw_roman);
-            r.push_back(re);
+            if(r.validating(re)) {
+                r.push_back(re);
+            } else {
+                simple_error("wrong format Roman number!");
+            }
         } else {
             return is;
         }

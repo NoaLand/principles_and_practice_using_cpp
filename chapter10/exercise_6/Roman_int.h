@@ -6,10 +6,12 @@
 enum Roman_element {
     NONE = -1, I = 1, V = 5, X = 10, L = 50, C = 100, D = 500, M = 1000
 };
+const vector<Roman_element> CAN_BE_LEFT {I, X, C};
 
 class Roman_int {
 public:
     vector<Roman_element> get_num() const { return roman_num; }
+    bool validating(Roman_element re) const;
 
     void push_back(const Roman_element &re);
 
