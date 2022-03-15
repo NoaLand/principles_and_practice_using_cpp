@@ -11,7 +11,7 @@ void Roman_int::push_back(const Roman_element &re) {
 istream &operator>>(istream &is, Roman_int& r) {
     for(char raw_roman; is >> raw_roman;) {
         if(raw_roman != ';') {
-            Roman_element re = to_roman_element(raw_roman);
+            Roman_element re = translating(raw_roman);
             r.push_back(re);
         } else {
             return is;
@@ -29,7 +29,7 @@ ostream &operator<<(ostream &os, const Roman_int& r) {
     return os;
 }
 
-Roman_element to_roman_element(const char &re) {
+Roman_element translating(const char &re) {
     switch(re) {
         case 'I':
             return I;

@@ -20,7 +20,7 @@ private:
 istream &operator>>(istream &is, Roman_int& r);
 ostream &operator<<(ostream &os, const Roman_int& r);
 
-Roman_element to_roman_element(const char &re);
+Roman_element translating(const char &re);
 string to_str(const Roman_element& re);
 
 #endif //PRINCIPLES_AND_PRACTICE_USING_CPP_ROMAN_INT_H
