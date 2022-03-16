@@ -26,4 +26,8 @@ ostream &operator<<(ostream &os, const Roman_int& r);
 Roman_element translating(const char &re);
 string to_str(const Roman_element& re);
 
+Roman_int to_roman(int& num);
+void get_roman_ele(int& num, Roman_int& r);
+vector<Roman_element> get_base(const int& num);
+
 #endif //PRINCIPLES_AND_PRACTICE_USING_CPP_ROMAN_INT_H

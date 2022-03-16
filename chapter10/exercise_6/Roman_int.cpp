@@ -106,3 +106,75 @@ string to_str(const Roman_element &re) {
             return "M";
     }
 }
+
+Roman_int to_roman(int &num) {
+    Roman_int r;
+    get_roman_ele(num, r);
+    return r;
+}
+
+void get_roman_ele(int &num, Roman_int& r) {
+    if(num > 0) {
+        vector<Roman_element> base = get_base(num);
+        // TODO: waiting for refactoring, this ugly implement is only a quit test for int to roman number
+        if(base.size() == 1) {
+            num -= base[0];
+            r.push_back(base[0]);
+        } else {
+            num -= (base[1] - base[0]);
+            r.push_back(base[0]);
+            r.push_back(base[1]);
+        }
+        get_roman_ele(num, r);
+    }
+}
+
+vector<Roman_element> get_base(const int& num) {
+    if(num >= M) {
+        return {M};
+    }
+
+    if(num >= D) {
+        if(num >= 900) {
+            return {C, M};
+        }
+        return {D};
+    }
+
+    if(num >= C) {
+        if(num >= 4 * C) {
+            return {C, D};
+        }
+        return {C};
+    }
+
+    if(num >= L) {
+        if(num >= 90) {
+            return {X, C};
+        }
+        return {L};
+    }
+
+    if(num >= X) {
+        if(num >= 4 * X) {
+            return {X, L};
+        }
+        return {X};
+    }
+
+    if(num >= V) {
+        if(num >= 9) {
+            return {I, X};
+        }
+        return {V};
+    }
+
+    if(num >= I) {
+        if(num >= 4 * I) {
+            return {I, V};
+        }
+        return {I};
+    }
+
+    return {NONE};
+}
