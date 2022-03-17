@@ -306,8 +306,8 @@ void help_info() {
     cout << "Welcome to our simple calculator." << endl;
     cout << "Please enter expressions using floating-point numbers." << endl;
     cout << "1. You can use +, -, *, /, % to calculate." << endl;
-    cout << "2. You can calculate Permutation by inputting P(a, b)." << endl;
-    cout << "3. You can calculate Combination by inputting C(a, b)." << endl;
+    cout << "2. You can calculate Permutation by inputting p(a, b)." << endl;
+    cout << "3. You can calculate Combination by inputting c(a, b)." << endl;
     cout << "4. You can declare a variable by using `# x = 2.4;`." << endl;
     cout << "5. You can calculate power by using `pow(3.2, 2);`." << endl;
     cout << "6. You can calculate square root of a number by inputting `sqrt(4.0);`" << endl;

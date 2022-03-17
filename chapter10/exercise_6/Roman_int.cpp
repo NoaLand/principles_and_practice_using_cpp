@@ -1,5 +1,7 @@
 #include "Roman_int.h"
 
+vector<char> roman_element_str{'I', 'V', 'X', 'L', 'C', 'D', 'M'};
+
 void Roman_int::push_back(const Roman_element &re) {
     if(roman_num.size() == 1 && roman_num[0] == NONE) {
         roman_num.clear();
@@ -43,7 +45,7 @@ int Roman_int::as_int() const {
 
 istream &operator>>(istream &is, Roman_int& r) {
     for(char raw_roman; is >> raw_roman;) {
-        if(raw_roman != ';') {
+        if(in_element_vec(raw_roman)) {
             Roman_element re = translating(raw_roman);
             if(r.validating(re)) {
                 r.push_back(re);
@@ -51,6 +53,7 @@ istream &operator>>(istream &is, Roman_int& r) {
                 simple_error("wrong format Roman number!");
             }
         } else {
+            is.putback(raw_roman);
             return is;
         }
     }
@@ -177,4 +180,12 @@ vector<Roman_element> get_base(const int& num) {
     }
 
     return {NONE};
+}
+
+bool in_element_vec(char raw) {
+    for(char e : roman_element_str) {
+        if(e == raw) return true;
+    }
+
+    return false;
 }

@@ -50,6 +50,7 @@ SubPrimary:
     "sqrt" "(" Expression ")"
 Number:
     floating-point-literal
+    Roman_int
 Name:
     string-literal
 ```

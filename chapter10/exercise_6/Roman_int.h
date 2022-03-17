@@ -6,6 +6,7 @@
 enum Roman_element {
     NONE = 999999, I = 1, V = 5, X = 10, L = 50, C = 100, D = 500, M = 1000
 };
+extern vector<char> roman_element_str;
 const vector<Roman_element> CAN_BE_LEFT {I, X, C};
 const vector<Roman_element> CAN_NOT_REPEAT {V, L, D};
 
@@ -30,4 +31,5 @@ Roman_int to_roman(int& num);
 void get_roman_ele(int& num, Roman_int& r);
 vector<Roman_element> get_base(const int& num);
 
+bool in_element_vec(char raw);
 #endif //PRINCIPLES_AND_PRACTICE_USING_CPP_ROMAN_INT_H

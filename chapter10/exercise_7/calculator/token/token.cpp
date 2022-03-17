@@ -1,5 +1,6 @@
 #include "token.h"
 #include "../constant.h"
+#include "../../../exercise_6/Roman_int.h"
 
 Token_stream::Token_stream(istream& i): is(i), full(false), buffer(0) {
 }
@@ -24,7 +25,7 @@ Token Token_stream::get() {
     switch (ch) {
         case print:
         case '(': case ')': case '{': case '}': case '+': case '-': case '*': case '/': case '!':
-        case 'P': case 'C': case ',': case '%': case assignment:
+        case 'p': case 'c': case ',': case '%': case assignment:
             return {ch};
         case declkey:
             return {let};
@@ -35,6 +36,12 @@ Token Token_stream::get() {
             double val;
             is >> val;
             return {number, val};
+        }
+        case 'I': case 'V': case 'X': case 'L': case 'C': case 'D': case 'M': {
+            is.putback(ch);
+            Roman_int r;
+            is >> r;
+            return {number, static_cast<double>(r.as_int())};
         }
         default:
             if(isalpha(ch)) {
