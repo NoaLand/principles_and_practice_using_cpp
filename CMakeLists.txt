@@ -60,5 +60,6 @@ add_executable(principles_and_practice_using_cpp
 #        chapter10/exercise_7/calculator/token/token.cpp
 #        chapter10/exercise_7/calculator/variable/variable.cpp
 #        chapter10/exercise_7/calculator/calculator.cpp
-        chapter10/exercise_8/exercise_8.cpp
+#        chapter10/exercise_8/exercise_8.cpp
+        chapter10/exercise_9/exercise_9.cpp
 )
