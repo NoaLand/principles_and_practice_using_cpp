@@ -33,8 +33,10 @@ int main() {
     sort(word_list.begin(), word_list.end());
 
     for(string w : word_list) {
-        ost << w << endl;
+        ost << w << " ";
     }
+    ost << flush;
+    ost.close();
 
     cout << "finish" << endl;
 
