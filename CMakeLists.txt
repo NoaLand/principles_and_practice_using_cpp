@@ -55,6 +55,9 @@ add_executable(principles_and_practice_using_cpp
 #        chapter10/exercise_3/temp_stats.cpp
 #        chapter10/exercise_4/temp_stats.cpp
 #        chapter10/exercise_5/exercise_5.cpp
-        chapter10/exercise_6/Roman_int.cpp
-        chapter10/exercise_6/exercise_6.cpp
+#        chapter10/exercise_6/Roman_int.cpp
+#        chapter10/exercise_6/exercise_6.cpp
+        chapter10/exercise_7/calculator/token/token.cpp
+        chapter10/exercise_7/calculator/variable/variable.cpp
+        chapter10/exercise_7/calculator/calculator.cpp
 )
