@@ -17,3 +17,7 @@ const Date& default_date() {
     return dd;
 }
 ```
+
+## issues
+
+- [CLion gets wrong CMAKE_OSX_SYSROOT value](https://youtrack.jetbrains.com/issue/CPP-20766)
