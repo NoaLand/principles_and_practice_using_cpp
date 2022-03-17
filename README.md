@@ -21,3 +21,4 @@ const Date& default_date() {
 ## issues
 
 - [CLion gets wrong CMAKE_OSX_SYSROOT value](https://youtrack.jetbrains.com/issue/CPP-20766)
+- [ofstream doesn't flush](https://stackoverflow.com/questions/3113229/ofstream-doesnt-flush)
