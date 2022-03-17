@@ -4,14 +4,10 @@ int main() {
     cout << "Please enter input file 1: ";
     string iname1;
     cin >> iname1;
-    ifstream ist1{iname1};
-    if(!ist1) simple_error("wrong ist1");
 
     cout << "Please enter input file 2: ";
     string iname2;
     cin >> iname2;
-    ifstream ist2{iname2};
-    if(!ist2) simple_error("wrong ist2");
 
     cout << "Please enter output file: ";
     string oname;
@@ -19,15 +15,20 @@ int main() {
     ofstream ost{oname};
     if(!ost) simple_error("wrong ost");
 
+    ifstream ist;
+    ist.open(iname1, ifstream::in);
     vector<string> word_list;
     string words;
-    while(ist1 >> words) {
+    while(ist >> words) {
         word_list.push_back(words);
     }
+    ist.close();
 
-    while(ist2 >> words) {
+    ist.open(iname2, ifstream::in);
+    while(ist >> words) {
         word_list.push_back(words);
     }
+    ist.close();
 
     sort(word_list.begin(), word_list.end());
 
