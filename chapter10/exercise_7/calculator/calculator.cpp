@@ -324,7 +324,7 @@ void variable_predefine(Symbol_table& st) {
 }
 
 void calculate(Token_stream& ts, Symbol_table& st) {
-    while (!ts.get_istream().eof()) {
+    while (ts.get_istream()) {
         try {
             cout << prompt;
             Token t = ts.get();

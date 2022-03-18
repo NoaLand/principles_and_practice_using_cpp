@@ -44,7 +44,6 @@ Token Token_stream::get() {
             return {number, static_cast<double>(r.as_int())};
         }
         case '\0': {
-            ignore(ch);
             return {eof};
         }
         default:
