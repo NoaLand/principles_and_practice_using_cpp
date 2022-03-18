@@ -6,6 +6,7 @@ To support for factorial calculating, we need to re-design this grammar, which m
 
 ```
 Calculation:
+    "from" FilePath -> Statement
     Statement
     Help
     Print
@@ -51,6 +52,8 @@ SubPrimary:
 Number:
     floating-point-literal
     Roman_int
+FilePath:
+    string-literal
 Name:
     string-literal
 ```
