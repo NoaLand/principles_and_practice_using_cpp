@@ -312,9 +312,10 @@ void help_info() {
     cout << "5. You can calculate power by using `pow(3.2, 2);`." << endl;
     cout << "6. You can calculate square root of a number by inputting `sqrt(4.0);`" << endl;
     cout << "7. By using 'from filename', you can import statement from file, which filename will auto append '.txt'" << endl;
-    cout << "8. By inputting ';' to print the result of expression you have entered." << endl;
-    cout << "9. By inputting 'help' to get help info of this calculator." << endl;
-    cout << "10. By inputting 'quit' to exit this calculator." << endl;
+    cout << "8. By using 'to filename', you can export history to file, which filename will auto append '.txt'" << endl;
+    cout << "9. By inputting ';' to print the result of expression you have entered." << endl;
+    cout << "10. By inputting 'help' to get help info of this calculator." << endl;
+    cout << "11. By inputting 'quit' to exit this calculator." << endl;
     cout << "------------------------------------------------------------------------------" << endl;
 }
 
