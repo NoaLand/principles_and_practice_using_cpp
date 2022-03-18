@@ -54,6 +54,7 @@ Token Token_stream::get() {
                 is.putback(ch);
                 if(s == quit_key) return {quit};
                 if(s == from_key) return {from};
+                if(s == to_key) return {to};
                 if(s == sqrt_key) return {square_root};
                 if(s == power_key) return {power};
                 if(s == const_key) return {cons};

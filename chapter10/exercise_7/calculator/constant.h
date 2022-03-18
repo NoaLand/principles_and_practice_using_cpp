@@ -25,6 +25,9 @@ static string help_key = "help"; // NOLINT(cert-err58-cpp)
 static const char from = 'F';
 static string from_key = "from"; // NOLINT(cert-err58-cpp)
 
+static const char to = 'T';
+static string to_key = "to"; // NOLINT(cert-err58-cpp)
+
 static const char eof = 'E';
 
 static const char number = '8';

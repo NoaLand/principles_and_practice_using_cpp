@@ -324,6 +324,7 @@ void variable_predefine(Symbol_table& st) {
 }
 
 void calculate(Token_stream& ts, Symbol_table& st) {
+    string history;
     while (ts.get_istream()) {
         try {
             cout << prompt;
@@ -347,6 +348,17 @@ void calculate(Token_stream& ts, Symbol_table& st) {
                 cout << "*** end of file ***" << endl;
                 continue;
             }
+            if(t.kind == to) {
+                Token filePathToken = ts.get();
+                if(filePathToken.kind == name) {
+                    string filePath = "../chapter10/exercise_7/calculator/to/" + filePathToken.name + ".txt";
+                    ofstream ost{filePath};
+                    if(!ost) simple_error("wrong ost");
+                    ost << history << flush;
+                    ost.close();
+                    continue;
+                }
+            }
             if(t.kind == quit) {
                 return;
             }
@@ -356,9 +368,12 @@ void calculate(Token_stream& ts, Symbol_table& st) {
             }
             ts.putback(t);
 
-            cout << result << statement(ts, st) << endl;
+            double res = statement(ts, st);
+            history = history + result + to_string(res) + "\n";
+            cout << result << res << endl;
         } catch(exception& e) {
             cerr << e.what() << endl;
+            history = history + e.what() + "\n";
             clean_up_mess(ts);
         }
     }
