@@ -1,7 +1,6 @@
 #include "calculator/variable/variable.h"
 #include "calculator/token/token.h"
 #include "calculator/constant.h"
-#include "../../exercise_6/Roman_int.h"
 
 int narrow_cast_to_int(double d) {
     int d_int = (int) d;
@@ -340,13 +339,7 @@ void calculate(Token_stream& ts, Symbol_table& st) {
             }
             ts.putback(t);
 
-            double res = statement(ts, st);
-            int res_int = (int) res;
-            if(res_int == res) {
-                cout << result << to_roman(res_int) << endl;
-            } else {
-                cout << result << res << endl;
-            }
+            cout << result << statement(ts, st) << endl;
         } catch(exception& e) {
             cerr << e.what() << endl;
             clean_up_mess(ts);
