@@ -32,7 +32,7 @@ int main() {
 
     sort(word_list.begin(), word_list.end());
 
-    for(string w : word_list) {
+    for(const string& w : word_list) {
         ost << w << " ";
     }
     ost << flush;
