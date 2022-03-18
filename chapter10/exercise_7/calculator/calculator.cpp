@@ -1,6 +1,6 @@
-#include "calculator/variable/variable.h"
-#include "calculator/token/token.h"
-#include "calculator/constant.h"
+#include "variable/variable.h"
+#include "token/token.h"
+#include "constant.h"
 
 int narrow_cast_to_int(double d) {
     int d_int = (int) d;
@@ -270,7 +270,7 @@ int main() {
 
         calculate(ts, st);
 
-        keep_window_open();
+//        keep_window_open();
         return 0;
     }
     catch (runtime_error& e) {
@@ -324,12 +324,29 @@ void variable_predefine(Symbol_table& st) {
 }
 
 void calculate(Token_stream& ts, Symbol_table& st) {
-    while (ts.get_istream()) {
+    while (!ts.get_istream().eof()) {
         try {
             cout << prompt;
             Token t = ts.get();
 
             while(t.kind == print) t = ts.get();
+            if(t.kind == from) {
+                Token filePathToken = ts.get();
+                if(filePathToken.kind == name) {
+                    string filePath = "../chapter10/exercise_7/calculator/from/" + filePathToken.name + ".txt";
+                    ifstream ist{filePath};
+                    if(!ist) simple_error("wrong ist");
+                    Token_stream tsf{ist};
+                    calculate(tsf, st);
+                    continue;
+                } else {
+                    simple_error("wrong file path");
+                }
+            }
+            if(t.kind == eof) {
+                cout << "*** end of file ***" << endl;
+                continue;
+            }
             if(t.kind == quit) {
                 return;
             }

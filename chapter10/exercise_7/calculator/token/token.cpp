@@ -43,6 +43,10 @@ Token Token_stream::get() {
             is >> r;
             return {number, static_cast<double>(r.as_int())};
         }
+        case '\0': {
+            ignore(ch);
+            return {eof};
+        }
         default:
             if(isalpha(ch)) {
                 string s;
@@ -50,6 +54,7 @@ Token Token_stream::get() {
                 while(is.get(ch) && (isalpha(ch) || isdigit(ch) || ch == '_')) s += ch;
                 is.putback(ch);
                 if(s == quit_key) return {quit};
+                if(s == from_key) return {from};
                 if(s == sqrt_key) return {square_root};
                 if(s == power_key) return {power};
                 if(s == const_key) return {cons};

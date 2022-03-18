@@ -22,6 +22,11 @@ const string quit_key = "quit"; // NOLINT(cert-err58-cpp)
 static const char help = 'H';
 static string help_key = "help"; // NOLINT(cert-err58-cpp)
 
+static const char from = 'F';
+static string from_key = "from"; // NOLINT(cert-err58-cpp)
+
+static const char eof = 'E';
+
 static const char number = '8';
 static const char print = ';';
 static const char *const prompt = "> ";
