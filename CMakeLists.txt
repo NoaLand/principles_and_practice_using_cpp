@@ -66,5 +66,6 @@ add_executable(principles_and_practice_using_cpp
 #        chapter10/exercise_11/exercise_11.cpp
 #        chapter11/11_2_1_code_example/code_example.cpp
 #        chapter11/try_it_out_1/try_it_out_1.cpp
-        chapter11/try_it_out_2/try_it_out_2.cpp
+#        chapter11/try_it_out_2/try_it_out_2.cpp
+        chapter11/11_2_2_code_example/code_example.cpp
 )
