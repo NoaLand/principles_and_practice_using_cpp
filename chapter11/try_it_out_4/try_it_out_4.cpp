@@ -32,8 +32,9 @@ int main() {
     Person p4{"p4xxx", "noa", "1237xx", "p4noaland@xxx.com"};
     Person p5{"p5xxxxxxxx", "noaland12", "1237xxxxxxxxx", "p5noaland@xxx.com"};
 
-    vector<Person> p_list{p_temp, p1, p2, p3, p4, p5};
+    vector<Person> p_list{p1, p2, p3, p4, p5};
 
+    cout << p_temp << endl;
     for(const Person& p : p_list) {
         cout << p << endl;
     }
