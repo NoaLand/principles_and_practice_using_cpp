@@ -25,7 +25,7 @@ ostream &operator<<(ostream &os, const Person& p) {
 }
 
 int main() {
-    Person p_temp{"first name", "last name", "phone", "email"};
+    Person p_table_head{"first name", "last name", "phone", "email"};
     Person p1{"edward", "noaland", "12345678", "edwardnoaland@xxx.com"};
     Person p2{"p2", "noaland", "12345", "p2noaland@xxx.com"};
     Person p3{"p3", "noaland", "1234", "p3noaland@xxx.com"};
@@ -34,7 +34,7 @@ int main() {
 
     vector<Person> p_list{p1, p2, p3, p4, p5};
 
-    cout << p_temp << endl;
+    cout << p_table_head << endl;
     for(const Person& p : p_list) {
         cout << p << endl;
     }
